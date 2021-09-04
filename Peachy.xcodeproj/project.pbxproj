@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
+		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
+		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
+		2C4E161D26E1F84B006A5986 /* PeachyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E161C26E1F84B006A5986 /* PeachyTests.swift */; };
+		2C4E162826E1F84B006A5986 /* PeachyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E162726E1F84B006A5986 /* PeachyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C4E161926E1F84B006A5986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C4E160026E1F849006A5986 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C4E160726E1F849006A5986;
+			remoteInfo = Peachy;
+		};
+		2C4E162426E1F84B006A5986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C4E160026E1F849006A5986 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C4E160726E1F849006A5986;
+			remoteInfo = Peachy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2C4E160826E1F849006A5986 /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4E160B26E1F849006A5986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2C4E160D26E1F84A006A5986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2C4E161026E1F84A006A5986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2C4E161226E1F84A006A5986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C4E161326E1F84A006A5986 /* Peachy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peachy.entitlements; sourceTree = "<group>"; };
+		2C4E161826E1F84B006A5986 /* PeachyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeachyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4E161C26E1F84B006A5986 /* PeachyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeachyTests.swift; sourceTree = "<group>"; };
+		2C4E161E26E1F84B006A5986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C4E162326E1F84B006A5986 /* PeachyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeachyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4E162726E1F84B006A5986 /* PeachyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeachyUITests.swift; sourceTree = "<group>"; };
+		2C4E162926E1F84B006A5986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C4E160526E1F849006A5986 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C4E161526E1F84B006A5986 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C4E162026E1F84B006A5986 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C4E15FF26E1F849006A5986 = {
+			isa = PBXGroup;
+			children = (
+				2C4E160A26E1F849006A5986 /* Peachy */,
+				2C4E161B26E1F84B006A5986 /* PeachyTests */,
+				2C4E162626E1F84B006A5986 /* PeachyUITests */,
+				2C4E160926E1F849006A5986 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C4E160926E1F849006A5986 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E160826E1F849006A5986 /* Peachy.app */,
+				2C4E161826E1F84B006A5986 /* PeachyTests.xctest */,
+				2C4E162326E1F84B006A5986 /* PeachyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C4E160A26E1F849006A5986 /* Peachy */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E160B26E1F849006A5986 /* AppDelegate.swift */,
+				2C4E160D26E1F84A006A5986 /* Assets.xcassets */,
+				2C4E160F26E1F84A006A5986 /* MainMenu.xib */,
+				2C4E161226E1F84A006A5986 /* Info.plist */,
+				2C4E161326E1F84A006A5986 /* Peachy.entitlements */,
+			);
+			path = Peachy;
+			sourceTree = "<group>";
+		};
+		2C4E161B26E1F84B006A5986 /* PeachyTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E161C26E1F84B006A5986 /* PeachyTests.swift */,
+				2C4E161E26E1F84B006A5986 /* Info.plist */,
+			);
+			path = PeachyTests;
+			sourceTree = "<group>";
+		};
+		2C4E162626E1F84B006A5986 /* PeachyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E162726E1F84B006A5986 /* PeachyUITests.swift */,
+				2C4E162926E1F84B006A5986 /* Info.plist */,
+			);
+			path = PeachyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C4E160726E1F849006A5986 /* Peachy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C4E162C26E1F84B006A5986 /* Build configuration list for PBXNativeTarget "Peachy" */;
+			buildPhases = (
+				2C4E160426E1F849006A5986 /* Sources */,
+				2C4E160526E1F849006A5986 /* Frameworks */,
+				2C4E160626E1F849006A5986 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Peachy;
+			productName = Peachy;
+			productReference = 2C4E160826E1F849006A5986 /* Peachy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2C4E161726E1F84B006A5986 /* PeachyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C4E162F26E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyTests" */;
+			buildPhases = (
+				2C4E161426E1F84B006A5986 /* Sources */,
+				2C4E161526E1F84B006A5986 /* Frameworks */,
+				2C4E161626E1F84B006A5986 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C4E161A26E1F84B006A5986 /* PBXTargetDependency */,
+			);
+			name = PeachyTests;
+			productName = PeachyTests;
+			productReference = 2C4E161826E1F84B006A5986 /* PeachyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2C4E162226E1F84B006A5986 /* PeachyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C4E163226E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyUITests" */;
+			buildPhases = (
+				2C4E161F26E1F84B006A5986 /* Sources */,
+				2C4E162026E1F84B006A5986 /* Frameworks */,
+				2C4E162126E1F84B006A5986 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C4E162526E1F84B006A5986 /* PBXTargetDependency */,
+			);
+			name = PeachyUITests;
+			productName = PeachyUITests;
+			productReference = 2C4E162326E1F84B006A5986 /* PeachyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C4E160026E1F849006A5986 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					2C4E160726E1F849006A5986 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					2C4E161726E1F84B006A5986 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 2C4E160726E1F849006A5986;
+					};
+					2C4E162226E1F84B006A5986 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 2C4E160726E1F849006A5986;
+					};
+				};
+			};
+			buildConfigurationList = 2C4E160326E1F849006A5986 /* Build configuration list for PBXProject "Peachy" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2C4E15FF26E1F849006A5986;
+			productRefGroup = 2C4E160926E1F849006A5986 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C4E160726E1F849006A5986 /* Peachy */,
+				2C4E161726E1F84B006A5986 /* PeachyTests */,
+				2C4E162226E1F84B006A5986 /* PeachyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C4E160626E1F849006A5986 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */,
+				2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C4E161626E1F84B006A5986 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C4E162126E1F84B006A5986 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C4E160426E1F849006A5986 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C4E161426E1F84B006A5986 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4E161D26E1F84B006A5986 /* PeachyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C4E161F26E1F84B006A5986 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4E162826E1F84B006A5986 /* PeachyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C4E161A26E1F84B006A5986 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C4E160726E1F849006A5986 /* Peachy */;
+			targetProxy = 2C4E161926E1F84B006A5986 /* PBXContainerItemProxy */;
+		};
+		2C4E162526E1F84B006A5986 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C4E160726E1F849006A5986 /* Peachy */;
+			targetProxy = 2C4E162426E1F84B006A5986 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2C4E160F26E1F84A006A5986 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C4E161026E1F84A006A5986 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2C4E162A26E1F84B006A5986 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2C4E162B26E1F84B006A5986 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2C4E162D26E1F84B006A5986 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Peachy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2C4E162E26E1F84B006A5986 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Peachy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2C4E163026E1F84B006A5986 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				INFOPLIST_FILE = PeachyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peachy.app/Contents/MacOS/Peachy";
+			};
+			name = Debug;
+		};
+		2C4E163126E1F84B006A5986 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				INFOPLIST_FILE = PeachyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peachy.app/Contents/MacOS/Peachy";
+			};
+			name = Release;
+		};
+		2C4E163326E1F84B006A5986 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				INFOPLIST_FILE = PeachyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Peachy;
+			};
+			name = Debug;
+		};
+		2C4E163426E1F84B006A5986 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				INFOPLIST_FILE = PeachyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Peachy;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C4E160326E1F849006A5986 /* Build configuration list for PBXProject "Peachy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4E162A26E1F84B006A5986 /* Debug */,
+				2C4E162B26E1F84B006A5986 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C4E162C26E1F84B006A5986 /* Build configuration list for PBXNativeTarget "Peachy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4E162D26E1F84B006A5986 /* Debug */,
+				2C4E162E26E1F84B006A5986 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C4E162F26E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4E163026E1F84B006A5986 /* Debug */,
+				2C4E163126E1F84B006A5986 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C4E163226E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4E163326E1F84B006A5986 /* Debug */,
+				2C4E163426E1F84B006A5986 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C4E160026E1F849006A5986 /* Project object */;
+}
