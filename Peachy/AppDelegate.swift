@@ -95,7 +95,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .compactMap { $0 }
             .sink { word in
                 guard let app = self.frontmostApp,
-                      let frame = self.getTextFieldFrame(for: app) else {
+                      let frame = self.getTextSelectionBounds(for: app) else {
                     return
                 }
                 print(word)
@@ -103,24 +103,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
     }
 
-    /// Get the front most app's text field,
+    /// Get the front most app's focused element,
     /// retrieve value and show drop down if needed.
-    func getTextFieldFrame(for app: NSRunningApplication) -> CGRect? {
+    func getTextSelectionBounds(for app: NSRunningApplication) -> CGRect? {
         let axApp = AXUIElementCreateApplication(app.processIdentifier)
-        guard let textField = axApp.getAttribute(for: kAXFocusedUIElementAttribute) else {
-            return nil
-        }
-        let textFieldElement = textField as! AXUIElement
-        guard let position = textFieldElement.getAttribute(for: kAXPositionAttribute),
-              let size = textFieldElement.getAttribute(for: kAXSizeAttribute) else {
+        var focusedElement: CFTypeRef?
+        guard
+          AXUIElementCopyAttributeValue(axApp, kAXFocusedUIElementAttribute as CFString, &focusedElement)
+            == .success else {
             return nil
         }
         
-        var cgpoint = CGPoint.zero
-        var cgsize = CGSize.zero
-        AXValueGetValue((position as! AXValue), AXValueType.cgPoint, &cgpoint)
-        AXValueGetValue((size as! AXValue), AXValueType.cgSize, &cgsize)
-        return CGRect(origin: cgpoint, size: cgsize)
+        var selectedRangeValue: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSelectedTextRangeAttribute as CFString, &selectedRangeValue) == .success else {
+            return nil
+        }
+        var selectedRange: CFRange = .init(location: 0, length: 0)
+        AXValueGetValue(selectedRangeValue as! AXValue, AXValueType.cfRange, &selectedRange)
+        var selectionBoundsValue: CFTypeRef?
+        guard AXUIElementCopyParameterizedAttributeValue(focusedElement as! AXUIElement, kAXBoundsForRangeParameterizedAttribute as CFString, selectedRangeValue as! AXValue, &selectionBoundsValue) == .success else {
+            return nil
+        }
+        var selectionBounds: CGRect = .zero
+        AXValueGetValue(selectionBoundsValue as! AXValue, AXValueType.cgRect, &selectionBounds)
+        return selectionBounds
     }
 }
 
