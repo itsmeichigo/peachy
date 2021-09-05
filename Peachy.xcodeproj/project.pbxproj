@@ -12,6 +12,14 @@
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
 		2C4E161D26E1F84B006A5986 /* PeachyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E161C26E1F84B006A5986 /* PeachyTests.swift */; };
 		2C4E162826E1F84B006A5986 /* PeachyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E162726E1F84B006A5986 /* PeachyUITests.swift */; };
+		2C4E163E26E37C53006A5986 /* ColoredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E163726E37C53006A5986 /* ColoredView.swift */; };
+		2C4E163F26E37C53006A5986 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E163826E37C53006A5986 /* TableView.swift */; };
+		2C4E164126E37C53006A5986 /* ItemTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E163B26E37C53006A5986 /* ItemTableController.swift */; };
+		2C4E164426E37CE7006A5986 /* kaomoji.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E164326E37CE7006A5986 /* kaomoji.json */; };
+		2C4E164726E37D28006A5986 /* Kaomoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E164626E37D28006A5986 /* Kaomoji.swift */; };
+		2C4E164A26E3814A006A5986 /* SearchWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E164826E3814A006A5986 /* SearchWindowController.swift */; };
+		2C4E164B26E3814A006A5986 /* SearchWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E164926E3814A006A5986 /* SearchWindowController.xib */; };
+		2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E164C26E38620006A5986 /* FilePublisher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		2C4E162326E1F84B006A5986 /* PeachyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeachyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E162726E1F84B006A5986 /* PeachyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeachyUITests.swift; sourceTree = "<group>"; };
 		2C4E162926E1F84B006A5986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C4E163726E37C53006A5986 /* ColoredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredView.swift; sourceTree = "<group>"; };
+		2C4E163826E37C53006A5986 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		2C4E163B26E37C53006A5986 /* ItemTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableController.swift; sourceTree = "<group>"; };
+		2C4E164326E37CE7006A5986 /* kaomoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = kaomoji.json; sourceTree = "<group>"; };
+		2C4E164626E37D28006A5986 /* Kaomoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kaomoji.swift; sourceTree = "<group>"; };
+		2C4E164826E3814A006A5986 /* SearchWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWindowController.swift; sourceTree = "<group>"; };
+		2C4E164926E3814A006A5986 /* SearchWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchWindowController.xib; sourceTree = "<group>"; };
+		2C4E164C26E38620006A5986 /* FilePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePublisher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +110,11 @@
 		2C4E160A26E1F849006A5986 /* Peachy */ = {
 			isa = PBXGroup;
 			children = (
+				2C4E164526E37D15006A5986 /* Models */,
+				2C4E163526E37C35006A5986 /* SearchView */,
 				2C4E160B26E1F849006A5986 /* AppDelegate.swift */,
 				2C4E160D26E1F84A006A5986 /* Assets.xcassets */,
+				2C4E164326E37CE7006A5986 /* kaomoji.json */,
 				2C4E160F26E1F84A006A5986 /* MainMenu.xib */,
 				2C4E161226E1F84A006A5986 /* Info.plist */,
 				2C4E161326E1F84A006A5986 /* Peachy.entitlements */,
@@ -119,6 +138,43 @@
 				2C4E162926E1F84B006A5986 /* Info.plist */,
 			);
 			path = PeachyUITests;
+			sourceTree = "<group>";
+		};
+		2C4E163526E37C35006A5986 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E163626E37C53006A5986 /* CustomViews */,
+				2C4E163A26E37C53006A5986 /* List */,
+				2C4E164826E3814A006A5986 /* SearchWindowController.swift */,
+				2C4E164926E3814A006A5986 /* SearchWindowController.xib */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		2C4E163626E37C53006A5986 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E163726E37C53006A5986 /* ColoredView.swift */,
+				2C4E163826E37C53006A5986 /* TableView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		2C4E163A26E37C53006A5986 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E163B26E37C53006A5986 /* ItemTableController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		2C4E164526E37D15006A5986 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E164626E37D28006A5986 /* Kaomoji.swift */,
+				2C4E164C26E38620006A5986 /* FilePublisher.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +280,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C4E164426E37CE7006A5986 /* kaomoji.json in Resources */,
+				2C4E164B26E3814A006A5986 /* SearchWindowController.xib in Resources */,
 				2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */,
 				2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */,
 			);
@@ -250,7 +308,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C4E164A26E3814A006A5986 /* SearchWindowController.swift in Sources */,
 				2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */,
+				2C4E163F26E37C53006A5986 /* TableView.swift in Sources */,
+				2C4E164726E37D28006A5986 /* Kaomoji.swift in Sources */,
+				2C4E164126E37C53006A5986 /* ItemTableController.swift in Sources */,
+				2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */,
+				2C4E163E26E37C53006A5986 /* ColoredView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

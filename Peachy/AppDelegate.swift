@@ -1,3 +1,4 @@
+import Carbon
 import Cocoa
 import Combine
 
@@ -12,6 +13,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBar: NSStatusBar?
     var statusItem: NSStatusItem?
     var cancellable: AnyCancellable?
+    
+    lazy var searchWindowController: SearchWindowController = .init()
 
     @Published var keyword: String?
     @Published var frontmostApp: NSRunningApplication?
@@ -58,23 +61,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func setupKeyListener() {
         NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
-            guard let chars = event.characters?.lowercased() else {
-                return
-            }
             guard let id = self.frontmostApp?.bundleIdentifier,
                   !self.exceptions.contains(id) else {
                 return
             }
+            let chars = event.characters?.lowercased()
             switch chars {
-            case ":":
-                self.keyword = ""
-            case "a"..."z":
+            case .some(":"):
+                self.keyword = ":"
+            case .some("a"..."z"):
                 guard let key = self.keyword else {
                     return
                 }
-                self.keyword = key + chars
-            default:
+                self.keyword = key + (chars ?? "")
+            case .some(" "):
                 self.keyword = nil
+                self.searchWindowController.window?.orderOut(nil)
+            default:
+                if Int(event.keyCode) == kVK_Delete {
+                    guard let key = self.keyword, !key.isEmpty else {
+                        return
+                    }
+                    if key.count == 1 {
+                        self.keyword = nil
+                        self.searchWindowController.window?.orderOut(nil)
+                    } else {
+                        self.keyword = String(key.prefix(key.count-1))
+                    }
+                } else {
+                    self.searchWindowController.handleEvent(event)
+                }
             }
         }
     }
@@ -83,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared.publisher(for: \.frontmostApplication)
             .removeDuplicates()
             .handleEvents(receiveOutput: { _ in
-                // TODO: remove drop down if needed
+                self.searchWindowController.window?.orderOut(nil)
             })
             .assign(to: &$frontmostApp)
     }
@@ -94,13 +110,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         cancellable = $keyword
             .compactMap { $0 }
             .sink { word in
-                guard let app = self.frontmostApp,
-                      let frame = self.getTextSelectionBounds(for: app) else {
+                guard !word.isEmpty else {
                     return
                 }
-                print(word)
-                print(frame)
+                self.reloadSearchWindow(for: word)
             }
+    }
+    
+    func reloadSearchWindow(for word: String) {
+        guard let app = frontmostApp,
+              let frame = getTextSelectionBounds(for: app) else {
+            return
+        }
+        searchWindowController.query = word
+        if searchWindowController.window?.isVisible == false {
+            searchWindowController.frameOrigin = NSPoint(x: frame.origin.x + frame.size.width / 2, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
+            searchWindowController.showWindow(self)
+        }
     }
 
     /// Get the front most app's focused element,
@@ -127,13 +153,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var selectionBounds: CGRect = .zero
         AXValueGetValue(selectionBoundsValue as! AXValue, AXValueType.cgRect, &selectionBounds)
         return selectionBounds
-    }
-}
-
-extension AXUIElement {
-    func getAttribute(for name: String) -> CFTypeRef? {
-        var value: CFTypeRef?
-        AXUIElementCopyAttributeValue(self, name as CFString, &value)
-        return value
     }
 }
