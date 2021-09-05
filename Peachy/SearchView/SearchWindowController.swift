@@ -88,14 +88,12 @@ private extension SearchWindowController {
             .receive(on: DispatchQueue.main)
             .map { (query, items) -> [Kaomoji] in
                 guard !query.isEmpty else {
-                    return []
+                    return items
                 }
                 
                 let normalized = query.lowercased().replacingOccurrences(of: ":", with: "")
                 return items.filter { kaomoji in
-                    kaomoji.description?.contains(normalized) == true ||
-                    kaomoji.tags.first { $0.contains(normalized) } != nil ||
-                    kaomoji.aliases?.first { $0.contains(normalized) } != nil
+                    kaomoji.tags.first { $0.contains(normalized) } != nil
                 }
             }
             .sink { [weak self] items in

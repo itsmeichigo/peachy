@@ -2,23 +2,7 @@ import Foundation
 
 struct Kaomoji: Decodable, Hashable {
     public let string: String
-    public let category: String?
-    public let description: String?
-    public let aliases: [String]?
     public let tags: [String]
-}
-
-private extension Kaomoji {
-    static func parse(from fileURL: URL) -> [Kaomoji] {
-        do {
-            let data = try Data(contentsOf: fileURL, options: .mappedIfSafe)
-            let decoder = JSONDecoder()
-            let list = try decoder.decode([Kaomoji].self, from: data)
-            return list
-        } catch {
-            return []
-        }
-    }
 }
 
 final class KaomojiStore {
@@ -53,11 +37,11 @@ final class KaomojiStore {
 }
 
 enum KaomojiTags: String, CaseIterable {
-    case animals, angry, bear, bird, cat, confused, crazy, cry,
-         dance, dead, dog, embarassed, evil, excited, fun,
-         happy, hide, hug, hurt, kiss, laugh, love,
-         monkey, music, pig, rabbit, run, sad, scared,
-         sleep, sorry, smug, stare, surprised, surrender,
+    case animals, angry, bear, bird, cat, confused, crazy, cry, cheer,
+         dance, dead, dog, embarassed, evil, excited, fun, food,
+         happy, hide, hug, hungry, hurt, kiss, laugh, love, exercise,
+         monkey, music, pig, rabbit, run, sad, scared, smoke, punch,
+         sleep, sorry, smug, stare, surprised, surrender, sing, shrug,
          think, troll, wave, whatever, wink, worried, write
     case seaCreatures = "sea creatures"
     case tableFlip = "table flip"

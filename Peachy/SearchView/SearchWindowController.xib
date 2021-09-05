@@ -21,7 +21,7 @@
             <windowStyleMask key="styleMask" utility="YES" nonactivatingPanel="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="250" height="200"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="775"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="7A6-Y7-Nvm">
                 <rect key="frame" x="0.0" y="0.0" width="250" height="312"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -39,7 +39,7 @@
                     </textField>
                     <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="54" horizontalPageScroll="10" verticalLineScroll="54" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-wp-tA4">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="271"/>
-                        <clipView key="contentView" drawsBackground="NO" id="txK-4u-YQM" customClass="ClipView" customModule="cmd" customModuleProvider="target">
+                        <clipView key="contentView" drawsBackground="NO" id="txK-4u-YQM" customClass="ClipView" customModule="Peachy" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="250" height="271"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -61,11 +61,11 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <customView identifier="NSTableViewRowViewKey" id="Zuc-i1-Sbk" customClass="ItemRowView" customModule="cmd" customModuleProvider="target">
+                                                <customView identifier="NSTableViewRowViewKey" id="Zuc-i1-Sbk" customClass="ItemRowView" customModule="Peachy" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="54"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </customView>
-                                                <tableCellView identifier="ItemCellView" id="qbE-HW-cR5" customClass="ItemCellView" customModule="cmd" customModuleProvider="target">
+                                                <tableCellView identifier="ItemCellView" id="qbE-HW-cR5" customClass="ItemCellView" customModule="Peachy" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="54" width="250" height="54"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
