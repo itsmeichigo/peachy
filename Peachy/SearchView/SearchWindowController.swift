@@ -19,11 +19,13 @@ class SearchWindowController: NSWindowController {
     @IBOutlet private var noResultTextField: NSTextField!
     
     private let kaomojiStore = KaomojiStore.shared
-    
+
     private var cancellables = Set<AnyCancellable>()
+    private weak var selectionDelegate: ItemSelectionDelegate?
     
-    convenience init() {
+    convenience init(selectionDelegate: ItemSelectionDelegate) {
         self.init(windowNibName: SearchWindowController.nibName)
+        self.selectionDelegate = selectionDelegate
     }
     
     override func windowDidLoad() {
@@ -32,7 +34,7 @@ class SearchWindowController: NSWindowController {
         configureFilter()
         configurePanel()
         
-        itemTableController.selectionDelegate = self
+        itemTableController.selectionDelegate = selectionDelegate
     }
     
     override func showWindow(_ sender: Any?) {
@@ -56,15 +58,6 @@ class SearchWindowController: NSWindowController {
 extension SearchWindowController: NSWindowDelegate {
     func windowDidResignKey(_ notification: Notification) {
         window?.orderOut(nil)
-    }
-}
-
-// MARK: - ItemSelectionDelegate
-
-extension SearchWindowController: ItemSelectionDelegate {
-    func handleSelection(_ item: Kaomoji) {
-        window?.orderOut(nil)
-        // TODO: paste kaomoji
     }
 }
 

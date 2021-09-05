@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem?
     var cancellable: AnyCancellable?
     
-    lazy var searchWindowController: SearchWindowController = .init()
+    lazy var searchWindowController: SearchWindowController = .init(selectionDelegate: self)
 
     @Published var keyword: String?
     @Published var frontmostApp: NSRunningApplication?
@@ -85,6 +85,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 self.reloadSearchWindow(for: word)
             }
+    }
+}
+
+// MARK: - ItemSelectionDelegate
+extension AppDelegate: ItemSelectionDelegate {
+    func handleSelection(_ item: Kaomoji) {
+        // TODO: paste kaomoji
+        print(item.string)
     }
 }
 
