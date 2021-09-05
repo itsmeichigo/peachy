@@ -2,6 +2,10 @@ import Carbon
 import Cocoa
 import Combine
 
+class SearchPanel: NSPanel {
+    override var canBecomeKey: Bool { false }
+}
+
 class SearchWindowController: NSWindowController {
     
     @Published var query = ""
@@ -36,16 +40,14 @@ class SearchWindowController: NSWindowController {
         super.showWindow(sender)
     }
     
-    func handleEvent(_ event: NSEvent) {
+    override func keyDown(with event: NSEvent) {
         switch Int(event.keyCode) {
         case kVK_DownArrow, kVK_UpArrow:
             itemTableController.triggerEvent(event)
         case kVK_Return:
             itemTableController.confirmSelection()
-        case kVK_Escape:
-            window?.orderOut(nil)
         default:
-            break
+            super.keyDown(with: event)
         }
     }
 }
@@ -91,7 +93,7 @@ private extension SearchWindowController {
                     return items
                 }
                 
-                let normalized = query.lowercased().replacingOccurrences(of: ":", with: "")
+                let normalized = query.lowercased()
                 return items.filter { kaomoji in
                     kaomoji.tags.first { $0.contains(normalized) } != nil
                 }
@@ -112,7 +114,7 @@ private extension SearchWindowController {
         panel.isOpaque = false
         panel.backgroundColor = .clear
         panel.level = .screenSaver
-        panel.setContentSize(CGSize(width: 250.0, height: 200.0))
+        panel.setContentSize(CGSize(width: 300.0, height: 200.0))
         
         if let view = panel.contentView {
             view.wantsLayer = true
@@ -125,7 +127,7 @@ private extension SearchWindowController {
         searchImageView.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: "A magnifying glass symbol")
         
         $query.sink { [weak self] query in
-            self?.keywordTextField.stringValue = query.replacingOccurrences(of: ":", with: "")
+            self?.keywordTextField.stringValue = query
         }.store(in: &cancellables)
     }
 }

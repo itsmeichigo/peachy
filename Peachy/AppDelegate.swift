@@ -61,40 +61,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func setupKeyListener() {
         NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
-            guard let id = self.frontmostApp?.bundleIdentifier,
-                  !self.exceptions.contains(id) else {
-                return
-            }
-            let chars = event.characters?.lowercased()
-            switch chars {
-            case .some(":"):
-                self.keyword = ":"
-            case .some("a"..."z"):
-                guard let key = self.keyword else {
-                    return
-                }
-                self.keyword = key + (chars ?? "")
-            case .some(" "):
-                self.keyword = nil
-                self.searchWindowController.window?.orderOut(nil)
-            default:
-                if Int(event.keyCode) == kVK_Delete {
-                    guard let key = self.keyword, !key.isEmpty else {
-                        return
-                    }
-                    if key.count == 1 {
-                        self.keyword = nil
-                        self.searchWindowController.window?.orderOut(nil)
-                    } else {
-                        self.keyword = String(key.prefix(key.count-1))
-                    }
-                } else {
-                    self.searchWindowController.handleEvent(event)
-                }
-            }
+            self.handleGlobalEvent(event)
         }
     }
-
+    
     func observeFrontmostApp() {
         NSWorkspace.shared.publisher(for: \.frontmostApplication)
             .removeDuplicates()
@@ -116,13 +86,57 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.reloadSearchWindow(for: word)
             }
     }
-    
+}
+
+// MARK: - Helper methods
+private extension AppDelegate {
+    func handleGlobalEvent(_ event: NSEvent) {
+        guard let id = frontmostApp?.bundleIdentifier,
+              !exceptions.contains(id) else {
+            return
+        }
+        let chars = event.characters?.lowercased()
+        switch chars {
+        case .some(":"):
+            self.keyword = ":"
+        case .some("a"..."z"):
+            guard let key = keyword else {
+                return
+            }
+            keyword = key + (chars ?? "")
+        default:
+            switch Int(event.keyCode) {
+            case kVK_Delete:
+                guard let key = keyword, !key.isEmpty else {
+                    return
+                }
+                if key.count == 1 {
+                    hideSearchWindow()
+                } else {
+                    keyword = String(key.prefix(key.count-1))
+                }
+            case kVK_DownArrow, kVK_UpArrow:
+                searchWindowController.keyDown(with: event)
+            case kVK_Return:
+                searchWindowController.keyDown(with: event)
+                hideSearchWindow()
+            default:
+                hideSearchWindow()
+            }
+        }
+    }
+
+    func hideSearchWindow() {
+        keyword = nil
+        searchWindowController.window?.orderOut(nil)
+    }
+
     func reloadSearchWindow(for word: String) {
         guard let app = frontmostApp,
               let frame = getTextSelectionBounds(for: app) else {
             return
         }
-        searchWindowController.query = word
+        searchWindowController.query = word.replacingOccurrences(of: ":", with: "")
         if searchWindowController.window?.isVisible == false {
             searchWindowController.frameOrigin = NSPoint(x: frame.origin.x + frame.size.width / 2, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
             searchWindowController.showWindow(self)
