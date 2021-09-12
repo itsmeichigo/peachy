@@ -91,8 +91,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 // MARK: - ItemSelectionDelegate
 extension AppDelegate: ItemSelectionDelegate {
     func handleSelection(_ item: Kaomoji) {
-        // TODO: paste kaomoji
-        print(item.string)
+        guard let keyword = keyword, let app = frontmostApp else { return }
+        replace(keyword: keyword, with: item.string, for: app)
+        hideSearchWindow()
     }
 }
 
@@ -125,7 +126,7 @@ private extension AppDelegate {
                 }
             case kVK_DownArrow, kVK_UpArrow:
                 searchWindowController.keyDown(with: event)
-            case kVK_Return:
+            case kVK_Return, kVK_Escape:
                 searchWindowController.keyDown(with: event)
                 hideSearchWindow()
             default:
@@ -151,8 +152,45 @@ private extension AppDelegate {
         }
     }
 
+    /// Find focused element and selected range to replace the range with kaomoji.
+    ///
+    func replace(keyword: String, with kaomoji: String, for app: NSRunningApplication) {
+        let axApp = AXUIElementCreateApplication(app.processIdentifier)
+        var focusedElement: CFTypeRef?
+        guard
+          AXUIElementCopyAttributeValue(axApp, kAXFocusedUIElementAttribute as CFString, &focusedElement)
+            == .success else {
+            return
+        }
+        
+        var selectedRangeValue: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSelectedTextRangeAttribute as CFString, &selectedRangeValue) == .success else {
+            return
+        }
+        var selectedRange: CFRange = .init(location: 0, length: 0)
+        AXValueGetValue(selectedRangeValue as! AXValue, AXValueType.cfRange, &selectedRange)
+        var location: Int = selectedRange.location
+        if selectedRange.length == 0 {
+            location = max(location - keyword.count, 0)
+        }
+
+        var value: CFTypeRef?
+        AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXValueAttribute as CFString, &value)
+        var stringValue = value as! String
+        let start = stringValue.index(stringValue.startIndex, offsetBy: location)
+        let end = stringValue.index(start, offsetBy: keyword.count)
+        stringValue.replaceSubrange(start..<end, with: "")
+        stringValue.insert(contentsOf: kaomoji, at: start)
+        print(stringValue)
+        
+        let result = AXUIElementSetAttributeValue(focusedElement as! AXUIElement, kAXValueAttribute as CFString, stringValue as CFTypeRef)
+        guard result == .success else {
+            return print(result.rawValue)
+        }
+    }
+
     /// Get the front most app's focused element,
-    /// retrieve value and show drop down if needed.
+    /// retrieve selected range and return the bound.
     func getTextSelectionBounds(for app: NSRunningApplication) -> CGRect? {
         let axApp = AXUIElementCreateApplication(app.processIdentifier)
         var focusedElement: CFTypeRef?

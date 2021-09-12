@@ -61,14 +61,6 @@ extension SearchWindowController: NSWindowDelegate {
     }
 }
 
-// MARK: - Close on ESC and other cancelation hotkeys
-
-extension SearchWindowController {
-    override func cancelOperation(_ sender: Any?) {
-        window?.orderOut(nil)
-    }
-}
-
 // MARK: - Panel
 
 private extension SearchWindowController {
@@ -113,9 +105,6 @@ private extension SearchWindowController {
             view.wantsLayer = true
             view.layer?.cornerRadius = 8.0
         }
-        
-        panel.makeKeyAndOrderFront(self)
-        panel.orderFrontRegardless()
         
         searchImageView.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: "A magnifying glass symbol")
         
