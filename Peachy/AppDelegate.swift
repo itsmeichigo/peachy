@@ -7,6 +7,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let exceptions = [
         "com.apple.dt.Xcode"
     ]
+    let triggerKey = ":"
 
     @IBOutlet var menu: NSMenu!
     
@@ -106,8 +107,8 @@ private extension AppDelegate {
         }
         let chars = event.characters?.lowercased()
         switch chars {
-        case .some(":"):
-            self.keyword = ":"
+        case .some(triggerKey):
+            self.keyword = triggerKey
         case .some("a"..."z"):
             guard let key = keyword else {
                 return
@@ -141,13 +142,19 @@ private extension AppDelegate {
     }
 
     func reloadSearchWindow(for word: String) {
-        guard let app = frontmostApp,
-              let frame = getTextSelectionBounds(for: app) else {
+        guard let app = frontmostApp else {
             return
         }
-        searchWindowController.query = word.replacingOccurrences(of: ":", with: "")
+
+        searchWindowController.query = word.replacingOccurrences(of: triggerKey, with: "")
         if searchWindowController.window?.isVisible == false {
-            searchWindowController.frameOrigin = NSPoint(x: frame.origin.x + frame.size.width / 2, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
+            var frameOrigin = NSPoint(x: NSScreen.main!.frame.size.width / 2 - 100, y: NSScreen.main!.frame.size.height / 2 - 100)
+            if let frame = getTextSelectionBounds(for: app), frame.size != .zero {
+                frameOrigin = NSPoint(x: frame.origin.x + frame.size.width / 2, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
+            } else if let frame = getFocusedElementFrame(for: app), frame.size != .zero {
+                frameOrigin = NSPoint(x: frame.origin.x, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
+            }
+            searchWindowController.frameOrigin = frameOrigin
             searchWindowController.showWindow(self)
         }
     }
@@ -177,6 +184,9 @@ private extension AppDelegate {
         var value: CFTypeRef?
         AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXValueAttribute as CFString, &value)
         var stringValue = value as! String
+        guard stringValue.count >= keyword.count else {
+            return
+        }
         let start = stringValue.index(stringValue.startIndex, offsetBy: location)
         let end = stringValue.index(start, offsetBy: keyword.count)
         stringValue.replaceSubrange(start..<end, with: "")
@@ -199,19 +209,49 @@ private extension AppDelegate {
             == .success else {
             return nil
         }
-        
+
         var selectedRangeValue: CFTypeRef?
         guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSelectedTextRangeAttribute as CFString, &selectedRangeValue) == .success else {
             return nil
         }
         var selectedRange: CFRange = .init(location: 0, length: 0)
         AXValueGetValue(selectedRangeValue as! AXValue, AXValueType.cfRange, &selectedRange)
+
         var selectionBoundsValue: CFTypeRef?
         guard AXUIElementCopyParameterizedAttributeValue(focusedElement as! AXUIElement, kAXBoundsForRangeParameterizedAttribute as CFString, selectedRangeValue as! AXValue, &selectionBoundsValue) == .success else {
             return nil
         }
         var selectionBounds: CGRect = .zero
         AXValueGetValue(selectionBoundsValue as! AXValue, AXValueType.cgRect, &selectionBounds)
+
         return selectionBounds
+    }
+
+    /// Get the front most app's focused element,
+    /// retrieve element's frame.
+    func getFocusedElementFrame(for app: NSRunningApplication) -> CGRect? {
+        let axApp = AXUIElementCreateApplication(app.processIdentifier)
+        var focusedElement: CFTypeRef?
+        guard
+          AXUIElementCopyAttributeValue(axApp, kAXFocusedUIElementAttribute as CFString, &focusedElement)
+            == .success else {
+            return nil
+        }
+
+        var positionValue: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXPositionAttribute as CFString, &positionValue) == .success else {
+            return nil
+        }
+        var position: CGPoint = .zero
+        AXValueGetValue(positionValue as! AXValue, AXValueType.cgPoint, &position)
+
+        var sizeValue: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSizeAttribute as CFString, &sizeValue) == .success else {
+            return nil
+        }
+        var size: CGSize = .zero
+        AXValueGetValue(sizeValue as! AXValue, AXValueType.cgSize, &size)
+
+        return CGRect(origin: position, size: size)
     }
 }
