@@ -108,7 +108,7 @@ private extension AppDelegate {
         let chars = event.characters?.lowercased()
         switch chars {
         case .some(triggerKey):
-            self.keyword = triggerKey
+            self.keyword = ""
         case .some("a"..."z"):
             guard let key = keyword else {
                 return
@@ -146,7 +146,6 @@ private extension AppDelegate {
             return
         }
 
-        searchWindowController.query = word.replacingOccurrences(of: triggerKey, with: "")
         if searchWindowController.window?.isVisible == false {
             var frameOrigin = NSPoint(x: NSScreen.main!.frame.size.width / 2 - 100, y: NSScreen.main!.frame.size.height / 2 - 100)
             if let frame = getTextSelectionBounds(for: app), frame.size != .zero {
@@ -176,19 +175,17 @@ private extension AppDelegate {
         }
         var selectedRange: CFRange = .init(location: 0, length: 0)
         AXValueGetValue(selectedRangeValue as! AXValue, AXValueType.cfRange, &selectedRange)
-        var location: Int = selectedRange.location
-        if selectedRange.length == 0 {
-            location = max(location - keyword.count, 0)
-        }
+        var location: Int = selectedRange.location + selectedRange.length
+        location = max(location - keyword.count - 1, 0)
 
         var value: CFTypeRef?
         AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXValueAttribute as CFString, &value)
         var stringValue = value as! String
-        guard stringValue.count >= keyword.count else {
+        guard stringValue.count >= keyword.count + 1 else {
             return
         }
         let start = stringValue.index(stringValue.startIndex, offsetBy: location)
-        let end = stringValue.index(start, offsetBy: keyword.count)
+        let end = stringValue.index(start, offsetBy: keyword.count + 1)
         stringValue.replaceSubrange(start..<end, with: "")
         stringValue.insert(contentsOf: kaomoji, at: start)
         print(stringValue)
