@@ -170,6 +170,8 @@ private extension AppDelegate {
                 end repeat
                 set the clipboard to "\(kaomoji)"
                 keystroke "v" using command down
+                delay 0.2
+                set the clipboard to ""
             end tell
         """
         
