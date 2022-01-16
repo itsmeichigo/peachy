@@ -134,6 +134,7 @@ private extension AppDelegate {
                 hideSearchWindow()
             }
         }
+        searchWindowController.query = keyword ?? ""
     }
 
     func hideSearchWindow() {
