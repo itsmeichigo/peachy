@@ -28,5 +28,7 @@
 	<string>NSApplication</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Do you allow automation for this app?</string>
 </dict>
 </plist>

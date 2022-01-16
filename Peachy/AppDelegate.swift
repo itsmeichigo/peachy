@@ -158,41 +158,27 @@ private extension AppDelegate {
         }
     }
 
-    /// Find focused element and selected range to replace the range with kaomoji.
+    /// Use System Events to keystroke and replace text with kaomoji.
     ///
     func replace(keyword: String, with kaomoji: String, for app: NSRunningApplication) {
-        let axApp = AXUIElementCreateApplication(app.processIdentifier)
-        var focusedElement: CFTypeRef?
-        guard
-          AXUIElementCopyAttributeValue(axApp, kAXFocusedUIElementAttribute as CFString, &focusedElement)
-            == .success else {
-            return
-        }
+        guard let appName = app.localizedName else { return }
+        let source = """
+            tell application "System Events"
+                tell application "\(appName)" to activate
+                repeat \(keyword.count + 1) times
+                    key code 123 using {shift down}
+                end repeat
+                set the clipboard to "\(kaomoji)"
+                keystroke "v" using command down
+            end tell
+        """
         
-        var selectedRangeValue: CFTypeRef?
-        guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSelectedTextRangeAttribute as CFString, &selectedRangeValue) == .success else {
-            return
-        }
-        var selectedRange: CFRange = .init(location: 0, length: 0)
-        AXValueGetValue(selectedRangeValue as! AXValue, AXValueType.cfRange, &selectedRange)
-        var location: Int = selectedRange.location + selectedRange.length
-        location = max(location - keyword.count - 1, 0)
-
-        var value: CFTypeRef?
-        AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXValueAttribute as CFString, &value)
-        var stringValue = value as! String
-        guard stringValue.count >= keyword.count + 1 else {
-            return
-        }
-        let start = stringValue.index(stringValue.startIndex, offsetBy: location)
-        let end = stringValue.index(start, offsetBy: keyword.count + 1)
-        stringValue.replaceSubrange(start..<end, with: "")
-        stringValue.insert(contentsOf: kaomoji, at: start)
-        print(stringValue)
-        
-        let result = AXUIElementSetAttributeValue(focusedElement as! AXUIElement, kAXValueAttribute as CFString, stringValue as CFTypeRef)
-        guard result == .success else {
-            return print(result.rawValue)
+        if let script = NSAppleScript(source: source) {
+            var error: NSDictionary?
+            script.executeAndReturnError(&error)
+            if let err = error {
+                print(err)
+            }
         }
     }
 
