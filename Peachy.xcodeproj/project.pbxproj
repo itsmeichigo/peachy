@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C001F2B2794FDD3003B9EB7 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F2A2794FDD3003B9EB7 /* SearchCoordinator.swift */; };
 		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
 		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C001F2A2794FDD3003B9EB7 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		2C4E160826E1F849006A5986 /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E160B26E1F849006A5986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4E160D26E1F84A006A5986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				2C4E163A26E37C53006A5986 /* List */,
 				2C4E164826E3814A006A5986 /* SearchWindowController.swift */,
 				2C4E164926E3814A006A5986 /* SearchWindowController.xib */,
+				2C001F2A2794FDD3003B9EB7 /* SearchCoordinator.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */,
 				2C4E163F26E37C53006A5986 /* TableView.swift in Sources */,
 				2C4E164726E37D28006A5986 /* Kaomoji.swift in Sources */,
+				2C001F2B2794FDD3003B9EB7 /* SearchCoordinator.swift in Sources */,
 				2C4E164126E37C53006A5986 /* ItemTableController.swift in Sources */,
 				2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */,
 				2C4E163E26E37C53006A5986 /* ColoredView.swift in Sources */,

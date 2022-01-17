@@ -2,14 +2,15 @@ import Carbon
 import Cocoa
 import Combine
 
-class SearchPanel: NSPanel {
+final class SearchPanel: NSPanel {
     override var canBecomeKey: Bool { false }
 }
 
-class SearchWindowController: NSWindowController {
+final class SearchWindowController: NSWindowController {
     
     @Published var query = ""
     var frameOrigin: NSPoint = .zero
+    weak var selectionDelegate: ItemSelectionDelegate?
     
     private static let nibName: NSNib.Name = "SearchWindowController"
     
@@ -21,11 +22,9 @@ class SearchWindowController: NSWindowController {
     private let kaomojiStore = KaomojiStore.shared
 
     private var cancellables = Set<AnyCancellable>()
-    private weak var selectionDelegate: ItemSelectionDelegate?
     
-    convenience init(selectionDelegate: ItemSelectionDelegate) {
+    convenience init() {
         self.init(windowNibName: SearchWindowController.nibName)
-        self.selectionDelegate = selectionDelegate
     }
     
     override func windowDidLoad() {
