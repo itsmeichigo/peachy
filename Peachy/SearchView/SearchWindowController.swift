@@ -3,7 +3,11 @@ import Cocoa
 import Combine
 
 final class SearchPanel: NSPanel {
-    override var canBecomeKey: Bool { false }
+    override var canBecomeKey: Bool { true }
+}
+
+protocol KeyEventDelegate: AnyObject {
+    func handleEvent(_ event: NSEvent)
 }
 
 final class SearchWindowController: NSWindowController {
@@ -11,6 +15,7 @@ final class SearchWindowController: NSWindowController {
     @Published var query = ""
     var frameOrigin: NSPoint = .zero
     weak var selectionDelegate: ItemSelectionDelegate?
+    weak var keyEventDelegate: KeyEventDelegate?
     
     private static let nibName: NSNib.Name = "SearchWindowController"
     
@@ -48,7 +53,7 @@ final class SearchWindowController: NSWindowController {
         case kVK_Return:
             itemTableController.confirmSelection()
         default:
-            super.keyDown(with: event)
+            keyEventDelegate?.handleEvent(event)
         }
     }
 }

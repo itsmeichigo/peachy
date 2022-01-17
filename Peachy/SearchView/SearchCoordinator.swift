@@ -17,6 +17,7 @@ final class SearchCoordinator {
     init() {
         self.searchWindowController = .init()
         searchWindowController.selectionDelegate = self
+        searchWindowController.keyEventDelegate = self
         setupKeyListener()
         observeFrontmostApp()
         observeKeyword()
@@ -25,6 +26,31 @@ final class SearchCoordinator {
 
 // MARK: - Key Events
 //
+extension SearchCoordinator: KeyEventDelegate {
+    func handleEvent(_ event: NSEvent) {
+        if let char = event.characters,
+           "a"..."z" ~= char,
+           let key = keyword {
+            keyword = key + char
+            return
+        }
+
+        switch Int(event.keyCode) {
+        case kVK_Delete:
+            guard let key = keyword, !key.isEmpty else {
+                return
+            }
+            if key.count == 1 {
+                hideSearchWindow()
+            } else {
+                keyword = String(key.prefix(key.count-1))
+            }
+        default:
+            hideSearchWindow()
+        }
+    }
+}
+
 private extension SearchCoordinator {
     func setupKeyListener() {
         NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
@@ -47,26 +73,8 @@ private extension SearchCoordinator {
             }
             keyword = key + (chars ?? "")
         default:
-            switch Int(event.keyCode) {
-            case kVK_Delete:
-                guard let key = keyword, !key.isEmpty else {
-                    return
-                }
-                if key.count == 1 {
-                    hideSearchWindow()
-                } else {
-                    keyword = String(key.prefix(key.count-1))
-                }
-            case kVK_DownArrow, kVK_UpArrow:
-                searchWindowController.keyDown(with: event)
-            case kVK_Return, kVK_Escape:
-                searchWindowController.keyDown(with: event)
-                hideSearchWindow()
-            default:
-                hideSearchWindow()
-            }
+            break
         }
-        searchWindowController.query = keyword ?? ""
     }
 }
 
@@ -104,6 +112,7 @@ private extension SearchCoordinator {
                     return
                 }
                 self?.reloadSearchWindow(for: word)
+                self?.searchWindowController.query = word
             }
     }
 
@@ -136,6 +145,19 @@ private extension SearchCoordinator {
 
 // MARK: - Apple Events
 private extension SearchCoordinator {
+    /// Uses System Events to keystroke the specified character to the given app.
+    ///
+    func keyStroke(_ character: String, for app: NSRunningApplication) {
+        guard let appName = app.localizedName else { return }
+        let source = """
+            tell application "System Events"
+                tell application "\(appName)" to activate
+                keystroke "\(character)"
+            end tell
+        """
+        sendAppleEvent(source: source)
+    }
+
     /// Uses System Events to keystroke and replace text with kaomoji.
     ///
     func replace(keyword: String, with kaomoji: String, for app: NSRunningApplication) {
@@ -152,7 +174,10 @@ private extension SearchCoordinator {
                 set the clipboard to ""
             end tell
         """
-        
+        sendAppleEvent(source: source)
+    }
+
+    func sendAppleEvent(source: String) {
         if let script = NSAppleScript(source: source) {
             var error: NSDictionary?
             script.executeAndReturnError(&error)
