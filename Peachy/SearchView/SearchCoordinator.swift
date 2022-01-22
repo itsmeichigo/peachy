@@ -155,7 +155,9 @@ private extension SearchCoordinator {
                 keystroke "\(character)"
             end tell
         """
-        sendAppleEvent(source: source)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.sendAppleEvent(source: source)
+        }
     }
 
     /// Uses System Events to keystroke and replace text with kaomoji.
@@ -174,7 +176,10 @@ private extension SearchCoordinator {
                 set the clipboard to ""
             end tell
         """
-        sendAppleEvent(source: source)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.sendAppleEvent(source: source)
+        }
+        
     }
 
     func sendAppleEvent(source: String) {
