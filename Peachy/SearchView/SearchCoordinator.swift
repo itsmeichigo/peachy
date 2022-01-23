@@ -83,6 +83,7 @@ private extension SearchCoordinator {
 extension SearchCoordinator: ItemSelectionDelegate {
     func handleSelection(_ item: Kaomoji) {
         guard let keyword = keyword, let app = frontmostApp else { return }
+        searchWindowController.window?.resignKey()
         replace(keyword: keyword, with: item.string, for: app)
         hideSearchWindow()
     }
@@ -155,9 +156,7 @@ private extension SearchCoordinator {
                 keystroke "\(character)"
             end tell
         """
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.sendAppleEvent(source: source)
-        }
+        sendAppleEvent(source: source)
     }
 
     /// Uses System Events to keystroke and replace text with kaomoji.
@@ -176,10 +175,7 @@ private extension SearchCoordinator {
                 set the clipboard to ""
             end tell
         """
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.sendAppleEvent(source: source)
-        }
-        
+        sendAppleEvent(source: source)
     }
 
     func sendAppleEvent(source: String) {
