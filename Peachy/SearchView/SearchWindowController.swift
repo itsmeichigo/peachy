@@ -3,7 +3,7 @@ import Cocoa
 import Combine
 
 final class SearchPanel: NSPanel {
-    override var canBecomeKey: Bool { true }
+    override var canBecomeKey: Bool { false }
 }
 
 protocol KeyEventDelegate: AnyObject {
