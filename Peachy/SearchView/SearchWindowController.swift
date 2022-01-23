@@ -72,6 +72,7 @@ private extension SearchWindowController {
     func resetPanel() {
         query = ""
         window?.setFrameOrigin(frameOrigin)
+        window?.setContentSize(CGSize(width: 300.0, height: 200.0))
     }
     
     func configureFilter() {
@@ -103,7 +104,6 @@ private extension SearchWindowController {
         panel.isOpaque = false
         panel.backgroundColor = .clear
         panel.level = .screenSaver
-        panel.setContentSize(CGSize(width: 300.0, height: 200.0))
         
         if let view = panel.contentView {
             view.wantsLayer = true
