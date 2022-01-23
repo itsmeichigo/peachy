@@ -1,7 +1,7 @@
 import Cocoa
 
 protocol ItemSelectionDelegate: AnyObject {
-    func handleSelection(_ item: Kaomoji, withEnterKey: Bool)
+    func handleSelection(_ item: Kaomoji)
 }
 
 class ItemCellView: NSTableCellView {
@@ -58,14 +58,8 @@ class ItemTableController: NSViewController {
         tableView.keyDown(with: event)
     }
     
-    /// Selection with enter key
     func confirmSelection() {
-        guard let index = tableView.selectedRowIndexes.first,
-              index < items.count else {
-            NSSound.beep()
-            return
-        }
-        selectionDelegate?.handleSelection(items[index], withEnterKey: true)
+        commitSelection(tableView)
     }
     
     func refresh(_ items: [Kaomoji]) {
@@ -86,7 +80,7 @@ class ItemTableController: NSViewController {
             NSSound.beep()
             return
         }
-        selectionDelegate?.handleSelection(items[index], withEnterKey: false)
+        selectionDelegate?.handleSelection(items[index])
     }
 }
 
