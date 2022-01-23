@@ -28,6 +28,13 @@ final class SearchCoordinator {
 //
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
+        if let char = event.characters,
+           "a"..."z" ~= char,
+           let key = keyword {
+            keyword = key + char
+            return
+        }
+
         switch Int(event.keyCode) {
         case kVK_Delete:
             guard let key = keyword, !key.isEmpty else {
@@ -38,7 +45,6 @@ extension SearchCoordinator: KeyEventDelegate {
             } else {
                 keyword = String(key.prefix(key.count-1))
             }
-
         default:
             hideSearchWindow()
         }
@@ -67,11 +73,7 @@ private extension SearchCoordinator {
             }
             keyword = key + (chars ?? "")
         default:
-            if searchWindowController.window?.isVisible == true,
-               searchWindowController.window?.isKeyWindow == false {
-                searchWindowController.window?.makeKey()
-                searchWindowController.keyDown(with: event)
-            }
+            break
         }
     }
 }
@@ -144,6 +146,18 @@ private extension SearchCoordinator {
 
 // MARK: - Apple Events
 private extension SearchCoordinator {
+    /// Uses System Events to keystroke the specified character to the given app.
+    ///
+    func keyStroke(_ character: String, for app: NSRunningApplication) {
+        guard let appName = app.localizedName else { return }
+        let source = """
+            tell application "System Events"
+                tell application "\(appName)" to activate
+                keystroke "\(character)"
+            end tell
+        """
+        sendAppleEvent(source: source)
+    }
 
     /// Uses System Events to keystroke and replace text with kaomoji.
     ///
