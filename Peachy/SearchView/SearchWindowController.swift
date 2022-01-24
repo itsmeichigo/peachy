@@ -2,8 +2,18 @@ import Carbon
 import Cocoa
 import Combine
 
+protocol SearchPanelDelegate: AnyObject {
+    func dismissPanel()
+}
+
 final class SearchPanel: NSPanel {
+    weak var searchDelegate: SearchPanelDelegate?
+
     override var canBecomeKey: Bool { true }
+
+    @objc func cancel(_ sender: Any?) {
+        searchDelegate?.dismissPanel()
+    }
 }
 
 protocol KeyEventDelegate: AnyObject {

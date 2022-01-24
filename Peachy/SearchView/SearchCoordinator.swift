@@ -18,6 +18,7 @@ final class SearchCoordinator {
         self.searchWindowController = .init()
         searchWindowController.selectionDelegate = self
         searchWindowController.keyEventDelegate = self
+        (searchWindowController.window as? SearchPanel)?.searchDelegate = self
         setupKeyListener()
         observeFrontmostApp()
         observeKeyword()
@@ -28,6 +29,7 @@ final class SearchCoordinator {
 //
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
+        print("Handling event: \(event)")
         if let char = event.characters,
            "a"..."z" ~= char {
             simulateKeyEvent(event)
@@ -43,6 +45,8 @@ extension SearchCoordinator: KeyEventDelegate {
     }
 }
 
+// MARK: - Global key event
+//
 private extension SearchCoordinator {
     func setupKeyListener() {
         NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
@@ -51,6 +55,7 @@ private extension SearchCoordinator {
     }
 
     func handleGlobalEvent(_ event: NSEvent) {
+        print("Received global event: \(event)")
         guard let id = frontmostApp?.bundleIdentifier,
               !exceptions.contains(id) else {
                   return
@@ -68,7 +73,8 @@ private extension SearchCoordinator {
             break
         }
         
-        if Int(event.keyCode) == kVK_Delete {
+        switch Int(event.keyCode) {
+        case kVK_Delete:
             guard let key = keyword, !key.isEmpty else {
                 return
             }
@@ -77,7 +83,19 @@ private extension SearchCoordinator {
             } else {
                 keyword = String(key.prefix(key.count-1))
             }
+        case kVK_Escape:
+            hideSearchWindow()
+        default:
+            break
         }
+    }
+}
+
+// MARK: - SearchPanelDelegate conformance
+//
+extension SearchCoordinator: SearchPanelDelegate {
+    func dismissPanel() {
+        hideSearchWindow()
     }
 }
 
@@ -127,7 +145,7 @@ private extension SearchCoordinator {
         searchWindowController.window?.orderOut(nil)
     }
 
-    ///
+    /// Places the search window where the text field in focus is.
     ///
     func reloadSearchWindow(for word: String) {
         guard let app = frontmostApp else {
@@ -147,7 +165,8 @@ private extension SearchCoordinator {
     }
 }
 
-// MARK: - Apple Events
+// MARK: - Simulate Events
+//
 private extension SearchCoordinator {
 
     /// Simulates key event to the frontmost app
@@ -165,6 +184,7 @@ private extension SearchCoordinator {
     
         searchWindowController.window?.makeKey()
     }
+
     /// Uses System Events to keystroke and replace text with kaomoji.
     ///
     func replace(keyword: String, with kaomoji: String) {
