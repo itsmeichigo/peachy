@@ -29,22 +29,14 @@ final class SearchCoordinator {
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
         if let char = event.characters,
-           "a"..."z" ~= char,
-           let key = keyword {
-            keyword = key + char
+           "a"..."z" ~= char {
+            simulateKeyEvent(event)
             return
         }
 
         switch Int(event.keyCode) {
         case kVK_Delete:
-            guard let key = keyword, !key.isEmpty else {
-                return
-            }
-            if key.count == 1 {
-                hideSearchWindow()
-            } else {
-                keyword = String(key.prefix(key.count-1))
-            }
+            simulateKeyEvent(event)
         default:
             hideSearchWindow()
         }
@@ -75,6 +67,17 @@ private extension SearchCoordinator {
         default:
             break
         }
+        
+        if Int(event.keyCode) == kVK_Delete {
+            guard let key = keyword, !key.isEmpty else {
+                return
+            }
+            if key.count == 1 {
+                hideSearchWindow()
+            } else {
+                keyword = String(key.prefix(key.count-1))
+            }
+        }
     }
 }
 
@@ -82,9 +85,9 @@ private extension SearchCoordinator {
 //
 extension SearchCoordinator: ItemSelectionDelegate {
     func handleSelection(_ item: Kaomoji) {
-        guard let keyword = keyword, let app = frontmostApp else { return }
+        guard let keyword = keyword else { return }
         searchWindowController.window?.resignKey()
-        replace(keyword: keyword, with: item.string, for: app)
+        replace(keyword: keyword, with: item.string)
         hideSearchWindow()
     }
 }
@@ -146,26 +149,28 @@ private extension SearchCoordinator {
 
 // MARK: - Apple Events
 private extension SearchCoordinator {
-    /// Uses System Events to keystroke the specified character to the given app.
-    ///
-    func keyStroke(_ character: String, for app: NSRunningApplication) {
-        guard let appName = app.localizedName else { return }
-        let source = """
-            tell application "System Events"
-                tell application "\(appName)" to activate
-                keystroke "\(character)"
-            end tell
-        """
-        sendAppleEvent(source: source)
-    }
 
+    /// Simulates key event to the frontmost app
+    ///
+    func simulateKeyEvent(_ event: NSEvent) {
+        searchWindowController.window?.resignKey()
+
+        // simulate key down event
+        let keyDownEvent = CGEvent(keyboardEventSource: nil, virtualKey: event.keyCode, keyDown: true)
+        keyDownEvent?.post(tap: CGEventTapLocation.cghidEventTap)
+        
+        // simulate key up event
+        let keyUpEvent = CGEvent(keyboardEventSource: nil, virtualKey: event.keyCode, keyDown: false)
+        keyUpEvent?.post(tap: CGEventTapLocation.cghidEventTap)
+    
+        searchWindowController.window?.makeKey()
+    }
     /// Uses System Events to keystroke and replace text with kaomoji.
     ///
-    func replace(keyword: String, with kaomoji: String, for app: NSRunningApplication) {
-        guard let appName = app.localizedName else { return }
+    func replace(keyword: String, with kaomoji: String) {
+        searchWindowController.window?.resignKey()
         let source = """
             tell application "System Events"
-                tell application "\(appName)" to activate
                 repeat \(keyword.count + 1) times
                     key code 123 using {shift down}
                 end repeat
