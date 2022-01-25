@@ -154,9 +154,7 @@ private extension SearchCoordinator {
 
         if searchWindowController.window?.isVisible == false {
             var frameOrigin = NSPoint(x: NSScreen.main!.frame.size.width / 2 - 100, y: NSScreen.main!.frame.size.height / 2 - 100)
-            if let frame = getTextSelectionBounds(for: app), frame.size != .zero {
-                frameOrigin = NSPoint(x: frame.origin.x + frame.size.width / 2, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
-            } else if let frame = getFocusedElementFrame(for: app), frame.size != .zero {
+            if let frame = getFocusedElementFrame(for: app), frame.size != .zero {
                 frameOrigin = NSPoint(x: frame.origin.x, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
             }
             searchWindowController.frameOrigin = frameOrigin
@@ -200,10 +198,6 @@ private extension SearchCoordinator {
                 set the clipboard to ""
             end tell
         """
-        sendAppleEvent(source: source)
-    }
-
-    func sendAppleEvent(source: String) {
         if let script = NSAppleScript(source: source) {
             var error: NSDictionary?
             script.executeAndReturnError(&error)
@@ -218,37 +212,11 @@ private extension SearchCoordinator {
 //
 private extension SearchCoordinator {
     /// Gets the front most app's focused element,
-    /// retrieve selected range and return the bound.
-    func getTextSelectionBounds(for app: NSRunningApplication) -> CGRect? {
-        let axApp = AXUIElementCreateApplication(app.processIdentifier)
-        var focusedElement: CFTypeRef?
-        guard
-          AXUIElementCopyAttributeValue(axApp, kAXFocusedUIElementAttribute as CFString, &focusedElement)
-            == .success else {
-            return nil
-        }
-
-        var selectedRangeValue: CFTypeRef?
-        guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSelectedTextRangeAttribute as CFString, &selectedRangeValue) == .success else {
-            return nil
-        }
-        var selectedRange: CFRange = .init(location: 0, length: 0)
-        AXValueGetValue(selectedRangeValue as! AXValue, AXValueType.cfRange, &selectedRange)
-
-        var selectionBoundsValue: CFTypeRef?
-        guard AXUIElementCopyParameterizedAttributeValue(focusedElement as! AXUIElement, kAXBoundsForRangeParameterizedAttribute as CFString, selectedRangeValue as! AXValue, &selectionBoundsValue) == .success else {
-            return nil
-        }
-        var selectionBounds: CGRect = .zero
-        AXValueGetValue(selectionBoundsValue as! AXValue, AXValueType.cgRect, &selectionBounds)
-
-        return selectionBounds
-    }
-
-    /// Gets the front most app's focused element,
     /// retrieve element's frame.
     func getFocusedElementFrame(for app: NSRunningApplication) -> CGRect? {
         let axApp = AXUIElementCreateApplication(app.processIdentifier)
+
+        // Get the focused element if any
         var focusedElement: CFTypeRef?
         guard
           AXUIElementCopyAttributeValue(axApp, kAXFocusedUIElementAttribute as CFString, &focusedElement)
@@ -256,6 +224,18 @@ private extension SearchCoordinator {
             return nil
         }
 
+        // Make sure that the focused element is a text field or
+        // a text view before moving on to calculating the position.
+        var roleValue: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXRoleAttribute as CFString, &roleValue) == .success else {
+            return nil
+        }
+        if (roleValue as? String) != kAXTextFieldRole &&
+            (roleValue as? String) != kAXTextAreaRole {
+            return nil
+        }
+
+        // Calculate the position of the element
         var positionValue: CFTypeRef?
         guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXPositionAttribute as CFString, &positionValue) == .success else {
             return nil
@@ -263,6 +243,7 @@ private extension SearchCoordinator {
         var position: CGPoint = .zero
         AXValueGetValue(positionValue as! AXValue, AXValueType.cgPoint, &position)
 
+        // Calculate the size of the element
         var sizeValue: CFTypeRef?
         guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSizeAttribute as CFString, &sizeValue) == .success else {
             return nil
