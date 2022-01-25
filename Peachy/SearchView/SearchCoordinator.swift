@@ -175,10 +175,6 @@ private extension SearchCoordinator {
         // simulate key down event
         let keyDownEvent = CGEvent(keyboardEventSource: nil, virtualKey: event.keyCode, keyDown: true)
         keyDownEvent?.post(tap: CGEventTapLocation.cghidEventTap)
-        
-        // simulate key up event
-        let keyUpEvent = CGEvent(keyboardEventSource: nil, virtualKey: event.keyCode, keyDown: false)
-        keyUpEvent?.post(tap: CGEventTapLocation.cghidEventTap)
     
         searchWindowController.window?.makeKey()
     }
