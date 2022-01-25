@@ -29,7 +29,6 @@ final class SearchCoordinator {
 //
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
-        print("Handling event: \(event)")
         if let char = event.characters,
            "a"..."z" ~= char {
             simulateKeyEvent(event)
@@ -55,7 +54,6 @@ private extension SearchCoordinator {
     }
 
     func handleGlobalEvent(_ event: NSEvent) {
-        print("Received global event: \(event)")
         guard let id = frontmostApp?.bundleIdentifier,
               !exceptions.contains(id) else {
                   return
@@ -197,8 +195,10 @@ private extension SearchCoordinator {
         if let script = NSAppleScript(source: source) {
             var error: NSDictionary?
             script.executeAndReturnError(&error)
-            if let err = error {
-                print(err)
+            if let error = error {
+                #if DEBUG
+                print(error)
+                #endif
             }
         }
     }
