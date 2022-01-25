@@ -131,7 +131,7 @@ private extension SearchCoordinator {
                 guard !word.isEmpty else {
                     return
                 }
-                self?.reloadSearchWindow(for: word)
+                self?.reloadSearchWindow()
                 self?.searchWindowController.query = word
             }
     }
@@ -145,7 +145,7 @@ private extension SearchCoordinator {
 
     /// Places the search window where the text field in focus is.
     ///
-    func reloadSearchWindow(for word: String) {
+    func reloadSearchWindow() {
         guard let app = frontmostApp else {
             return
         }
@@ -153,7 +153,11 @@ private extension SearchCoordinator {
         if searchWindowController.window?.isVisible == false {
             var frameOrigin = NSPoint(x: NSScreen.main!.frame.size.width / 2 - 100, y: NSScreen.main!.frame.size.height / 2 - 100)
             if let frame = getFocusedElementFrame(for: app), frame.size != .zero {
-                frameOrigin = NSPoint(x: frame.origin.x, y: NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200)
+                var yPosition = NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200
+                if yPosition < 0 {
+                    yPosition = NSScreen.main!.frame.size.height - frame.origin.y
+                }
+                frameOrigin = NSPoint(x: frame.origin.x, y: yPosition)
             }
             searchWindowController.frameOrigin = frameOrigin
             searchWindowController.showWindow(self)
