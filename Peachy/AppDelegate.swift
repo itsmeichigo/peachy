@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setupStatusBarItem() {
         statusBar = NSStatusBar()
         statusItem = statusBar?.statusItem(withLength: NSStatusItem.squareLength)
-        statusItem?.button?.title = "🍑"
+        statusItem?.button?.image = NSImage(named: "peach")
         statusItem?.menu = menu
     }
 }
