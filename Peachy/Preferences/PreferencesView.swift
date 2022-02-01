@@ -62,6 +62,8 @@ struct PreferencesView: View {
                     Button("+") {
                         openFileBrowser()
                     }
+                    .help("Add a new app to the exception list")
+
                     Button("−") {
                         guard let selectedAppBundleID = selectedAppBundleID else {
                             return
@@ -69,6 +71,7 @@ struct PreferencesView: View {
                         exceptions.removeValue(forKey: selectedAppBundleID)
                         preferences.updateAppExceptions(exceptions)
                     }
+                    .help("Remove the selected app from the exception list")
                 }
                 .font(.title2)
                 .buttonStyle(.borderless)
