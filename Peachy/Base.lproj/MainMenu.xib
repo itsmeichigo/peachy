@@ -24,7 +24,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Peachy" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About Peachy" id="5kV-Vb-QxS">
+                            <menuItem title="About..." id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
