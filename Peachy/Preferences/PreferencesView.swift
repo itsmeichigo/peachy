@@ -40,17 +40,19 @@ struct PreferencesView: View {
                     .padding(.top, 10)
                 VStack(alignment: .leading, spacing: 0) {
                     ScrollView {
-                        ForEach(exceptions.sorted(by: >), id: \.key) { (id, name) in
-                            Text(name)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .frame(width: 300, alignment: .leading)
-                                .background(id == selectedAppBundleID ?
-                                            Color(NSColor.selectedTextBackgroundColor) :
-                                                Color( NSColor.controlBackgroundColor))
-                                .onTapGesture {
-                                    selectedAppBundleID = id
-                                }
+                        VStack(alignment: .leading, spacing: 0) {
+                            ForEach(exceptions.sorted(by: >), id: \.key) { (id, name) in
+                                Text(name)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .frame(width: 300, alignment: .leading)
+                                    .background(id == selectedAppBundleID ?
+                                                Color(NSColor.selectedTextBackgroundColor) :
+                                                    Color( NSColor.controlBackgroundColor))
+                                    .onTapGesture {
+                                        selectedAppBundleID = id
+                                    }
+                            }
                         }
                     }
                 }
