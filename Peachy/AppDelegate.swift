@@ -1,4 +1,5 @@
 import Cocoa
+import SwiftUI
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -45,5 +46,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = statusBar?.statusItem(withLength: NSStatusItem.squareLength)
         statusItem?.button?.image = NSImage(named: "peach")
         statusItem?.menu = menu
+    }
+    
+    @IBAction func openPreferences(_ sender: Any) {
+        let viewController = NSHostingController(rootView: PreferencesView())
+        let window = NSWindow(contentViewController: viewController)
+        window.styleMask = [.closable, .titled]
+        window.titleVisibility = .hidden
+        window.titlebarAppearsTransparent = true
+        window.center()
+        window.orderFrontRegardless()
     }
 }
