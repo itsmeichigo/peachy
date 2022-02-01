@@ -27,7 +27,7 @@ final class AppPreferences {
     }
 
     func updateAppExceptions(_ exceptions: AppExceptions) {
-        userDefaults.set(exceptions, forKey: Constants.triggerKeyPreferencesKey)
+        userDefaults.set(exceptions, forKey: Constants.appExceptionsPreferencesKey)
     }
 }
 
