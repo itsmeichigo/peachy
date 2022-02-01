@@ -35,8 +35,9 @@ struct PreferencesView: View {
                         preferences.updateTriggerKey(triggerKey)
                     }
                 })
+                .font(.headline)
                 .multilineTextAlignment(.center)
-                .frame(width: 50, height: 30)
+                .frame(width: 40, height: 30)
                 .focused($triggerKeyFieldInFocus)
                 .onChange(of: triggerKeyFieldInFocus) { newValue in
                     if newValue {
