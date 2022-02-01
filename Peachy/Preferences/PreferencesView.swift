@@ -56,21 +56,43 @@ struct PreferencesView: View {
                 .background(Color(NSColor.controlBackgroundColor))
                 .frame(width: 300, height: 100, alignment: .leading)
 
-                HStack(spacing: 2) {
+                HStack(spacing: 8) {
                     Button("+") {
-                        // TODO: show sheet to select app
+                        openFileBrowser()
                     }
-
-                    Button("-") {
+                    Button("−") {
                         // TODO: remove selected app from exceptions
                     }
                 }
-                .font(.title3)
-                .buttonStyle(.bordered)
+                .font(.title2)
+                .buttonStyle(.borderless)
             }
         }
         .padding(.vertical, 32)
         .padding(.horizontal, 16)
         .frame(width: 500, height: 300)
+    }
+
+    func openFileBrowser() {
+        let dialog = NSOpenPanel();
+        dialog.showsResizeIndicator = true
+        dialog.showsHiddenFiles = false
+        dialog.allowsMultipleSelection = false
+        dialog.canChooseDirectories = false
+        dialog.allowedContentTypes = [.application]
+        dialog.directoryURL = URL(string: "/Applications/")
+        
+        if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+            if let result = dialog.url {
+                let path: String = result.path
+                print(path)
+                // path contains the file path e.g
+                // /Users/ourcodeworld/Desktop/file.txt
+            }
+            
+        } else {
+            // User clicked on "Cancel"
+            return
+        }
     }
 }
