@@ -2,16 +2,8 @@ import LaunchAtLogin
 import SwiftUI
 
 struct PreferencesView: View {
-    @State private var triggerKey: String = ":" {
-        didSet {
-            if triggerKey.count > 1 {
-                triggerKey = preferences.triggerKey
-            } else {
-                preferences.updateTriggerKey(triggerKey)
-            }
-        }
-    }
-    @State private var exceptions: AppExceptions = [:]
+    @State private var triggerKey: String
+    @State private var exceptions: AppExceptions
     @State private var selectedAppBundleID: String?
     @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
 
@@ -19,7 +11,8 @@ struct PreferencesView: View {
     
     init(preferences: AppPreferences) {
         self.preferences = preferences
-        exceptions = preferences.appExceptions
+        self.exceptions = preferences.appExceptions
+        self.triggerKey = preferences.triggerKey
     }
 
     var body: some View {
@@ -33,9 +26,15 @@ struct PreferencesView: View {
                     Text("Launch Peachy at Log In")
                 }.toggleStyle(CheckboxToggleStyle())
 
-                TextField("", text: $triggerKey)
-                    .multilineTextAlignment(.center)
-                    .frame(width: 50, height: 30)
+                TextField("", text: $triggerKey, onCommit: {
+                    if triggerKey.count > 1 {
+                        triggerKey = preferences.triggerKey
+                    } else {
+                        preferences.updateTriggerKey(triggerKey)
+                    }
+                })
+                .multilineTextAlignment(.center)
+                .frame(width: 50, height: 30)
                 
                 Text("Disable Peachy within these apps:")
                     .padding(.top, 16)

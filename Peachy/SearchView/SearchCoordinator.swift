@@ -8,14 +8,12 @@ final class SearchCoordinator {
     @Published private var frontmostApp: NSRunningApplication?
 
     private let searchWindowController: SearchWindowController
-    private let exceptions = [
-        "com.apple.dt.Xcode"
-    ]
-    private let triggerKey = ":"
+    private let preferences: AppPreferences
     private var keywordSubscription: AnyCancellable?
 
-    init() {
+    init(preferences: AppPreferences) {
         self.searchWindowController = .init()
+        self.preferences = preferences
         searchWindowController.selectionDelegate = self
         searchWindowController.keyEventDelegate = self
         (searchWindowController.window as? SearchPanel)?.searchDelegate = self
@@ -55,12 +53,12 @@ private extension SearchCoordinator {
 
     func handleGlobalEvent(_ event: NSEvent) {
         guard let id = frontmostApp?.bundleIdentifier,
-              !exceptions.contains(id) else {
+              preferences.appExceptions[id] == nil else {
                   return
               }
         let chars = event.characters?.lowercased()
         switch chars {
-        case .some(triggerKey):
+        case .some(preferences.triggerKey):
             keyword = ""
         case .some("a"..."z"):
             guard let key = keyword else {

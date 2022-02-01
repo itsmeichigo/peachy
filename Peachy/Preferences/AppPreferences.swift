@@ -13,7 +13,7 @@ final class AppPreferences {
 
     var appExceptions: AppExceptions {
         get {
-            userDefaults.dictionary(forKey: Constants.appExceptionsPreferencesKey) as? AppExceptions ?? [:]
+            userDefaults.dictionary(forKey: Constants.appExceptionsPreferencesKey) as? AppExceptions ?? Constants.defaultAppExceptions
             
         }
     }

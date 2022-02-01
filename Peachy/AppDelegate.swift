@@ -9,10 +9,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBar: NSStatusBar?
     var statusItem: NSStatusItem?
     
-    let searchCoordinator: SearchCoordinator = .init()
-    let appPreferences = AppPreferences()
+    var searchCoordinator: SearchCoordinator!
+    var appPreferences: AppPreferences!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        appPreferences = AppPreferences()
+        searchCoordinator = SearchCoordinator(preferences: appPreferences)
         checkAccessibilityPermission {
             self.setupStatusBarItem()
         }
