@@ -37,12 +37,13 @@ struct PreferencesView: View {
                 .frame(width: 50, height: 30)
                 
                 Text("Disable Peachy within these apps:")
-                    .padding(.top, 16)
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 0) {
+                    .padding(.top, 10)
+                VStack(alignment: .leading, spacing: 0) {
+                    ScrollView {
                         ForEach(exceptions.sorted(by: >), id: \.key) { (id, name) in
                             Text(name)
-                                .padding(8)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
                                 .frame(width: 300, alignment: .leading)
                                 .background(id == selectedAppBundleID ?
                                             Color(NSColor.selectedTextBackgroundColor) :
@@ -53,15 +54,20 @@ struct PreferencesView: View {
                         }
                     }
                 }
-                .background(Color(NSColor.controlBackgroundColor))
                 .frame(width: 300, height: 100, alignment: .leading)
+                .fixedSize()
+                .background(Color(NSColor.controlBackgroundColor))
 
                 HStack(spacing: 8) {
                     Button("+") {
                         openFileBrowser()
                     }
                     Button("−") {
-                        // TODO: remove selected app from exceptions
+                        guard let selectedAppBundleID = selectedAppBundleID else {
+                            return
+                        }
+                        exceptions.removeValue(forKey: selectedAppBundleID)
+                        preferences.updateAppExceptions(exceptions)
                     }
                 }
                 .font(.title2)
