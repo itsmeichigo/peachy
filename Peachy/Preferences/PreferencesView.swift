@@ -91,13 +91,16 @@ struct PreferencesView: View {
         dialog.allowedContentTypes = [.application]
         dialog.directoryURL = URL(string: "/Applications/")
         
-        if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
-            if let result = dialog.url {
-                let path: String = result.path
-                print(path)
-                // path contains the file path e.g
-                // /Users/ourcodeworld/Desktop/file.txt
-            }
+        if dialog.runModal() ==  NSApplication.ModalResponse.OK,
+           let result = dialog.url {
+            do {
+                let values = try result.resourceValues(forKeys: [.localizedNameKey])
+                if let name = values.localizedName,
+                   let bundle = Bundle(path: result.path)?.bundleIdentifier {
+                    exceptions[bundle] = name
+                    preferences.updateAppExceptions(exceptions)
+                }
+            } catch {}
             
         } else {
             // User clicked on "Cancel"
