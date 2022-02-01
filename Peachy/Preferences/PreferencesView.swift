@@ -1,12 +1,13 @@
+import LaunchAtLogin
 import SwiftUI
 
 struct PreferencesView: View {
-    @State private var startsAtLogin = false
     @State private var triggerKey: String = ":"
     @State private var exceptions: [AppInformation] = [
         .init(name: "Xcode", bundleID: "com.apple.dt.Xcode")
     ]
     @State private var selectedApp: AppInformation?
+    @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -15,7 +16,7 @@ struct PreferencesView: View {
                 Text("Trigger Key: ")
             }
             VStack(alignment: .leading, spacing: 6) {
-                Toggle(isOn: $startsAtLogin) {
+                Toggle(isOn: $launchAtLogin.isEnabled) {
                     Text("Launch Peachy at Log In")
                 }.toggleStyle(CheckboxToggleStyle())
 
