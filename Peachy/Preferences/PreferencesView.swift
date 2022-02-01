@@ -5,6 +5,8 @@ struct PreferencesView: View {
     @State private var triggerKey: String
     @State private var exceptions: AppExceptions
     @State private var selectedAppBundleID: String?
+    @State private var exceptionListInFocus: Bool = false
+    @FocusState private var triggerKeyFieldInFocus: Bool
     @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
 
     private let preferences: AppPreferences
@@ -35,6 +37,12 @@ struct PreferencesView: View {
                 })
                 .multilineTextAlignment(.center)
                 .frame(width: 50, height: 30)
+                .focused($triggerKeyFieldInFocus)
+                .onChange(of: triggerKeyFieldInFocus) { newValue in
+                    if newValue {
+                        exceptionListInFocus = false
+                    }
+                }
                 
                 Text("Disable Peachy within these apps:")
                     .padding(.top, 10)
@@ -47,10 +55,12 @@ struct PreferencesView: View {
                                     .padding(.vertical, 4)
                                     .frame(width: 300, alignment: .leading)
                                     .background(id == selectedAppBundleID ?
-                                                Color(NSColor.selectedTextBackgroundColor) :
+                                                Color(NSColor.controlAccentColor) :
                                                     Color( NSColor.controlBackgroundColor))
                                     .onTapGesture {
                                         selectedAppBundleID = id
+                                        triggerKeyFieldInFocus = false
+                                        exceptionListInFocus = true
                                     }
                             }
                         }
@@ -59,7 +69,10 @@ struct PreferencesView: View {
                 .frame(width: 300, height: 100, alignment: .leading)
                 .fixedSize()
                 .background(Color(NSColor.controlBackgroundColor))
-
+                .border(exceptionListInFocus ? Color(NSColor.selectedControlColor) : Color.clear, width: 4)
+                .animation(.easeOut, value: exceptionListInFocus)
+                .cornerRadius(4)
+                
                 HStack(spacing: 8) {
                     Button("+") {
                         openFileBrowser()
