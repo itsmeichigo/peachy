@@ -2,13 +2,26 @@ import LaunchAtLogin
 import SwiftUI
 
 struct PreferencesView: View {
-    @State private var triggerKey: String = ":"
-    @State private var exceptions: [AppInformation] = [
-        .init(name: "Xcode", bundleID: "com.apple.dt.Xcode")
-    ]
-    @State private var selectedApp: AppInformation?
+    @State private var triggerKey: String = ":" {
+        didSet {
+            if triggerKey.count > 1 {
+                triggerKey = preferences.triggerKey
+            } else {
+                preferences.updateTriggerKey(triggerKey)
+            }
+        }
+    }
+    @State private var exceptions: AppExceptions = [:]
+    @State private var selectedAppBundleID: String?
     @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
+
+    private let preferences: AppPreferences
     
+    init(preferences: AppPreferences) {
+        self.preferences = preferences
+        exceptions = preferences.appExceptions
+    }
+
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             VStack(alignment: .trailing, spacing: 8) {
@@ -28,15 +41,15 @@ struct PreferencesView: View {
                     .padding(.top, 16)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
-                        ForEach(exceptions) { app in
-                            Text(app.name)
+                        ForEach(exceptions.sorted(by: >), id: \.key) { (id, name) in
+                            Text(name)
                                 .padding(8)
                                 .frame(width: 300, alignment: .leading)
-                                .background(app == selectedApp ?
+                                .background(id == selectedAppBundleID ?
                                             Color(NSColor.selectedTextBackgroundColor) :
                                                 Color( NSColor.controlBackgroundColor))
                                 .onTapGesture {
-                                    selectedApp = app
+                                    selectedAppBundleID = id
                                 }
                         }
                     }
@@ -60,17 +73,5 @@ struct PreferencesView: View {
         .padding(.vertical, 32)
         .padding(.horizontal, 16)
         .frame(width: 500, height: 300)
-    }
-}
-
-struct AppInformation: Identifiable, Hashable {
-    var id: String { bundleID }
-    let name: String
-    let bundleID: String
-}
-
-struct PreferencesView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreferencesView()
     }
 }

@@ -10,6 +10,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem?
     
     let searchCoordinator: SearchCoordinator = .init()
+    let appPreferences = AppPreferences()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         checkAccessibilityPermission {
@@ -49,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openPreferences(_ sender: Any) {
-        let viewController = NSHostingController(rootView: PreferencesView())
+        let viewController = NSHostingController(rootView: PreferencesView(preferences: appPreferences))
         let window = NSWindow(contentViewController: viewController)
         window.styleMask = [.closable, .titled]
         window.title = "Preferences"
