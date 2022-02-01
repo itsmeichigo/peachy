@@ -52,8 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let viewController = NSHostingController(rootView: PreferencesView())
         let window = NSWindow(contentViewController: viewController)
         window.styleMask = [.closable, .titled]
-        window.titleVisibility = .hidden
-        window.titlebarAppearsTransparent = true
+        window.title = "Preferences"
         window.center()
         window.orderFrontRegardless()
     }
