@@ -55,5 +55,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.title = "Preferences"
         window.center()
         window.orderFrontRegardless()
+        NSApp.setActivationPolicy(.regular)
+        window.delegate = self
+    }
+}
+
+extension AppDelegate: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        NSApp.setActivationPolicy(.accessory)
     }
 }

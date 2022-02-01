@@ -44,17 +44,12 @@ struct PreferencesView: View {
                 .frame(width: 300, height: 100, alignment: .leading)
 
                 HStack(spacing: 2) {
-                    Button(action: {
+                    Button("+") {
                         // TODO: show sheet to select app
-                    }) {
-                        Text("+")
                     }
 
-                    Button(action: {
+                    Button("-") {
                         // TODO: remove selected app from exceptions
-                    }) {
-                        Text("-")
-                            
                     }
                 }
                 .font(.title3)
