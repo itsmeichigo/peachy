@@ -29,7 +29,7 @@ struct PreferencesView: View {
                 }.toggleStyle(CheckboxToggleStyle())
 
                 TextField("", text: $triggerKey, onCommit: {
-                    if triggerKey.count > 1 {
+                    if triggerKey.count > 1 || triggerKey.isEmpty {
                         triggerKey = preferences.triggerKey
                     } else {
                         preferences.updateTriggerKey(triggerKey)
@@ -88,6 +88,7 @@ struct PreferencesView: View {
                         preferences.updateAppExceptions(exceptions)
                     }
                     .help("Remove the selected app from the exception list")
+                    .keyboardShortcut(.delete, modifiers: [])
                 }
                 .font(.title2)
                 .buttonStyle(.borderless)
