@@ -3,8 +3,8 @@ import SwiftUI
 
 struct PreferencesView: View {
     @State private var triggerKey: String
-    @State private var exceptions: AppExceptions
-    @State private var selectedAppBundleID: String?
+    @State private var exceptionAppIDs: [String]
+    @State private var selectedAppIndex: Int?
     @State private var exceptionListInFocus: Bool = false
     @FocusState private var triggerKeyFieldInFocus: Bool
     @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
@@ -13,7 +13,7 @@ struct PreferencesView: View {
     
     init(preferences: AppPreferences) {
         self.preferences = preferences
-        self.exceptions = preferences.appExceptions
+        self.exceptionAppIDs = preferences.appExceptionIDs
         self.triggerKey = preferences.triggerKey
     }
 
@@ -50,16 +50,16 @@ struct PreferencesView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 0) {
-                            ForEach(exceptions.sorted(by: >), id: \.key) { (id, name) in
-                                Text(name)
+                            ForEach(Array(exceptionAppIDs.enumerated()), id: \.1) { (index, appID) in
+                                preferences.appExceptions[appID].map(Text.init)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
                                     .frame(width: 300, alignment: .leading)
-                                    .background(id == selectedAppBundleID ?
+                                    .background(index == selectedAppIndex ?
                                                 Color(NSColor.controlAccentColor) :
                                                     Color( NSColor.controlBackgroundColor))
                                     .onTapGesture {
-                                        selectedAppBundleID = id
+                                        selectedAppIndex = index
                                         triggerKeyFieldInFocus = false
                                         exceptionListInFocus = true
                                     }
@@ -76,19 +76,39 @@ struct PreferencesView: View {
                 
                 HStack(spacing: 8) {
                     Button("+") {
+                        triggerKeyFieldInFocus = false
                         openFileBrowser()
                     }
                     .help("Add a new app to the exception list")
 
                     Button("−") {
-                        guard let selectedAppBundleID = selectedAppBundleID else {
+                        guard let index = selectedAppIndex else {
                             return
                         }
-                        exceptions.removeValue(forKey: selectedAppBundleID)
-                        preferences.updateAppExceptions(exceptions)
+                        preferences.updateAppExceptions(bundleID: exceptionAppIDs[index], name: nil)
+                        exceptionAppIDs.remove(at: index)
+                        selectedAppIndex = nil
                     }
                     .help("Remove the selected app from the exception list")
                     .keyboardShortcut(.delete, modifiers: [])
+
+                    Button("") {
+                        guard let index = selectedAppIndex,
+                              index < exceptionAppIDs.count - 1 else {
+                            return
+                        }
+                        selectedAppIndex = index + 1
+                    }
+                    .keyboardShortcut(.downArrow, modifiers: [])
+
+                    Button("") {
+                        guard let index = selectedAppIndex,
+                              index > 0 else {
+                            return
+                        }
+                        selectedAppIndex = index - 1
+                    }
+                    .keyboardShortcut(.upArrow, modifiers: [])
                 }
                 .font(.title2)
                 .buttonStyle(.borderless)
@@ -113,9 +133,9 @@ struct PreferencesView: View {
             do {
                 let values = try result.resourceValues(forKeys: [.localizedNameKey])
                 if let name = values.localizedName,
-                   let bundle = Bundle(path: result.path)?.bundleIdentifier {
-                    exceptions[bundle] = name
-                    preferences.updateAppExceptions(exceptions)
+                   let bundleID = Bundle(path: result.path)?.bundleIdentifier {
+                    exceptionAppIDs.append(bundleID)
+                    preferences.updateAppExceptions(bundleID: bundleID, name: name)
                 }
             } catch {}
             
