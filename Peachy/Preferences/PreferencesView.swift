@@ -55,9 +55,10 @@ struct PreferencesView: View {
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
                                     .frame(width: 300, alignment: .leading)
+                                    .foregroundColor(index == selectedAppIndex ? Color(NSColor.selectedMenuItemTextColor) : Color(NSColor.textColor))
                                     .background(index == selectedAppIndex ?
                                                 Color(NSColor.controlAccentColor) :
-                                                    Color( NSColor.controlBackgroundColor))
+                                                    Color(NSColor.controlBackgroundColor))
                                     .onTapGesture {
                                         selectedAppIndex = index
                                         triggerKeyFieldInFocus = false
