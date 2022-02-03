@@ -59,9 +59,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func openPreferences(_ sender: Any) {
         let viewController = NSHostingController(rootView: PreferencesView(preferences: appPreferences))
         let window = NSWindow(contentViewController: viewController)
-        window.styleMask = [.closable, .titled]
         window.title = "Preferences"
-        window.center()
+        window.applyCommonStyle()
         window.orderFrontRegardless()
         window.delegate = self
         NSApp.setActivationPolicy(.regular)
@@ -70,11 +69,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func showOnboarding() {
         let viewController = NSHostingController(rootView: OnboardingView(pages: OnboardingPage.freshOnboarding))
         let window = NSWindow(contentViewController: viewController)
-        window.styleMask = [.closable, .titled]
+        window.applyCommonStyle()
         window.titleVisibility = .hidden
         window.titlebarAppearsTransparent = true
-        window.center()
         window.orderFrontRegardless()
+        window.delegate = self
         NSApp.setActivationPolicy(.regular)
     }
 }

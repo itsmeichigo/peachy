@@ -19,6 +19,7 @@
 		2C001F4527AB8653003B9EB7 /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3E27AB8653003B9EB7 /* PermissionView.swift */; };
 		2C001F4627AB8653003B9EB7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3F27AB8653003B9EB7 /* OnboardingView.swift */; };
 		2C001F4927AB88C3003B9EB7 /* UserDefaults+Peachy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F4827AB88C3003B9EB7 /* UserDefaults+Peachy.swift */; };
+		2C001F4B27ABBAD0003B9EB7 /* NSWindow+Peachy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F4A27ABBAD0003B9EB7 /* NSWindow+Peachy.swift */; };
 		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
 		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
@@ -63,6 +64,7 @@
 		2C001F3E27AB8653003B9EB7 /* PermissionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
 		2C001F3F27AB8653003B9EB7 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2C001F4827AB88C3003B9EB7 /* UserDefaults+Peachy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Peachy.swift"; sourceTree = "<group>"; };
+		2C001F4A27ABBAD0003B9EB7 /* NSWindow+Peachy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Peachy.swift"; sourceTree = "<group>"; };
 		2C4E160826E1F849006A5986 /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E160B26E1F849006A5986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4E160D26E1F84A006A5986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2C001F4827AB88C3003B9EB7 /* UserDefaults+Peachy.swift */,
+				2C001F4A27ABBAD0003B9EB7 /* NSWindow+Peachy.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				2C001F4427AB8653003B9EB7 /* WelcomeView.swift in Sources */,
 				2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */,
 				2C4E163E26E37C53006A5986 /* ColoredView.swift in Sources */,
+				2C001F4B27ABBAD0003B9EB7 /* NSWindow+Peachy.swift in Sources */,
 				2C001F4927AB88C3003B9EB7 /* UserDefaults+Peachy.swift in Sources */,
 				2C001F4127AB8653003B9EB7 /* OnboardingPage.swift in Sources */,
 				2C001F4627AB8653003B9EB7 /* OnboardingView.swift in Sources */,
