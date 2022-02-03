@@ -42,6 +42,7 @@ struct PreferencesView: View {
                 .onChange(of: triggerKeyFieldInFocus) { newValue in
                     if newValue {
                         exceptionListInFocus = false
+                        selectedAppIndex = nil
                     }
                 }
                 
@@ -58,7 +59,7 @@ struct PreferencesView: View {
                                     .foregroundColor(index == selectedAppIndex ? Color(NSColor.selectedMenuItemTextColor) : Color(NSColor.textColor))
                                     .background(index == selectedAppIndex ?
                                                 Color(NSColor.controlAccentColor) :
-                                                    Color(NSColor.controlBackgroundColor))
+                                                    Color(NSColor.windowBackgroundColor))
                                     .onTapGesture {
                                         selectedAppIndex = index
                                         triggerKeyFieldInFocus = false
@@ -70,17 +71,18 @@ struct PreferencesView: View {
                 }
                 .frame(width: 300, height: 100, alignment: .leading)
                 .fixedSize()
-                .background(Color(NSColor.controlBackgroundColor))
+                .background(Color(NSColor.windowBackgroundColor))
                 .border(exceptionListInFocus ? Color(NSColor.selectedControlColor) : Color.clear, width: 4)
                 .animation(.easeOut, value: exceptionListInFocus)
                 .cornerRadius(4)
                 
-                HStack(spacing: 8) {
+                HStack(spacing: 0) {
                     Button("+") {
                         triggerKeyFieldInFocus = false
                         openFileBrowser()
                     }
                     .help("Add a new app to the exception list")
+                    .frame(width: 20, height: 20)
 
                     Button("−") {
                         guard let index = selectedAppIndex else {
@@ -92,6 +94,7 @@ struct PreferencesView: View {
                     }
                     .help("Remove the selected app from the exception list")
                     .keyboardShortcut(.delete, modifiers: [])
+                    .frame(width: 20, height: 20)
 
                     Button("") {
                         guard let index = selectedAppIndex,
@@ -113,6 +116,17 @@ struct PreferencesView: View {
                 }
                 .font(.title2)
                 .buttonStyle(.borderless)
+                .background(
+                    Color(NSColor.controlColor)
+                        .clipShape(Rectangle())
+                        .cornerRadius(4)
+                        .shadow(color: Color(NSColor.separatorColor), radius: 2, x: 0, y: 1)
+                        .overlay(
+                            Rectangle()
+                                .frame(width: 1, height: 10)
+                                .foregroundColor(Color(NSColor.separatorColor))
+                        )
+                )
             }
         }
         .padding(.vertical, 32)
