@@ -29,9 +29,6 @@ final class AppPreferences {
         var updatedExceptions = appExceptions
         var updatedIDs = appExceptionIDs
         if let name = name {
-            guard !updatedIDs.contains(bundleID) else {
-                return
-            }
             updatedExceptions[bundleID] = name
             updatedIDs.append(bundleID)
         } else {

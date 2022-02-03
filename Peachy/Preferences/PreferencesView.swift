@@ -133,7 +133,8 @@ struct PreferencesView: View {
             do {
                 let values = try result.resourceValues(forKeys: [.localizedNameKey])
                 if let name = values.localizedName,
-                   let bundleID = Bundle(path: result.path)?.bundleIdentifier {
+                   let bundleID = Bundle(path: result.path)?.bundleIdentifier,
+                   !exceptionAppIDs.contains(bundleID) {
                     exceptionAppIDs.append(bundleID)
                     preferences.updateAppExceptions(bundleID: bundleID, name: name)
                 }
