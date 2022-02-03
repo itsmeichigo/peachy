@@ -11,6 +11,14 @@
 		2C001F2E27A8E6CA003B9EB7 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F2D27A8E6CA003B9EB7 /* PreferencesView.swift */; };
 		2C001F3127A921CE003B9EB7 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2C001F3027A921CE003B9EB7 /* LaunchAtLogin */; };
 		2C001F3427A9287A003B9EB7 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3327A9287A003B9EB7 /* AppPreferences.swift */; };
+		2C001F4027AB8653003B9EB7 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3827AB8653003B9EB7 /* AppState.swift */; };
+		2C001F4127AB8653003B9EB7 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3927AB8653003B9EB7 /* OnboardingPage.swift */; };
+		2C001F4227AB8653003B9EB7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3B27AB8653003B9EB7 /* SettingsView.swift */; };
+		2C001F4327AB8653003B9EB7 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3C27AB8653003B9EB7 /* FeatureView.swift */; };
+		2C001F4427AB8653003B9EB7 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3D27AB8653003B9EB7 /* WelcomeView.swift */; };
+		2C001F4527AB8653003B9EB7 /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3E27AB8653003B9EB7 /* PermissionView.swift */; };
+		2C001F4627AB8653003B9EB7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3F27AB8653003B9EB7 /* OnboardingView.swift */; };
+		2C001F4927AB88C3003B9EB7 /* UserDefaults+Peachy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F4827AB88C3003B9EB7 /* UserDefaults+Peachy.swift */; };
 		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
 		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
@@ -47,6 +55,14 @@
 		2C001F2A2794FDD3003B9EB7 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		2C001F2D27A8E6CA003B9EB7 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		2C001F3327A9287A003B9EB7 /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		2C001F3827AB8653003B9EB7 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		2C001F3927AB8653003B9EB7 /* OnboardingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
+		2C001F3B27AB8653003B9EB7 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2C001F3C27AB8653003B9EB7 /* FeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
+		2C001F3D27AB8653003B9EB7 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		2C001F3E27AB8653003B9EB7 /* PermissionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		2C001F3F27AB8653003B9EB7 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		2C001F4827AB88C3003B9EB7 /* UserDefaults+Peachy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Peachy.swift"; sourceTree = "<group>"; };
 		2C4E160826E1F849006A5986 /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E160B26E1F849006A5986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4E160D26E1F84A006A5986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +120,36 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
+		2C001F3727AB8653003B9EB7 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2C001F3827AB8653003B9EB7 /* AppState.swift */,
+				2C001F3927AB8653003B9EB7 /* OnboardingPage.swift */,
+				2C001F3A27AB8653003B9EB7 /* Views */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		2C001F3A27AB8653003B9EB7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C001F3B27AB8653003B9EB7 /* SettingsView.swift */,
+				2C001F3C27AB8653003B9EB7 /* FeatureView.swift */,
+				2C001F3D27AB8653003B9EB7 /* WelcomeView.swift */,
+				2C001F3E27AB8653003B9EB7 /* PermissionView.swift */,
+				2C001F3F27AB8653003B9EB7 /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2C001F4727AB88B2003B9EB7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C001F4827AB88C3003B9EB7 /* UserDefaults+Peachy.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2C4E15FF26E1F849006A5986 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +173,8 @@
 		2C4E160A26E1F849006A5986 /* Peachy */ = {
 			isa = PBXGroup;
 			children = (
+				2C001F4727AB88B2003B9EB7 /* Extensions */,
+				2C001F3727AB8653003B9EB7 /* Onboarding */,
 				2C001F2C27A8E6B5003B9EB7 /* Preferences */,
 				2C4E164526E37D15006A5986 /* Models */,
 				2C4E163526E37C35006A5986 /* SearchView */,
@@ -358,13 +406,21 @@
 				2C001F3427A9287A003B9EB7 /* AppPreferences.swift in Sources */,
 				2C4E164A26E3814A006A5986 /* SearchWindowController.swift in Sources */,
 				2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */,
+				2C001F4527AB8653003B9EB7 /* PermissionView.swift in Sources */,
 				2C001F2E27A8E6CA003B9EB7 /* PreferencesView.swift in Sources */,
 				2C4E163F26E37C53006A5986 /* TableView.swift in Sources */,
 				2C4E164726E37D28006A5986 /* Kaomoji.swift in Sources */,
+				2C001F4027AB8653003B9EB7 /* AppState.swift in Sources */,
+				2C001F4327AB8653003B9EB7 /* FeatureView.swift in Sources */,
 				2C001F2B2794FDD3003B9EB7 /* SearchCoordinator.swift in Sources */,
 				2C4E164126E37C53006A5986 /* ItemTableController.swift in Sources */,
+				2C001F4427AB8653003B9EB7 /* WelcomeView.swift in Sources */,
 				2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */,
 				2C4E163E26E37C53006A5986 /* ColoredView.swift in Sources */,
+				2C001F4927AB88C3003B9EB7 /* UserDefaults+Peachy.swift in Sources */,
+				2C001F4127AB8653003B9EB7 /* OnboardingPage.swift in Sources */,
+				2C001F4627AB8653003B9EB7 /* OnboardingView.swift in Sources */,
+				2C001F4227AB8653003B9EB7 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

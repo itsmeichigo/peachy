@@ -119,7 +119,7 @@ struct PreferencesView: View {
         .frame(width: 500, height: 300)
     }
 
-    func openFileBrowser() {
+    private func openFileBrowser() {
         let dialog = NSOpenPanel();
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false

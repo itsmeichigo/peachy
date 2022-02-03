@@ -6,23 +6,23 @@ final class AppPreferences {
     private let userDefaults: UserDefaults
 
     var triggerKey: String {
-        userDefaults.string(forKey: Constants.triggerKeyPreferencesKey) ?? Constants.defaultTriggerKey
+        userDefaults.triggerKey ?? Constants.defaultTriggerKey
     }
 
     var appExceptions: AppExceptions {
-        userDefaults.dictionary(forKey: Constants.appExceptionsPreferencesKey) as? AppExceptions ?? Constants.defaultAppExceptions
+        userDefaults.appExceptions ?? Constants.defaultAppExceptions
     }
 
     var appExceptionIDs: [String] {
-        userDefaults.stringArray(forKey: Constants.appIDsPreferencesKey) ?? Constants.defaultAppExceptions.keys.sorted()
+        userDefaults.appExceptionIDs ?? Constants.defaultAppExceptions.keys.sorted()
     }
 
-    init(userDefaults: UserDefaults = .standard) {
+    init(userDefaults: UserDefaults = .peachyDefaults) {
         self.userDefaults = userDefaults
     }
 
     func updateTriggerKey(_ key: String) {
-        userDefaults.set(key, forKey: Constants.triggerKeyPreferencesKey)
+        userDefaults.triggerKey = key
     }
 
     func updateAppExceptions(bundleID: String, name: String?) {
@@ -38,16 +38,13 @@ final class AppPreferences {
             updatedExceptions.removeValue(forKey: bundleID)
             updatedIDs.removeAll(where: { $0 == bundleID })
         }
-        userDefaults.set(updatedExceptions, forKey: Constants.appExceptionsPreferencesKey)
-        userDefaults.set(updatedIDs, forKey: Constants.appIDsPreferencesKey)
+        userDefaults.appExceptions = updatedExceptions
+        userDefaults.appExceptionIDs = updatedIDs
     }
 }
 
-extension AppPreferences {
-    private enum Constants {
-        static let triggerKeyPreferencesKey = "com.ichigo.peachy.trigger-key"
-        static let appIDsPreferencesKey = "com.ichigo.peachy.exception-ids"
-        static let appExceptionsPreferencesKey = "com.ichigo.peachy.exceptions"
+private extension AppPreferences {
+    enum Constants {
         static let defaultTriggerKey = ":"
         static let defaultAppExceptions = [
             "com.apple.dt.Xcode": "Xcode"
