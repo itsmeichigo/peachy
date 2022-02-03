@@ -7,18 +7,13 @@ enum OnboardingPage: CaseIterable {
     
     static let freshOnboarding = OnboardingPage.allCases
     
+    @ViewBuilder
     var view: some View {
         switch self {
         case .permission:
-            return PermissionView().eraseToAnyView()
+            PermissionView()
         case .settings:
-            return SettingsView().eraseToAnyView()
+            SettingsView()
         }
-    }
-}
-
-extension View {
-    func eraseToAnyView() -> AnyView {
-        AnyView(self)
     }
 }
