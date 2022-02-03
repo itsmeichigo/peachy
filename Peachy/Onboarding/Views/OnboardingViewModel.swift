@@ -16,11 +16,24 @@ final class OnboardingViewModel: ObservableObject {
     private let checkOptions = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as String: false] as CFDictionary
 
     private var timerSubscription: Cancellable?
+    private var currentPageSubscription: Cancellable?
 
     init(pages: [OnboardingPage], onCompletion: @escaping () -> Void) {
         self.pages = pages
         self.completionHandler = onCompletion
-        setupPeriodicChecks()
+        observeCurrentPage()
+    }
+
+    private func observeCurrentPage() {
+        currentPageSubscription = $currentIndex
+            .compactMap { [weak self] index in
+                self?.pages[index]
+            }
+            .sink { [weak self] currentPage in
+                if currentPage == .permission {
+                    self?.setupPeriodicChecks()
+                }
+            }
     }
 
     private func setupPeriodicChecks() {
