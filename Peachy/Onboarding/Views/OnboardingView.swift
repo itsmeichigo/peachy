@@ -1,23 +1,21 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @ObservedObject private var viewModel: OnboardingViewModel
     
-    @State private var currentIndex: Int = 0
-    private let pages: [OnboardingPage]
-    
-    init(pages: [OnboardingPage]) {
-        self.pages = pages
+    init(viewModel: OnboardingViewModel) {
+        self.viewModel = viewModel
     }
     
     var body: some View {
         VStack {
-            ForEach(0..<pages.count, id: \.self) { index in
-                if index == currentIndex {
-                    pages[currentIndex].view
+            ForEach(0..<viewModel.pages.count, id: \.self) { index in
+                if index == viewModel.currentIndex {
+                    viewModel.currentView
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .animation(.easeIn, value: currentIndex)
+            .animation(.easeIn, value: viewModel.currentIndex)
             
         }
         .frame(width: 500, height: 500)

@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         searchCoordinator = SearchCoordinator(preferences: appPreferences)
 
         if AppState.current.needsOnboarding {
-            showOnboarding()
+            showOnboarding(pages: OnboardingPage.freshOnboarding)
         } else {
             checkAccessibilityPermission {
                 self.setupStatusBarItem()
@@ -31,22 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             proceedHandler()
             return
         }
-        
-        let alert = NSAlert()
-        alert.messageText = "Peachy needs accessibility access."
-        alert.informativeText =
-            "Navigate to System Preferences > Security & Privacy > Accessibility then select Peachy in the list to continue."
-        alert.addButton(withTitle: "Open Settings & Quit")
-        
-        let button = alert.runModal()
-        switch button {
-        case .alertFirstButtonReturn:
-            NSWorkspace.shared.open(
-              URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
-            NSApp.terminate(nil)
-        default:
-            break
-        }
+        showOnboarding(pages: [.permission])
     }
     
     func setupStatusBarItem() {
@@ -66,8 +51,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.regular)
     }
 
-    func showOnboarding() {
-        let viewController = NSHostingController(rootView: OnboardingView(pages: OnboardingPage.freshOnboarding))
+    func showOnboarding(pages: [OnboardingPage]) {
+        let onboardingViewModel = OnboardingViewModel(pages: pages) {
+            NSApp.orderedWindows.first?.close()
+            self.setupStatusBarItem()
+        }
+        let viewController = NSHostingController(rootView: OnboardingView(viewModel: onboardingViewModel))
         let window = NSWindow(contentViewController: viewController)
         window.applyCommonStyle()
         window.titleVisibility = .hidden
