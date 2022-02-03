@@ -15,8 +15,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         appPreferences = AppPreferences()
         searchCoordinator = SearchCoordinator(preferences: appPreferences)
-        checkAccessibilityPermission {
-            self.setupStatusBarItem()
+
+        if AppState.current.needsOnboarding {
+            showOnboarding()
+        } else {
+            checkAccessibilityPermission {
+                self.setupStatusBarItem()
+            }
         }
     }
     
@@ -58,8 +63,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.title = "Preferences"
         window.center()
         window.orderFrontRegardless()
-        NSApp.setActivationPolicy(.regular)
         window.delegate = self
+        NSApp.setActivationPolicy(.regular)
+    }
+
+    func showOnboarding() {
+        let viewController = NSHostingController(rootView: OnboardingView(pages: OnboardingPage.freshOnboarding))
+        let window = NSWindow(contentViewController: viewController)
+        window.styleMask = [.closable, .titled]
+        window.titleVisibility = .hidden
+        window.titlebarAppearsTransparent = true
+        window.center()
+        window.orderFrontRegardless()
+        NSApp.setActivationPolicy(.regular)
     }
 }
 
