@@ -20,6 +20,7 @@
 		2C001F4B27ABBAD0003B9EB7 /* NSWindow+Peachy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F4A27ABBAD0003B9EB7 /* NSWindow+Peachy.swift */; };
 		2C001F4D27AC4CF4003B9EB7 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F4C27AC4CF4003B9EB7 /* OnboardingViewModel.swift */; };
 		2C001F4F27ACD6E7003B9EB7 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F4E27ACD6E7003B9EB7 /* WelcomeView.swift */; };
+		2C001F5127AD8D43003B9EB7 /* OnboardingButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F5027AD8D43003B9EB7 /* OnboardingButtonStyle.swift */; };
 		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
 		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
@@ -65,6 +66,7 @@
 		2C001F4A27ABBAD0003B9EB7 /* NSWindow+Peachy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Peachy.swift"; sourceTree = "<group>"; };
 		2C001F4C27AC4CF4003B9EB7 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		2C001F4E27ACD6E7003B9EB7 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		2C001F5027AD8D43003B9EB7 /* OnboardingButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonStyle.swift; sourceTree = "<group>"; };
 		2C4E160826E1F849006A5986 /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E160B26E1F849006A5986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4E160D26E1F84A006A5986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				2C001F3F27AB8653003B9EB7 /* OnboardingView.swift */,
 				2C001F4C27AC4CF4003B9EB7 /* OnboardingViewModel.swift */,
 				2C001F4E27ACD6E7003B9EB7 /* WelcomeView.swift */,
+				2C001F5027AD8D43003B9EB7 /* OnboardingButtonStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 			files = (
 				2C001F3427A9287A003B9EB7 /* AppPreferences.swift in Sources */,
 				2C4E164A26E3814A006A5986 /* SearchWindowController.swift in Sources */,
+				2C001F5127AD8D43003B9EB7 /* OnboardingButtonStyle.swift in Sources */,
 				2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */,
 				2C001F4527AB8653003B9EB7 /* PermissionView.swift in Sources */,
 				2C001F2E27A8E6CA003B9EB7 /* PreferencesView.swift in Sources */,

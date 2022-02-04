@@ -14,6 +14,7 @@ struct OnboardingView: View {
                     contentView
                 }
             }
+            .buttonStyle(OnboardingButton())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .animation(.easeIn, value: viewModel.currentIndex)
             
