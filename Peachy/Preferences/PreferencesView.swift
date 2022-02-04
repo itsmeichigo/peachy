@@ -25,7 +25,7 @@ struct PreferencesView: View {
             }
             VStack(alignment: .leading, spacing: 6) {
                 Toggle(isOn: $launchAtLogin.isEnabled) {
-                    Text("Launch Peachy at Log In")
+                    Text("Launch Peachy at Login")
                 }.toggleStyle(CheckboxToggleStyle())
 
                 TextField("", text: $triggerKey, onCommit: {
