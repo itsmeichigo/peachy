@@ -52,10 +52,11 @@ private extension SearchCoordinator {
     }
 
     func handleGlobalEvent(_ event: NSEvent) {
-        guard let id = frontmostApp?.bundleIdentifier,
+        guard AppState.current.hasAXPermission,
+              let id = frontmostApp?.bundleIdentifier,
               preferences.appExceptions[id] == nil else {
-                  return
-              }
+            return
+        }
         let chars = event.characters?.lowercased()
         switch chars {
         case .some(preferences.triggerKey):

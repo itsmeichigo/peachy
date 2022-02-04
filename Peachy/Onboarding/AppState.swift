@@ -1,3 +1,4 @@
+import Cocoa
 import Foundation
 
 enum AppState: Int {
@@ -7,6 +8,11 @@ enum AppState: Int {
 
     var needsOnboarding: Bool {
         return self != .upToDate
+    }
+
+    var hasAXPermission: Bool {
+        let checkOptions = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as String: false] as CFDictionary
+        return AXIsProcessTrustedWithOptions(checkOptions)
     }
     
     static var current: AppState {

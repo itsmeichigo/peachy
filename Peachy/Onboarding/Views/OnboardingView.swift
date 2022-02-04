@@ -30,8 +30,8 @@ struct OnboardingView: View {
             }
         case .permission:
             PermissionView()
-        case .settings:
-            SettingsView()
+        case .pilot:
+            PilotView(onComplete: viewModel.completionHandler)
         }
     }
 }
