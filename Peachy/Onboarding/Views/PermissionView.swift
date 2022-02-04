@@ -3,15 +3,9 @@ import SwiftUI
 struct PermissionView: View {
     var body: some View {
         VStack {
-            HStack(alignment: .center) {
-                Image("peach-colored")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 24)
-                Text("Let's get started")
-                    .font(.largeTitle)
-            }
-            .padding(.bottom, 24)
+            Text("Let's get started!")
+                .font(.largeTitle)
+                .padding(.bottom, 24)
             
             Text("Peachy needs access to your computer's Accessibility features to work.")
                 .font(.title3)

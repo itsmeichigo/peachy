@@ -11,7 +11,7 @@ struct OnboardingView: View {
         VStack {
             ForEach(0..<viewModel.pages.count, id: \.self) { index in
                 if index == viewModel.currentIndex {
-                    viewModel.currentView
+                    contentView
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -19,5 +19,19 @@ struct OnboardingView: View {
             
         }
         .frame(width: 500, height: 500)
+    }
+
+    @ViewBuilder
+    var contentView: some View {
+        switch viewModel.currentPage {
+        case .welcome:
+            WelcomeView {
+                viewModel.currentIndex += 1
+            }
+        case .permission:
+            PermissionView()
+        case .settings:
+            SettingsView()
+        }
     }
 }

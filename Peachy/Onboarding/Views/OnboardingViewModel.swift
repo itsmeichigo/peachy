@@ -5,11 +5,11 @@ import SwiftUI
 final class OnboardingViewModel: ObservableObject {
     let pages: [OnboardingPage]
 
-    var currentView: some View {
-        pages[currentIndex].view
+    var currentPage: OnboardingPage {
+        pages[currentIndex]
     }
 
-    @Published private(set) var currentIndex: Int = 0
+    @Published var currentIndex: Int = 0
 
     private let completionHandler: () -> Void
 
