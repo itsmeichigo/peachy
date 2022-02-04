@@ -17,9 +17,14 @@ final class SearchCoordinator {
         searchWindowController.selectionDelegate = self
         searchWindowController.keyEventDelegate = self
         (searchWindowController.window as? SearchPanel)?.searchDelegate = self
-        setupKeyListener()
         observeFrontmostApp()
         observeKeyword()
+    }
+
+    func setupKeyListener() {
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
+            self.handleGlobalEvent(event)
+        }
     }
 }
 
@@ -45,11 +50,6 @@ extension SearchCoordinator: KeyEventDelegate {
 // MARK: - Global key event
 //
 private extension SearchCoordinator {
-    func setupKeyListener() {
-        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
-            self.handleGlobalEvent(event)
-        }
-    }
 
     func handleGlobalEvent(_ event: NSEvent) {
         guard AppState.current.hasAXPermission,

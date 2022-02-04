@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             showOnboarding(pages: OnboardingPage.freshOnboarding)
         } else {
             checkAccessibilityPermission {
-                self.setupStatusBarItem()
+                self.startPeachy()
             }
         }
     }
@@ -32,6 +32,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         showOnboarding(pages: OnboardingPage.needsPermission)
+    }
+
+    func startPeachy() {
+        setupStatusBarItem()
+        searchCoordinator.setupKeyListener()
     }
     
     func setupStatusBarItem() {
@@ -54,7 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func showOnboarding(pages: [OnboardingPage]) {
         let onboardingViewModel = OnboardingViewModel(pages: pages) {
             NSApp.orderedWindows.first?.close()
-            self.setupStatusBarItem()
+            self.startPeachy()
         }
         let viewController = NSHostingController(rootView: OnboardingView(viewModel: onboardingViewModel))
         let window = NSWindow(contentViewController: viewController)
