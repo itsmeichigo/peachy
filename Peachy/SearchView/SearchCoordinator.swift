@@ -52,8 +52,7 @@ extension SearchCoordinator: KeyEventDelegate {
 private extension SearchCoordinator {
 
     func handleGlobalEvent(_ event: NSEvent) {
-        guard AppState.current.hasAXPermission,
-              let id = frontmostApp?.bundleIdentifier,
+        guard let id = frontmostApp?.bundleIdentifier,
               preferences.appExceptions[id] == nil else {
             return
         }
