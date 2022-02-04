@@ -47,7 +47,11 @@ final class OnboardingViewModel: ObservableObject {
             return
         }
         timerSubscription?.cancel()
-        currentIndex += 1
-        NSApp.orderedWindows.first?.orderFrontRegardless()
+        if currentIndex < pages.count - 1 {
+            currentIndex += 1
+            NSApp.orderedWindows.first?.orderFrontRegardless()
+        } else {
+            completionHandler()
+        }
     }
 }

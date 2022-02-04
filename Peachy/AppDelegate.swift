@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             proceedHandler()
             return
         }
-        showOnboarding(pages: [.permission])
+        showOnboarding(pages: OnboardingPage.needsPermission)
     }
     
     func setupStatusBarItem() {
