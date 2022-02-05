@@ -55,6 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.orderFrontRegardless()
         window.delegate = self
         NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     func showOnboarding(pages: [OnboardingPage]) {
@@ -70,6 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.orderFrontRegardless()
         window.delegate = self
         NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
     }
 }
 

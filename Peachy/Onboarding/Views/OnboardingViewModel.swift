@@ -49,7 +49,7 @@ final class OnboardingViewModel: ObservableObject {
         timerSubscription?.cancel()
         if currentIndex < pages.count - 1 {
             currentIndex += 1
-            NSApp.orderedWindows.first?.orderFrontRegardless()
+            NSApp.activate(ignoringOtherApps: true)
         } else {
             completionHandler()
         }
