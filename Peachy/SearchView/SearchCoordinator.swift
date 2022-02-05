@@ -151,13 +151,13 @@ private extension SearchCoordinator {
         if searchWindowController.window?.isVisible == false {
             var frameOrigin = NSPoint(x: NSScreen.main!.frame.size.width / 2 - 100, y: NSScreen.main!.frame.size.height / 2 - 100)
             if let frame = getTextSelectionBounds(for: app), frame.size != .zero {
-                var yPosition = NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200
+                var yPosition = NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 205
                 if yPosition < 0 {
                     yPosition = NSScreen.main!.frame.size.height - frame.origin.y
                 }
                 frameOrigin = NSPoint(x: frame.origin.x + frame.size.width / 2, y: yPosition)
             } else if let frame = getFocusedElementFrame(for: app), frame.size != .zero {
-                var yPosition = NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 200
+                var yPosition = NSScreen.main!.frame.size.height - frame.origin.y - frame.size.height - 205
                 if yPosition < 0 {
                     yPosition = NSScreen.main!.frame.size.height - frame.origin.y
                 }
@@ -230,17 +230,25 @@ private extension SearchCoordinator {
         guard AXUIElementCopyAttributeValue(focusedElement as! AXUIElement, kAXSelectedTextRangeAttribute as CFString, &selectedRangeValue) == .success else {
             return nil
         }
+        
         var selectedRange: CFRange = .init(location: 0, length: 0)
         AXValueGetValue(selectedRangeValue as! AXValue, AXValueType.cfRange, &selectedRange)
+        // update the selected range to start at `:` and
+        // have a length of 1 to get the bounds successfully
+        selectedRange = .init(location: selectedRange.location - 2, length: selectedRange.length + 1)
+        guard let updatedRangeValue = AXValueCreate(.cfRange, &selectedRange) else {
+            return nil
+        }
+
         var selectionBoundsValue: CFTypeRef?
-        guard AXUIElementCopyParameterizedAttributeValue(focusedElement as! AXUIElement, kAXBoundsForRangeParameterizedAttribute as CFString, selectedRangeValue as! AXValue, &selectionBoundsValue) == .success else {
+        guard AXUIElementCopyParameterizedAttributeValue(focusedElement as! AXUIElement, kAXBoundsForRangeParameterizedAttribute as CFString, updatedRangeValue, &selectionBoundsValue) == .success else {
             return nil
         }
         var selectionBounds: CGRect = .zero
         AXValueGetValue(selectionBoundsValue as! AXValue, AXValueType.cgRect, &selectionBounds)
         return selectionBounds
     }
-
+    
     /// Gets the front most app's focused element,
     /// retrieve element's frame.
     func getFocusedElementFrame(for app: NSRunningApplication) -> CGRect? {
