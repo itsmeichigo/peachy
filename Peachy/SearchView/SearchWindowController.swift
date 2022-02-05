@@ -89,7 +89,6 @@ extension SearchWindowController: NSWindowDelegate {
 private extension SearchWindowController {
     
     func resetPanel() {
-        query = ""
         window?.setFrameOrigin(frameOrigin)
         window?.setContentSize(CGSize(width: 300.0, height: 200.0))
     }
@@ -128,8 +127,10 @@ private extension SearchWindowController {
         
         searchImageView.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: "A magnifying glass symbol")
         
-        $query.sink { [weak self] query in
-            self?.keywordTextField.stringValue = query
-        }.store(in: &cancellables)
+        $query
+            .sink { [weak self] query in
+                self?.keywordTextField.stringValue = query
+            }
+            .store(in: &cancellables)
     }
 }

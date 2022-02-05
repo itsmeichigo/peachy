@@ -134,9 +134,10 @@ private extension SearchCoordinator {
         keywordSubscription = $keyword
             .compactMap { $0 }
             .sink { [weak self] word in
-                self?.searchWindowController.query = word
-                if !word.isEmpty {
-                    self?.reloadSearchWindow()
+                guard let self = self else { return }
+                self.searchWindowController.query = word
+                if !word.isEmpty, self.searchWindowController.window?.isMainWindow == false {
+                    self.reloadSearchWindow()
                 }
             }
     }
