@@ -43,7 +43,7 @@ final class OnboardingViewModel: ObservableObject {
     }
 
     private func checkPermission() {
-        guard AppState.current.hasAXPermission else {
+        guard AppState.hasAXPermission else {
             return
         }
         timerSubscription?.cancel()

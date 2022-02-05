@@ -10,20 +10,28 @@ enum AppState: Int {
         return self != .upToDate
     }
 
-    var hasAXPermission: Bool {
+    static var hasAXPermission: Bool {
         let checkOptions = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as String: false] as CFDictionary
         return AXIsProcessTrustedWithOptions(checkOptions)
     }
-    
-    static var current: AppState {
-        return AppState(rawValue: UserDefaults.peachyDefaults.currentAppStateValue) ?? .fresh
+}
+
+final class AppStateManager {
+
+    var currentState: AppState {
+        return AppState(rawValue: userDefaults.currentAppStateValue) ?? .fresh
     }
-    
-    static func updateDoneState() {
-        UserDefaults.peachyDefaults.currentAppStateValue = AppState.upToDate.rawValue
+
+    private let userDefaults: UserDefaults
+    init(userDefaults: UserDefaults = .peachyDefaults) {
+        self.userDefaults = userDefaults
     }
-    
-    static func resetState() {
-        UserDefaults.peachyDefaults.currentAppStateValue = AppState.fresh.rawValue
+
+    func updateDoneState() {
+        userDefaults.currentAppStateValue = AppState.upToDate.rawValue
+    }
+
+    func resetState() {
+        userDefaults.currentAppStateValue = AppState.fresh.rawValue
     }
 }

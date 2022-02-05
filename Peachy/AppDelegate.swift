@@ -11,12 +11,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var searchCoordinator: SearchCoordinator!
     var appPreferences: AppPreferences!
+    let appStateManager = AppStateManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         appPreferences = AppPreferences()
         searchCoordinator = SearchCoordinator(preferences: appPreferences)
 
-        if AppState.current.needsOnboarding {
+        if appStateManager.currentState.needsOnboarding {
             showOnboarding(pages: OnboardingPage.freshOnboarding)
         } else {
             checkAccessibilityPermission {
