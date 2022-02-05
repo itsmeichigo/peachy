@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         appPreferences = AppPreferences()
-        searchCoordinator = SearchCoordinator(preferences: appPreferences)
+        searchCoordinator = SearchCoordinator(preferences: appPreferences, appStateManager: appStateManager)
 
         if appStateManager.currentState.needsOnboarding {
             showOnboarding(pages: OnboardingPage.freshOnboarding)

@@ -42,6 +42,16 @@ extension UserDefaults {
             set(newValue, forKey: .appIDsPreferencesKey)
         }
     }
+
+    @objc dynamic var recentKaomojis: [String]? {
+        get {
+            stringArray(forKey: .recentKaomojisPreferencesKey)
+        }
+
+        set {
+            set(newValue, forKey: .recentKaomojisPreferencesKey)
+        }
+    }
 }
 
 private extension String {
@@ -50,4 +60,5 @@ private extension String {
     static let triggerKeyPreferencesKey = "com.ichigo.peachy.trigger-key"
     static let appIDsPreferencesKey = "com.ichigo.peachy.exception-ids"
     static let appExceptionsPreferencesKey = "com.ichigo.peachy.exceptions"
+    static let recentKaomojisPreferencesKey = "com.ichigo.peachy.recent-kaomojis"
 }

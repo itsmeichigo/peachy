@@ -22,6 +22,10 @@ final class AppStateManager {
         return AppState(rawValue: userDefaults.currentAppStateValue) ?? .fresh
     }
 
+    var recentKaomojis: [String] {
+        userDefaults.recentKaomojis ?? []
+    }
+
     private let userDefaults: UserDefaults
     init(userDefaults: UserDefaults = .peachyDefaults) {
         self.userDefaults = userDefaults
@@ -33,5 +37,20 @@ final class AppStateManager {
 
     func resetState() {
         userDefaults.currentAppStateValue = AppState.fresh.rawValue
+    }
+
+    func addToRecentKaomojis(content: String) {
+        var recentList: [String] = []
+        let cachedList = recentKaomojis
+        if !cachedList.isEmpty {
+            recentList = Array(
+                cachedList
+                    .filter { $0 != content }
+                    .prefix(10)
+            )
+        }
+        
+        recentList.insert(content, at: 0)
+        userDefaults.recentKaomojis = recentList
     }
 }

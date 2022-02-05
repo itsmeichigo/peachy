@@ -66,6 +66,15 @@ final class SearchWindowController: NSWindowController {
             keyEventDelegate?.handleEvent(event)
         }
     }
+
+    func showRecentKaomojis(_ recentList: [String]) {
+        let items = recentList.compactMap { content in
+            kaomojiStore.allKaomojis.first(where: { $0.string == content })
+        }
+        if !items.isEmpty {
+            itemTableController.refresh(items)
+        }
+    }
 }
 
 // MARK: - WindowDelegate
@@ -88,11 +97,8 @@ private extension SearchWindowController {
     func configureFilter() {
         $query.combineLatest(kaomojiStore.$allKaomojis)
             .receive(on: DispatchQueue.main)
+            .filter { !$0.0.isEmpty }
             .map { (query, items) -> [Kaomoji] in
-                guard !query.isEmpty else {
-                    return items
-                }
-                
                 let normalized = query.lowercased()
                 return items.filter { kaomoji in
                     kaomoji.tags.first { $0.contains(normalized) } != nil

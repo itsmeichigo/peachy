@@ -9,11 +9,13 @@ final class SearchCoordinator {
 
     private let searchWindowController: SearchWindowController
     private let preferences: AppPreferences
+    private let appStateManager: AppStateManager
     private var keywordSubscription: AnyCancellable?
 
-    init(preferences: AppPreferences) {
+    init(preferences: AppPreferences, appStateManager: AppStateManager) {
         self.searchWindowController = .init()
         self.preferences = preferences
+        self.appStateManager = appStateManager
         searchWindowController.selectionDelegate = self
         searchWindowController.keyEventDelegate = self
         (searchWindowController.window as? SearchPanel)?.searchDelegate = self
@@ -72,12 +74,17 @@ private extension SearchCoordinator {
         switch Int(event.keyCode) {
         case kVK_Delete:
             guard let key = keyword, !key.isEmpty else {
-                return
+                return hideSearchWindow()
             }
-            if key.count == 1 {
-                hideSearchWindow()
-            } else {
-                keyword = String(key.prefix(key.count-1))
+
+            keyword = String(key.prefix(key.count-1))
+            if keyword?.isEmpty == true {
+                let recentList = appStateManager.recentKaomojis
+                if recentList.isEmpty {
+                    hideSearchWindow()
+                } else {
+                    searchWindowController.showRecentKaomojis(recentList)
+                }
             }
         case kVK_Escape:
             hideSearchWindow()
@@ -100,6 +107,7 @@ extension SearchCoordinator: SearchPanelDelegate {
 extension SearchCoordinator: ItemSelectionDelegate {
     func handleSelection(_ item: Kaomoji) {
         guard let keyword = keyword else { return }
+        appStateManager.addToRecentKaomojis(content: item.string)
         searchWindowController.window?.resignKey()
         replace(keyword: keyword, with: item.string)
         hideSearchWindow()
@@ -126,11 +134,10 @@ private extension SearchCoordinator {
         keywordSubscription = $keyword
             .compactMap { $0 }
             .sink { [weak self] word in
-                guard !word.isEmpty else {
-                    return
-                }
-                self?.reloadSearchWindow()
                 self?.searchWindowController.query = word
+                if !word.isEmpty {
+                    self?.reloadSearchWindow()
+                }
             }
     }
 
