@@ -34,10 +34,8 @@ final class SearchCoordinator {
 //
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
-        if let char = event.characters,
-           "a"..."z" ~= char {
-            simulateKeyEvent(event)
-            return
+        if event.characters != nil {
+            return simulateKeyEvent(event)
         }
 
         switch Int(event.keyCode) {
@@ -58,18 +56,6 @@ private extension SearchCoordinator {
               preferences.appExceptions[id] == nil else {
             return
         }
-        let chars = event.characters?.lowercased()
-        switch chars {
-        case .some(preferences.triggerKey):
-            keyword = ""
-        case .some("a"..."z"):
-            guard let key = keyword else {
-                return
-            }
-            keyword = key + (chars ?? "")
-        default:
-            break
-        }
         
         switch Int(event.keyCode) {
         case kVK_Delete:
@@ -89,7 +75,21 @@ private extension SearchCoordinator {
         case kVK_Escape:
             hideSearchWindow()
         default:
-            break
+            let characters = event.characters?.lowercased()
+            switch characters {
+            case .some(preferences.triggerKey):
+                hideSearchWindow()
+                keyword = ""
+            case .some(" "):
+                hideSearchWindow()
+            case .some(let char) where !char.isEmpty:
+                guard let key = keyword else {
+                    return
+                }
+                keyword = key + char
+            default:
+                break
+            }
         }
     }
 }
