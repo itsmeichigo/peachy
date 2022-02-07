@@ -35,12 +35,12 @@ final class SearchCoordinator {
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
         if event.characters != nil {
-            return simulateKeyEvent(event)
+            return simulateKeyEvent(event.keyCode)
         }
 
         switch Int(event.keyCode) {
         case kVK_Delete:
-            simulateKeyEvent(event)
+            simulateKeyEvent(event.keyCode)
         default:
             hideSearchWindow()
         }
@@ -183,11 +183,14 @@ private extension SearchCoordinator {
 
     /// Simulates key event to the frontmost app
     ///
-    func simulateKeyEvent(_ event: NSEvent) {
+    func simulateKeyEvent(_ keyCode: UInt16, flags: CGEventFlags? = nil) {
         searchWindowController.window?.resignKey()
 
         // simulate key down event
-        let keyDownEvent = CGEvent(keyboardEventSource: nil, virtualKey: event.keyCode, keyDown: true)
+        let keyDownEvent = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: true)
+        if let flags = flags {
+            keyDownEvent?.flags = flags
+        }
         keyDownEvent?.post(tap: CGEventTapLocation.cghidEventTap)
     
         searchWindowController.window?.makeKey()
@@ -197,25 +200,18 @@ private extension SearchCoordinator {
     ///
     func replace(keyword: String, with kaomoji: String) {
         searchWindowController.window?.resignKey()
-        let source = """
-            tell application "System Events"
-                repeat \(keyword.count + 1) times
-                    key code 123 using {shift down}
-                end repeat
-                set the clipboard to "\(kaomoji)"
-                keystroke "v" using command down
-                delay 0.2
-                set the clipboard to ""
-            end tell
-        """
-        if let script = NSAppleScript(source: source) {
-            var error: NSDictionary?
-            script.executeAndReturnError(&error)
-            if let error = error {
-                #if DEBUG
-                print(error)
-                #endif
-            }
+        for _ in 0..<keyword.count + 1 {
+            simulateKeyEvent(UInt16(kVK_LeftArrow), flags: .maskShift)
+        }
+        
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        pasteboard.setString(kaomoji, forType: .string)
+
+        simulateKeyEvent(UInt16(kVK_ANSI_V), flags: .maskCommand)
+    
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            pasteboard.setString("", forType: .string)
         }
     }
 }
