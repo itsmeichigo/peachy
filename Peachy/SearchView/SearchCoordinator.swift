@@ -86,7 +86,12 @@ private extension SearchCoordinator {
                 guard let key = keyword else {
                     return
                 }
-                keyword = key + char
+                if "a"..."z" ~= char || !key.isEmpty {
+                    keyword = key + char
+                } else {
+                    keyword = nil
+                }
+                
             default:
                 break
             }
