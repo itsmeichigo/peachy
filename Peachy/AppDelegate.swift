@@ -4,14 +4,23 @@ import SwiftUI
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet var menu: NSMenu!
+    @IBOutlet private var menu: NSMenu!
     
-    var statusBar: NSStatusBar?
-    var statusItem: NSStatusItem?
+    private var statusBar: NSStatusBar?
+    private var statusItem: NSStatusItem?
     
-    var searchCoordinator: SearchCoordinator!
-    var appPreferences: AppPreferences!
-    let appStateManager = AppStateManager()
+    private var searchCoordinator: SearchCoordinator!
+    private var appPreferences: AppPreferences!
+    private let appStateManager = AppStateManager()
+    
+    private lazy var preferencesWindow: NSWindow = {
+        let viewController = NSHostingController(rootView: PreferencesView(preferences: appPreferences))
+        let window = NSWindow(contentViewController: viewController)
+        window.title = "Preferences"
+        window.applyCommonStyle()
+        window.delegate = self
+        return window
+    }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         appPreferences = AppPreferences()
@@ -48,12 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openPreferences(_ sender: Any) {
-        let viewController = NSHostingController(rootView: PreferencesView(preferences: appPreferences))
-        let window = NSWindow(contentViewController: viewController)
-        window.title = "Preferences"
-        window.applyCommonStyle()
-        window.orderFrontRegardless()
-        window.delegate = self
+        preferencesWindow.orderFrontRegardless()
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
     }
