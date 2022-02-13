@@ -83,14 +83,10 @@ private extension SearchCoordinator {
             case .some(" "):
                 hideSearchWindow()
             case .some(let char) where !char.isEmpty:
-                guard let key = keyword else {
-                    return
+                guard let key = keyword, "a"..."z" ~= char else {
+                    return hideSearchWindow()
                 }
-                if "a"..."z" ~= char || !key.isEmpty {
-                    keyword = key + char
-                } else {
-                    keyword = nil
-                }
+                keyword = key + char
                 
             default:
                 break
