@@ -42,6 +42,7 @@ struct PreferencesView: View {
                 .toggleStyle(CheckboxToggleStyle())
                 .onChange(of: crashReportsEnabled) { enabled in
                     preferences.updateCrashReports(enabled)
+                    Crashes.enabled = enabled
                 }
 
                 TextField("", text: $triggerKey, onCommit: {
