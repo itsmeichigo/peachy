@@ -44,7 +44,9 @@ private extension AppPreferences {
     enum Constants {
         static let defaultTriggerKey = ":"
         static let defaultAppExceptions = [
-            "com.apple.dt.Xcode": "Xcode"
+            "com.apple.dt.Xcode": "Xcode",
+            "com.apple.Terminal": "Terminal",
+            "com.tinyspeck.slackmacgap": "Slack"
         ]
     }
 }
