@@ -1,3 +1,6 @@
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 import Cocoa
 import SwiftUI
 
@@ -25,6 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         appPreferences = AppPreferences()
         searchCoordinator = SearchCoordinator(preferences: appPreferences, appStateManager: appStateManager)
+        configureAppCenter()
 
         if appStateManager.currentState.needsOnboarding {
             showOnboarding(pages: OnboardingPage.freshOnboarding)
@@ -33,6 +37,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.startPeachy()
             }
         }
+    }
+
+    func configureAppCenter() {
+        AppCenter.start(withAppSecret: Secrets.appCenterAppSecret,
+                        services: [Analytics.self, Crashes.self])
     }
     
     func checkAccessibilityPermission(proceedHandler: @escaping () -> Void) {

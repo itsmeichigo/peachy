@@ -34,6 +34,9 @@
 		2C4E164A26E3814A006A5986 /* SearchWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E164826E3814A006A5986 /* SearchWindowController.swift */; };
 		2C4E164B26E3814A006A5986 /* SearchWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E164926E3814A006A5986 /* SearchWindowController.xib */; };
 		2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E164C26E38620006A5986 /* FilePublisher.swift */; };
+		2CA6668627C0DF420004D8DF /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA6668527C0DF420004D8DF /* AppCenterAnalytics */; };
+		2CA6668827C0DF420004D8DF /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA6668727C0DF420004D8DF /* AppCenterCrashes */; };
+		2CA6668A27C0E17A0004D8DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA6668927C0E17A0004D8DF /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,7 @@
 		2C4E164826E3814A006A5986 /* SearchWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWindowController.swift; sourceTree = "<group>"; };
 		2C4E164926E3814A006A5986 /* SearchWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchWindowController.xib; sourceTree = "<group>"; };
 		2C4E164C26E38620006A5986 /* FilePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePublisher.swift; sourceTree = "<group>"; };
+		2CA6668927C0E17A0004D8DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CA6668627C0DF420004D8DF /* AppCenterAnalytics in Frameworks */,
+				2CA6668827C0DF420004D8DF /* AppCenterCrashes in Frameworks */,
 				2C001F3127A921CE003B9EB7 /* LaunchAtLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +191,7 @@
 				2C4E164526E37D15006A5986 /* Models */,
 				2C4E163526E37C35006A5986 /* SearchView */,
 				2C4E160B26E1F849006A5986 /* AppDelegate.swift */,
+				2CA6668927C0E17A0004D8DF /* Secrets.swift */,
 				2C4E160D26E1F84A006A5986 /* Assets.xcassets */,
 				2C4E164326E37CE7006A5986 /* kaomoji.json */,
 				2C4E160F26E1F84A006A5986 /* MainMenu.xib */,
@@ -269,6 +276,8 @@
 			name = Peachy;
 			packageProductDependencies = (
 				2C001F3027A921CE003B9EB7 /* LaunchAtLogin */,
+				2CA6668527C0DF420004D8DF /* AppCenterAnalytics */,
+				2CA6668727C0DF420004D8DF /* AppCenterCrashes */,
 			);
 			productName = Peachy;
 			productReference = 2C4E160826E1F849006A5986 /* Peachy.app */;
@@ -343,6 +352,7 @@
 			mainGroup = 2C4E15FF26E1F849006A5986;
 			packageReferences = (
 				2C001F2F27A921CE003B9EB7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				2CA6668427C0DF420004D8DF /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
 			productRefGroup = 2C4E160926E1F849006A5986 /* Products */;
 			projectDirPath = "";
@@ -425,6 +435,7 @@
 				2C001F4B27ABBAD0003B9EB7 /* NSWindow+Peachy.swift in Sources */,
 				2C001F4D27AC4CF4003B9EB7 /* OnboardingViewModel.swift in Sources */,
 				2C001F4927AB88C3003B9EB7 /* UserDefaults+Peachy.swift in Sources */,
+				2CA6668A27C0E17A0004D8DF /* Secrets.swift in Sources */,
 				2C001F4127AB8653003B9EB7 /* OnboardingPage.swift in Sources */,
 				2C001F4627AB8653003B9EB7 /* OnboardingView.swift in Sources */,
 				2C001F4227AB8653003B9EB7 /* PilotView.swift in Sources */,
@@ -596,7 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S98YJ3DNTA;
@@ -619,7 +630,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S98YJ3DNTA;
@@ -770,6 +781,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		2CA6668427C0DF420004D8DF /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -777,6 +796,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2C001F2F27A921CE003B9EB7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
 			productName = LaunchAtLogin;
+		};
+		2CA6668527C0DF420004D8DF /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CA6668427C0DF420004D8DF /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		2CA6668727C0DF420004D8DF /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CA6668427C0DF420004D8DF /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
