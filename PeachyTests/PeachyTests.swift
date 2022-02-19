@@ -1,10 +1,3 @@
-//
-//  PeachyTests.swift
-//  PeachyTests
-//
-//  Created by ichigo on 03/09/2021.
-//
-
 import XCTest
 @testable import Peachy
 
