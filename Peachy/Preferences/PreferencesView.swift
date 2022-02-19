@@ -1,3 +1,4 @@
+import AppCenterCrashes
 import LaunchAtLogin
 import SwiftUI
 
@@ -6,6 +7,7 @@ struct PreferencesView: View {
     @State private var exceptionAppIDs: [String]
     @State private var selectedAppIndex: Int?
     @State private var exceptionListInFocus: Bool = false
+    @State private var crashReportsEnabled: Bool
     @FocusState private var triggerKeyFieldInFocus: Bool
     @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
 
@@ -15,18 +17,32 @@ struct PreferencesView: View {
         self.preferences = preferences
         self.exceptionAppIDs = preferences.appExceptionIDs
         self.triggerKey = preferences.triggerKey
+        self.crashReportsEnabled = !preferences.optOutCrashReports
     }
 
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             VStack(alignment: .trailing, spacing: 8) {
                 Text("Launch: ")
+                Text("Crash Reports: ")
                 Text("Trigger Key: ")
+                    .padding(.top, 22)
+                Text("Blocked Apps: ")
+                    .padding(.top, 8)
             }
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 8) {
                 Toggle(isOn: $launchAtLogin.isEnabled) {
                     Text("Launch Peachy at Login")
                 }.toggleStyle(CheckboxToggleStyle())
+
+                Toggle(isOn: $crashReportsEnabled) {
+                    Text("Anonymously let us know when the app crashes")
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .toggleStyle(CheckboxToggleStyle())
+                .onChange(of: crashReportsEnabled) { enabled in
+                    preferences.updateCrashReports(enabled)
+                }
 
                 TextField("", text: $triggerKey, onCommit: {
                     if triggerKey.count > 1 || triggerKey.isEmpty {
@@ -47,7 +63,6 @@ struct PreferencesView: View {
                 }
                 
                 Text("Disable Peachy within these apps:")
-                    .padding(.top, 10)
                 VStack(alignment: .leading, spacing: 0) {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 0) {

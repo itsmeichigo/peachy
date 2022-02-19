@@ -42,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func configureAppCenter() {
         AppCenter.start(withAppSecret: Secrets.appCenterAppSecret,
                         services: [Analytics.self, Crashes.self])
+        Crashes.delegate = self
     }
     
     func checkAccessibilityPermission(proceedHandler: @escaping () -> Void) {
@@ -91,5 +92,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
+    }
+}
+
+extension AppDelegate: CrashesDelegate {
+    func crashes(_ crashes: Crashes, shouldProcess errorReport: ErrorReport) -> Bool {
+        return !appPreferences.optOutCrashReports
     }
 }

@@ -17,6 +17,10 @@ final class AppPreferences {
         userDefaults.appExceptionIDs ?? Constants.defaultAppExceptions.keys.sorted()
     }
 
+    var optOutCrashReports: Bool {
+        userDefaults.optOutCrashReports
+    }
+
     init(userDefaults: UserDefaults = .peachyDefaults) {
         self.userDefaults = userDefaults
     }
@@ -37,6 +41,10 @@ final class AppPreferences {
         }
         userDefaults.appExceptions = updatedExceptions
         userDefaults.appExceptionIDs = updatedIDs
+    }
+
+    func updateCrashReports(_ enabled: Bool) {
+        userDefaults.optOutCrashReports = !enabled
     }
 }
 

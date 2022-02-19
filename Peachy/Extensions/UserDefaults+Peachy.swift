@@ -52,6 +52,15 @@ extension UserDefaults {
             set(newValue, forKey: .recentKaomojisPreferencesKey)
         }
     }
+
+    @objc dynamic var optOutCrashReports: Bool {
+        get {
+            bool(forKey: .optOutCrashReportsPreferencesKey)
+        }
+        set {
+            set(newValue, forKey: .optOutCrashReportsPreferencesKey)
+        }
+    }
 }
 
 private extension String {
@@ -61,4 +70,5 @@ private extension String {
     static let appIDsPreferencesKey = "com.ichigo.peachy.exception-ids"
     static let appExceptionsPreferencesKey = "com.ichigo.peachy.exceptions"
     static let recentKaomojisPreferencesKey = "com.ichigo.peachy.recent-kaomojis"
+    static let optOutCrashReportsPreferencesKey = "com.ichigo.peachy.crash-reports-enabled"
 }
