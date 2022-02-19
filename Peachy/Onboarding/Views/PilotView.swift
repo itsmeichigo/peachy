@@ -2,10 +2,16 @@ import LaunchAtLogin
 import SwiftUI
 
 struct PilotView: View {
+    private let triggerKey: String
+    private let onPreferences: () -> Void
     private let onComplete: () -> Void
 
-    init(onComplete: @escaping () -> Void) {
+    init(triggerKey: String,
+         onPreferences: @escaping () -> Void,
+         onComplete: @escaping () -> Void) {
+        self.triggerKey = triggerKey
         self.onComplete = onComplete
+        self.onPreferences = onPreferences
     }
 
     var body: some View {
@@ -13,7 +19,7 @@ struct PilotView: View {
             Text("You're all set!")
                 .font(.largeTitle)
             
-            Text("You can now enter kaomojis in any app by typing \":\" preceding a keyword.")
+            Text("You can now enter kaomojis in any app by typing \"\(triggerKey)\" preceding a keyword.")
                 .font(.title3)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -23,7 +29,12 @@ struct PilotView: View {
             
             LaunchAtLogin.Toggle()
             
-            Button("Complete", action: onComplete)
+            HStack(spacing: 16) {
+                Button("Preferences", action: onPreferences)
+                    .buttonStyle(OnboardingButton(isPrimary: false))
+                Button("Let's Go!", action: onComplete)
+                    .buttonStyle(OnboardingButton())
+            }
         }
         .padding(32)
     }

@@ -14,7 +14,6 @@ struct OnboardingView: View {
                     contentView
                 }
             }
-            .buttonStyle(OnboardingButton())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .animation(.easeIn, value: viewModel.currentIndex)
             
@@ -32,7 +31,9 @@ struct OnboardingView: View {
         case .permission:
             PermissionView()
         case .pilot:
-            PilotView(onComplete: viewModel.completionHandler)
+            PilotView(triggerKey: viewModel.triggerKey,
+                      onPreferences: viewModel.preferencesHandler,
+                      onComplete: viewModel.completionHandler)
         }
     }
 }

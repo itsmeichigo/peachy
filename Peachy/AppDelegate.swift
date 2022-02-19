@@ -32,10 +32,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         if appStateManager.currentState.needsOnboarding {
             showOnboarding(pages: OnboardingPage.freshOnboarding)
+        } else if !AppState.hasAXPermission {
+            showOnboarding(pages: OnboardingPage.needsPermission)
         } else {
-            checkAccessibilityPermission {
-                self.startPeachy()
-            }
+            showOnboarding(pages: [.pilot])
         }
     }
 
@@ -43,15 +43,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         AppCenter.start(withAppSecret: Secrets.appCenterAppSecret,
                         services: [Analytics.self, Crashes.self])
         Crashes.enabled = !appPreferences.optOutCrashReports
-    }
-    
-    func checkAccessibilityPermission(proceedHandler: @escaping () -> Void) {
-        let options = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as String: false] as CFDictionary
-        if AXIsProcessTrustedWithOptions(options) {
-            proceedHandler()
-            return
-        }
-        showOnboarding(pages: OnboardingPage.needsPermission)
     }
 
     func startPeachy() {
@@ -73,10 +64,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func showOnboarding(pages: [OnboardingPage]) {
-        let onboardingViewModel = OnboardingViewModel(pages: pages) {
+        let onboardingViewModel = OnboardingViewModel(pages: pages, preferences: appPreferences, onPreferences: {
             NSApp.orderedWindows.first?.close()
             self.startPeachy()
-        }
+            self.openPreferences(self)
+        }, onCompletion: {
+            NSApp.orderedWindows.first?.close()
+            self.startPeachy()
+        })
         let viewController = NSHostingController(rootView: OnboardingView(viewModel: onboardingViewModel))
         let window = NSWindow(contentViewController: viewController)
         window.applyCommonStyle()

@@ -31,6 +31,7 @@ struct WelcomeView: View {
                 .frame(width: 320)
             
             Button("Continue", action: onContinue)
+                .buttonStyle(OnboardingButton())
         }
     }
 }

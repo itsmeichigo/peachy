@@ -3,6 +3,7 @@ import SwiftUI
 
 final class OnboardingViewModel: ObservableObject {
     let pages: [OnboardingPage]
+    let triggerKey: String
 
     var currentPage: OnboardingPage {
         pages[currentIndex]
@@ -10,14 +11,20 @@ final class OnboardingViewModel: ObservableObject {
 
     @Published var currentIndex: Int = 0
 
+    private(set) var preferencesHandler: () -> Void
     private(set) var completionHandler: () -> Void
 
     private var timerSubscription: Cancellable?
     private var currentPageSubscription: Cancellable?
 
-    init(pages: [OnboardingPage], onCompletion: @escaping () -> Void) {
+    init(pages: [OnboardingPage],
+         preferences: AppPreferences,
+         onPreferences: @escaping () -> Void,
+         onCompletion: @escaping () -> Void) {
         self.pages = pages
+        self.preferencesHandler = onPreferences
         self.completionHandler = onCompletion
+        self.triggerKey = preferences.triggerKey
         observeCurrentPage()
     }
 
