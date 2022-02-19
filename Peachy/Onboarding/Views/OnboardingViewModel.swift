@@ -11,6 +11,7 @@ final class OnboardingViewModel: ObservableObject {
 
     @Published var currentIndex: Int = 0
 
+    private(set) var permissionGrantedHandler: () -> Void
     private(set) var preferencesHandler: () -> Void
     private(set) var completionHandler: () -> Void
 
@@ -19,10 +20,12 @@ final class OnboardingViewModel: ObservableObject {
 
     init(pages: [OnboardingPage],
          preferences: AppPreferences,
+         onPermissionGranted: @escaping () -> Void,
          onPreferences: @escaping () -> Void,
          onCompletion: @escaping () -> Void) {
         self.pages = pages
         self.preferencesHandler = onPreferences
+        self.permissionGrantedHandler = onPermissionGranted
         self.completionHandler = onCompletion
         self.triggerKey = preferences.triggerKey
         observeCurrentPage()
@@ -54,6 +57,7 @@ final class OnboardingViewModel: ObservableObject {
             return
         }
         timerSubscription?.cancel()
+        permissionGrantedHandler()
         if currentIndex < pages.count - 1 {
             currentIndex += 1
             NSApp.activate(ignoringOtherApps: true)

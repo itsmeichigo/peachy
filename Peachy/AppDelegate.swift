@@ -36,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             showOnboarding(pages: OnboardingPage.needsPermission)
         } else {
             showOnboarding(pages: [.pilot])
+            startPeachy()
         }
     }
 
@@ -64,13 +65,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func showOnboarding(pages: [OnboardingPage]) {
-        let onboardingViewModel = OnboardingViewModel(pages: pages, preferences: appPreferences, onPreferences: {
+        let onboardingViewModel = OnboardingViewModel(pages: pages, preferences: appPreferences, onPermissionGranted: {
+            self.startPeachy()
+        }, onPreferences: {
             NSApp.orderedWindows.first?.close()
             self.startPeachy()
             self.openPreferences(self)
         }, onCompletion: {
             NSApp.orderedWindows.first?.close()
-            self.startPeachy()
         })
         let viewController = NSHostingController(rootView: OnboardingView(viewModel: onboardingViewModel))
         let window = NSWindow(contentViewController: viewController)
