@@ -23,6 +23,7 @@ struct OnboardingButton_Previews: PreviewProvider {
     static var previews: some View {
         Button("Test", action: {})
             .buttonStyle(OnboardingButton(isPrimary: false))
+            .padding(30)
     }
 }
 #endif

@@ -26,9 +26,3 @@ struct PermissionView: View {
         }
     }
 }
-
-struct PermissionView_Previews: PreviewProvider {
-    static var previews: some View {
-        PermissionView()
-    }
-}
