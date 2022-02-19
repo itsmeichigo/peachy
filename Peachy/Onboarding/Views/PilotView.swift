@@ -5,6 +5,7 @@ struct PilotView: View {
     private let triggerKey: String
     private let onPreferences: () -> Void
     private let onComplete: () -> Void
+    @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
 
     init(triggerKey: String,
          onPreferences: @escaping () -> Void,
@@ -27,8 +28,10 @@ struct PilotView: View {
             
             AnimatedImage(imageName: "pilot")
             
-            LaunchAtLogin.Toggle()
-            
+            Toggle(isOn: $launchAtLogin.isEnabled) {
+                Text("Launch Peachy at Login")
+            }.toggleStyle(CheckboxToggleStyle())
+
             HStack(spacing: 16) {
                 Button("Preferences", action: onPreferences)
                     .buttonStyle(OnboardingButton(isPrimary: false))
