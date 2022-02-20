@@ -43,6 +43,10 @@ struct PreferencesView: View {
 
             Spacer()
         }
+        .onChange(of: currentSection) { _ in
+            exceptionListInFocus = false
+            selectedAppIndex = nil
+        }
         .padding(.vertical, 32)
         .padding(.horizontal, 40)
         .frame(width: 500, height: 300)
@@ -77,7 +81,6 @@ struct PreferencesView: View {
                 .multilineTextAlignment(.center)
                 .frame(width: 40, height: 30)
             }
-            
         }
     }
 
