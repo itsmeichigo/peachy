@@ -7,6 +7,7 @@ struct PreferencesView: View {
     @State private var exceptionAppIDs: [String]
     @State private var selectedAppIndex: Int?
     @State private var crashReportsEnabled: Bool
+    @State private var useDoubleKeyTrigger: Bool
 
     @State private var currentSection: Int = 0
     @State private var exceptionListInFocus: Bool = false
@@ -19,6 +20,7 @@ struct PreferencesView: View {
         self.exceptionAppIDs = preferences.appExceptionIDs
         self.triggerKey = preferences.triggerKey
         self.crashReportsEnabled = !preferences.optOutCrashReports
+        self.useDoubleKeyTrigger = false // TODO
     }
 
     var body: some View {
@@ -47,9 +49,8 @@ struct PreferencesView: View {
             exceptionListInFocus = false
             selectedAppIndex = nil
         }
-        .padding(.vertical, 32)
-        .padding(.horizontal, 40)
-        .frame(width: 500, height: 300)
+        .padding(24)
+        .frame(width: 400, height: 300)
     }
     
     private var generalSettings: some View {
@@ -70,6 +71,7 @@ struct PreferencesView: View {
 
             HStack(alignment: .center, spacing: 8) {
                 Text("Trigger Key: ")
+                    .help("Activate Peachy by typing this key preceding a keyword to search for kaomojis.")
                 TextField("", text: $triggerKey, onCommit: {
                     if triggerKey.count > 1 || triggerKey.isEmpty {
                         triggerKey = preferences.triggerKey
@@ -80,6 +82,15 @@ struct PreferencesView: View {
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .frame(width: 40, height: 30)
+
+//                Toggle(isOn: $useDoubleKeyTrigger) {
+//                    Text("Use double key trigger")
+//                        .fixedSize(horizontal: false, vertical: true)
+//                }
+//                .toggleStyle(CheckboxToggleStyle())
+//                .onChange(of: useDoubleKeyTrigger) { enabled in
+//                    // TODO
+//                }
             }
         }
     }
