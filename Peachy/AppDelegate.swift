@@ -69,7 +69,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.startPeachy()
         }, onPreferences: {
             NSApp.orderedWindows.first?.close()
-            self.startPeachy()
             self.openPreferences(self)
         }, onCompletion: {
             NSApp.orderedWindows.first?.close()
