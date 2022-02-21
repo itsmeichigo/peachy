@@ -34,8 +34,7 @@ final class SearchCoordinator {
 //
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
-        if let characters = event.characters,
-           "a"..."z" ~= characters {
+        if event.characters != nil {
             return simulateKeyEvent(event.keyCode)
         }
 
