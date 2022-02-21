@@ -61,6 +61,15 @@ extension UserDefaults {
             set(newValue, forKey: .optOutCrashReportsPreferencesKey)
         }
     }
+
+    @objc dynamic var usesDoubleTriggerKey: Bool {
+        get {
+            bool(forKey: .usesDoubleKeyTriggerPreferencesKey)
+        }
+        set {
+            set(newValue, forKey: .usesDoubleKeyTriggerPreferencesKey)
+        }
+    }
 }
 
 private extension String {
@@ -71,4 +80,5 @@ private extension String {
     static let appExceptionsPreferencesKey = "com.ichigo.peachy.exceptions"
     static let recentKaomojisPreferencesKey = "com.ichigo.peachy.recent-kaomojis"
     static let optOutCrashReportsPreferencesKey = "com.ichigo.peachy.crash-reports-enabled"
+    static let usesDoubleKeyTriggerPreferencesKey = "com.ichigo.peachy.uses-double-key-trigger"
 }

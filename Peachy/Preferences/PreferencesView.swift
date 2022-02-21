@@ -7,7 +7,7 @@ struct PreferencesView: View {
     @State private var exceptionAppIDs: [String]
     @State private var selectedAppIndex: Int?
     @State private var crashReportsEnabled: Bool
-    @State private var useDoubleKeyTrigger: Bool
+    @State private var usesDoubleKeyTrigger: Bool
 
     @State private var currentSection: Int = 0
     @State private var exceptionListInFocus: Bool = false
@@ -20,7 +20,7 @@ struct PreferencesView: View {
         self.exceptionAppIDs = preferences.appExceptionIDs
         self.triggerKey = preferences.triggerKey
         self.crashReportsEnabled = !preferences.optOutCrashReports
-        self.useDoubleKeyTrigger = false // TODO
+        self.usesDoubleKeyTrigger = preferences.usesDoubleTriggerKey
     }
 
     var body: some View {
@@ -83,14 +83,14 @@ struct PreferencesView: View {
                 .multilineTextAlignment(.center)
                 .frame(width: 40, height: 30)
 
-//                Toggle(isOn: $useDoubleKeyTrigger) {
-//                    Text("Use double key trigger")
-//                        .fixedSize(horizontal: false, vertical: true)
-//                }
-//                .toggleStyle(CheckboxToggleStyle())
-//                .onChange(of: useDoubleKeyTrigger) { enabled in
-//                    // TODO
-//                }
+                Toggle(isOn: $usesDoubleKeyTrigger) {
+                    Text("Use double key trigger")
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .toggleStyle(CheckboxToggleStyle())
+                .onChange(of: usesDoubleKeyTrigger) { enabled in
+                    preferences.updateUsesDoubleTriggerKey(enabled)
+                }
             }
         }
     }

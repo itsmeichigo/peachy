@@ -12,6 +12,8 @@ final class SearchCoordinator {
     private let appStateManager: AppStateManager
     private var keywordSubscription: AnyCancellable?
 
+    private var triggerKey: String = ""
+
     init(preferences: AppPreferences, appStateManager: AppStateManager) {
         self.searchWindowController = .init()
         self.preferences = preferences
@@ -60,6 +62,9 @@ private extension SearchCoordinator {
         switch Int(event.keyCode) {
         case kVK_Delete:
             guard let key = keyword, !key.isEmpty else {
+                if !triggerKey.isEmpty {
+                    triggerKey.removeLast()
+                }
                 return hideSearchWindow()
             }
 
@@ -78,8 +83,16 @@ private extension SearchCoordinator {
             let characters = event.characters?.lowercased()
             switch characters {
             case .some(preferences.triggerKey):
-                hideSearchWindow()
-                keyword = ""
+                if preferences.usesDoubleTriggerKey, !triggerKey.isEmpty {
+                    triggerKey = String(repeating: preferences.triggerKey, count: 2)
+                    keyword = ""
+                } else {
+                    hideSearchWindow()
+                    triggerKey = preferences.triggerKey
+                    if !preferences.usesDoubleTriggerKey {
+                        keyword = ""
+                    }
+                }
             case .some(" "):
                 hideSearchWindow()
             case .some(let char) where !char.isEmpty:
@@ -202,7 +215,7 @@ private extension SearchCoordinator {
     /// Uses System Events to keystroke and replace text with kaomoji.
     ///
     func replace(keyword: String, with kaomoji: String) {
-        for _ in 0..<keyword.count + 1 {
+        for _ in 0..<keyword.count + triggerKey.count {
             simulateKeyEvent(UInt16(kVK_Delete))
         }
         

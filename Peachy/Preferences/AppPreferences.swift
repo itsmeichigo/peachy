@@ -21,6 +21,10 @@ final class AppPreferences {
         userDefaults.optOutCrashReports
     }
 
+    var usesDoubleTriggerKey: Bool {
+        userDefaults.usesDoubleTriggerKey
+    }
+
     init(userDefaults: UserDefaults = .peachyDefaults) {
         self.userDefaults = userDefaults
     }
@@ -45,6 +49,10 @@ final class AppPreferences {
 
     func updateCrashReports(_ enabled: Bool) {
         userDefaults.optOutCrashReports = !enabled
+    }
+
+    func updateUsesDoubleTriggerKey(_ enabled: Bool) {
+        userDefaults.usesDoubleTriggerKey = enabled
     }
 }
 
