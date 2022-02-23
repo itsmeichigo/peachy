@@ -77,7 +77,7 @@ private extension SearchCoordinator {
                     searchWindowController.showRecentKaomojis(recentList)
                 }
             }
-        case kVK_Escape:
+        case kVK_Escape, kVK_LeftArrow, kVK_RightArrow, kVK_UpArrow, kVK_DownArrow:
             hideSearchWindow()
         default:
             let characters = event.characters?.lowercased()
@@ -96,7 +96,7 @@ private extension SearchCoordinator {
             case .some(" "):
                 hideSearchWindow()
             case .some(let char) where !char.isEmpty:
-                guard let key = keyword, "a"..."z" ~= char else {
+                guard let key = keyword else {
                     return hideSearchWindow()
                 }
                 keyword = key + char
