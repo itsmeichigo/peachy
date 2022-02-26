@@ -30,6 +30,9 @@ struct OnboardingView: View {
             }
         case .permission:
             PermissionView()
+        case .settings:
+            BasicSettingsView(preferences: viewModel.preferences,
+                              onComplete: viewModel.moveToNextPage)
         case .pilot:
             PilotView(triggerKey: viewModel.triggerKey,
                       onPreferences: viewModel.preferencesHandler,

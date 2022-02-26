@@ -14,6 +14,7 @@ final class OnboardingViewModel: ObservableObject {
     private(set) var permissionGrantedHandler: () -> Void
     private(set) var preferencesHandler: () -> Void
     private(set) var completionHandler: () -> Void
+    private(set) var preferences: AppPreferences
 
     private var timerSubscription: Cancellable?
     private var currentPageSubscription: Cancellable?
@@ -28,7 +29,19 @@ final class OnboardingViewModel: ObservableObject {
         self.permissionGrantedHandler = onPermissionGranted
         self.completionHandler = onCompletion
         self.triggerKey = preferences.triggerKey
+        self.preferences = preferences
         observeCurrentPage()
+    }
+
+    func moveToNextPage() {
+        if currentIndex < pages.count - 1 {
+            currentIndex += 1
+            if !NSApp.isActive {
+                NSApp.activate(ignoringOtherApps: true)
+            }
+        } else {
+            completionHandler()
+        }
     }
 
     private func observeCurrentPage() {
@@ -58,11 +71,6 @@ final class OnboardingViewModel: ObservableObject {
         }
         timerSubscription?.cancel()
         permissionGrantedHandler()
-        if currentIndex < pages.count - 1 {
-            currentIndex += 1
-            NSApp.activate(ignoringOtherApps: true)
-        } else {
-            completionHandler()
-        }
+        moveToNextPage()
     }
 }
