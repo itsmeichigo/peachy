@@ -27,7 +27,7 @@ struct AppExceptionsView: View {
                                 .foregroundColor(index == selectedAppIndex ? Color(NSColor.selectedMenuItemTextColor) : Color(NSColor.textColor))
                                 .background(index == selectedAppIndex ?
                                             Color(NSColor.controlAccentColor) :
-                                                Color(NSColor.windowBackgroundColor))
+                                                Color(NSColor.textBackgroundColor))
                                 .onTapGesture {
                                     selectedAppIndex = index
                                     exceptionListInFocus = true
@@ -38,7 +38,7 @@ struct AppExceptionsView: View {
             }
             .frame(width: 300, height: 100, alignment: .leading)
             .fixedSize()
-            .background(Color(NSColor.windowBackgroundColor))
+            .background(Color(NSColor.textBackgroundColor))
             .border(exceptionListInFocus ? Color(NSColor.selectedControlColor) : Color.clear, width: 4)
             .animation(.easeOut, value: exceptionListInFocus)
             .cornerRadius(4)

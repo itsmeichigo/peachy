@@ -28,7 +28,7 @@
                             <menuItem title="About..." id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                                    <action selector="openAbout:" target="Voe-Tx-rLC" id="A7w-Ui-V8e"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Preferences…" id="BOF-NM-1cW">

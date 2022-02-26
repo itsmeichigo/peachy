@@ -24,6 +24,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.delegate = self
         return window
     }()
+
+    private lazy var aboutWindow: NSWindow = {
+        let viewController = NSHostingController(rootView: AboutView())
+        let window = NSWindow(contentViewController: viewController)
+        window.title = "About"
+        window.applyCommonStyle()
+        window.delegate = self
+        return window
+    }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         appPreferences = AppPreferences()
@@ -59,6 +68,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func openPreferences(_ sender: Any) {
         preferencesWindow.orderFrontRegardless()
+        NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    @IBAction func openAbout(_ sender: Any) {
+        aboutWindow.orderFrontRegardless()
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
     }
