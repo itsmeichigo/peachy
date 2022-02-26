@@ -1,11 +1,9 @@
-import LaunchAtLogin
 import SwiftUI
 
 struct PilotView: View {
     private let triggerKey: String
     private let onPreferences: () -> Void
     private let onComplete: () -> Void
-    @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
 
     init(triggerKey: String,
          onPreferences: @escaping () -> Void,
@@ -27,17 +25,9 @@ struct PilotView: View {
                 .frame(width: 320)
             
             AnimatedImage(imageName: "pilot")
-            
-            Toggle(isOn: $launchAtLogin.isEnabled) {
-                Text("Launch Peachy at Login")
-            }.toggleStyle(CheckboxToggleStyle())
 
-            HStack(spacing: 16) {
-                Button("Preferences", action: onPreferences)
-                    .buttonStyle(OnboardingButton(isPrimary: false))
-                Button("Let's Go!", action: onComplete)
-                    .buttonStyle(OnboardingButton())
-            }
+            Button("Let's Go!", action: onComplete)
+                .buttonStyle(OnboardingButton())
         }
         .padding(32)
     }
