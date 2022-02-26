@@ -35,7 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else if !AppState.hasAXPermission {
             showOnboarding(pages: OnboardingPage.needsPermission)
         } else {
-            showOnboarding(pages: [.pilot])
             startPeachy()
         }
     }
