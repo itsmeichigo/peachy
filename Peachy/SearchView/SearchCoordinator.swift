@@ -225,7 +225,7 @@ private extension SearchCoordinator {
 
         simulateKeyEvent(UInt16(kVK_ANSI_V), flags: .maskCommand)
     
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             pasteboard.setString("", forType: .string)
         }
     }
