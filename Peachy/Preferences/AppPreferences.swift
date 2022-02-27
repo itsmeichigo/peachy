@@ -61,8 +61,6 @@ private extension AppPreferences {
         static let defaultTriggerKey = ":"
         static let defaultAppExceptions = [
             "com.apple.dt.Xcode": "Xcode",
-            "com.apple.Terminal": "Terminal",
-            "com.tinyspeck.slackmacgap": "Slack"
-        ]
+            "com.apple.Terminal": "Terminal"        ]
     }
 }
