@@ -58,7 +58,7 @@ private extension SearchCoordinator {
               preferences.appExceptions[id] == nil else {
             return
         }
-        
+
         switch Int(event.keyCode) {
         case kVK_Delete:
             guard let key = keyword, !key.isEmpty else {
@@ -66,6 +66,10 @@ private extension SearchCoordinator {
                     triggerKey.removeLast()
                 }
                 return hideSearchWindow()
+            }
+
+            if event.modifierFlags.contains(.option) {
+                return keyword = ""
             }
 
             keyword = String(key.prefix(key.count-1))
