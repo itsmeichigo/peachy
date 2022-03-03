@@ -33,6 +33,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.delegate = self
         return window
     }()
+
+    private lazy var browserWindow: NSWindow = {
+        let viewController = NSHostingController(rootView: BrowserView())
+        let window = NSWindow(contentViewController: viewController)
+        window.center()
+        window.titleVisibility = .hidden
+        window.delegate = self
+        return window
+    }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         appPreferences = AppPreferences()
@@ -74,6 +83,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func openAbout(_ sender: Any) {
         aboutWindow.orderFrontRegardless()
+        NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    @IBAction func openBrowser(_ sender: Any) {
+        browserWindow.orderFrontRegardless()
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
     }
