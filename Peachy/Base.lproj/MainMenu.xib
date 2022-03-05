@@ -25,32 +25,25 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Peachy" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="Browse Kaomojis" id="hdG-HY-DKH">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openBrowser:" target="Voe-Tx-rLC" id="4Cy-hr-oKz"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Preferences" id="BOF-NM-1cW">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openPreferences:" target="-1" id="Q1s-0Z-A6f"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="About Peachy" id="5kV-Vb-QxS">
+                            <menuItem title="About..." id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openAbout:" target="Voe-Tx-rLC" id="A7w-Ui-V8e"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Check for Updates" id="8q6-TB-620">
+                            <menuItem title="Preferences…" id="BOF-NM-1cW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openPreferences:" target="-1" id="Q1s-0Z-A6f"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Check for Updates..." id="8q6-TB-620">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="koL-cr-auf" id="XfL-ET-5Jr"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="G1e-uq-hsZ"/>
+                            <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                             <menuItem title="Quit Peachy" id="4sb-4s-VLi">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
