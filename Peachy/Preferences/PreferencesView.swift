@@ -33,6 +33,7 @@ struct PreferencesView: View {
         .padding(.vertical, 24)
         .padding(.horizontal, 40)
         .frame(width: 400, height: 300)
+        .background(Color(NSColor.windowBackgroundColor))
     }
 }
 
