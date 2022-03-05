@@ -8,6 +8,7 @@ struct Kaomoji: Decodable, Hashable {
 final class KaomojiStore {
     @Published var allKaomojis: [Kaomoji] = []
     @Published var kaomojisByTag: [String: [Kaomoji]] = [:]
+    let kaomojiTags = KaomojiTags.allCases.map { $0.rawValue }.sorted()
     
     static let shared = KaomojiStore()
     private static let itemPerGroup: Int = 7
