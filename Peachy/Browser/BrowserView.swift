@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BrowserView: View {
     @State private var selectedKaomoji: Kaomoji?
+    @State private var showingDetail: Bool = false
     @ObservedObject private var viewModel: BrowserViewModel
 
     private var columns: [GridItem] {
@@ -30,13 +31,22 @@ struct BrowserView: View {
                 .listStyle(.sidebar)
             }
 
-            VStack(alignment: .leading, spacing: 32) {
+            VStack(alignment: .leading, spacing: 16) {
                 Text(viewModel.contentTitle)
-                    .font(.title)
+                    .font(.largeTitle)
+                    .padding(16)
 
-                kaomojiGrid
+                kaomojiGrid.padding(16)
+
+                if let item = selectedKaomoji {
+                    BrowserDetailView(kaomoji: item) {
+                        selectedKaomoji = nil
+                    }
+                }
             }
-            .padding(16)
+        }
+        .onChange(of: viewModel.kaomojis) { list in
+            selectedKaomoji = list.first
         }
         .frame(minWidth: 640, minHeight: 480)
         .toolbar {
@@ -87,7 +97,8 @@ struct BrowserView: View {
                             .cornerRadius(8)
                             .overlay(RoundedRectangle(cornerRadius: 8)
                                         .stroke(selectedKaomoji == item ? Color(NSColor.controlAccentColor) : Color(NSColor.lightGray),
-                                                lineWidth: selectedKaomoji == item ? 2 : 1))
+                                                lineWidth: selectedKaomoji == item ? 3 : 1))
+                            .contentShape(Rectangle())
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(4)
