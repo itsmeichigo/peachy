@@ -27,6 +27,10 @@ final class BrowserViewModel: NSObject, ObservableObject {
     @Published var selectedTag: String?
     @Published var kaomojis: [Kaomoji] = []
 
+    func makeSearchFieldResignFirstResponder() {
+        parentWindow?.makeFirstResponder(nil)
+    }
+
     private func updateKaomojiList() {
         kaomojiStore.$allKaomojis.combineLatest($query, $selectedTag)
             .map { items, query, tag -> [Kaomoji] in

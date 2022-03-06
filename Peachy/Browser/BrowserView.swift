@@ -54,6 +54,7 @@ struct BrowserView: View {
             LazyVGrid(columns: columns, alignment: .leading, pinnedViews: []) {
                 ForEach(viewModel.kaomojis) { item in
                     Button(action: {
+                        viewModel.makeSearchFieldResignFirstResponder()
                         if selectedKaomoji == nil {
                             withAnimation {
                                 selectedKaomoji = item
