@@ -95,6 +95,15 @@ struct BrowserView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(4)
+                    .contextMenu {
+                        Button(action: {
+                            let pasteBoard = NSPasteboard.general
+                            pasteBoard.clearContents()
+                            pasteBoard.writeObjects([item.string as NSString])
+                        }) {
+                            Text("Copy Kaomoji")
+                        }
+                    }
                 }
             }
         }
