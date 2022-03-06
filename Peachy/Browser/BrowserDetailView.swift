@@ -23,7 +23,7 @@ struct BrowserDetailView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 16)
-                        .clipShape(Rectangle())
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
 
@@ -34,7 +34,7 @@ struct BrowserDetailView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 12)
-                        .clipShape(Rectangle())
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
             }

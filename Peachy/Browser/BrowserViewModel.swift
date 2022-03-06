@@ -17,7 +17,6 @@ final class BrowserViewModel: ObservableObject {
         self.appStateManager = appStateManager
         self.kaomojiStore = .shared
         updateKaomojiList()
-        updateContentTitle()
     }
 
     @Published var query: String = ""

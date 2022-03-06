@@ -36,8 +36,11 @@ struct BrowserView: View {
 
                 if let item = selectedKaomoji {
                     BrowserDetailView(kaomoji: item) {
-                        selectedKaomoji = nil
+                        withAnimation {
+                            selectedKaomoji = nil
+                        }
                     }
+                    .transition(.move(edge: .bottom))
                 }
             }
         }
@@ -80,7 +83,13 @@ struct BrowserView: View {
             LazyVGrid(columns: columns, alignment: .leading, pinnedViews: []) {
                 ForEach(viewModel.kaomojis) { item in
                     Button(action: {
-                        selectedKaomoji = item
+                        if selectedKaomoji == nil {
+                            withAnimation {
+                                selectedKaomoji = item
+                            }
+                        } else {
+                            selectedKaomoji = item
+                        }
                     }) {
                         Text(item.string)
                             .padding(16)
