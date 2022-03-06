@@ -15,21 +15,17 @@ struct BrowserView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                searchBar
-                
-                List(selection: $viewModel.selectedTag) {
-                    Text("TAGS")
-                        .bold()
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    ForEach(KaomojiTags.all, id: \.self) { tag in
-                        Text("#\(tag)")
-                            .padding(.leading, 8)
-                    }
+            List(selection: $viewModel.selectedTag) {
+                Text("TAGS")
+                    .bold()
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                ForEach(KaomojiTags.all, id: \.self) { tag in
+                    Text("#\(tag)")
+                        .padding(.leading, 8)
                 }
-                .listStyle(.sidebar)
             }
+            .listStyle(.sidebar)
 
             VStack(alignment: .leading, spacing: 0) {
                 kaomojiGrid.padding(.horizontal, 16)
@@ -50,31 +46,6 @@ struct BrowserView: View {
             }
         }
         .frame(minWidth: 640, minHeight: 480)
-    }
-
-    private var searchBar: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .resizable()
-                .frame(width: 12, height: 12)
-            TextField("Search", text: $viewModel.query)
-                .textFieldStyle(.plain)
-            if !viewModel.query.isEmpty {
-                Button {
-                    viewModel.query = ""
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .resizable()
-                        .frame(width: 12, height: 12)
-                        .foregroundColor(Color(NSColor.lightGray))
-                }
-                .buttonStyle(.plain)
-            }
-        }
-        .padding(8)
-        .background(Color(NSColor.textBackgroundColor))
-        .cornerRadius(10)
-        .padding([.horizontal, .top], 8)
     }
 
     private var kaomojiGrid: some View {

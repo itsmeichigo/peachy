@@ -35,13 +35,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
 
     private lazy var browserWindow: NSWindow = {
-        NSToolbar.browserToolbar.delegate = self
         let viewModel = BrowserViewModel(appStateManager: appStateManager)
         let view = BrowserView(viewModel: viewModel)
         let viewController = NSHostingController(rootView: view)
+
+        let toolbar = NSToolbar.browserToolbar
+        toolbar.delegate = viewModel
+
         let window = NSWindow(contentViewController: viewController)
         window.center()
-        window.toolbar = .browserToolbar
+        window.toolbar = toolbar
+        window.toolbarStyle = .unified
+        window.titlebarAppearsTransparent = true
         window.delegate = self
         viewModel.parentWindow = window
         return window
