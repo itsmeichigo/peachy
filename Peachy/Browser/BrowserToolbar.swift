@@ -41,10 +41,7 @@ extension AppDelegate: NSToolbarDelegate {
     @objc func toggleSidebar() {
         NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
     }
-    
-    /**
-     Mostly base on Apple sample code: https://developer.apple.com/documentation/appkit/touch_bar/integrating_a_toolbar_and_touch_bar_into_your_app
-     */
+
     func customToolbarItem(
         itemIdentifier: NSToolbarItem.Identifier,
         label: String,
