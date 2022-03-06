@@ -31,11 +31,7 @@ struct BrowserView: View {
                 .listStyle(.sidebar)
             }
 
-            VStack(alignment: .leading) {
-                Text(viewModel.contentTitle)
-                    .font(.largeTitle)
-                    .padding(16)
-
+            VStack(alignment: .leading, spacing: 0) {
                 kaomojiGrid.padding(.horizontal, 16)
 
                 if let item = selectedKaomoji {
@@ -80,6 +76,7 @@ struct BrowserView: View {
 
     private var kaomojiGrid: some View {
         ScrollView {
+            Spacer().frame(height: 16)
             LazyVGrid(columns: columns, alignment: .leading, pinnedViews: []) {
                 ForEach(viewModel.kaomojis) { item in
                     Button(action: {
@@ -106,6 +103,7 @@ struct BrowserView: View {
                     }
                 }
             }
+            Spacer().frame(height: 16)
         }
     }
 }

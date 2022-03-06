@@ -1,9 +1,17 @@
 import Combine
 import Foundation
+import AppKit
 
 final class BrowserViewModel: ObservableObject {
     private let appStateManager: AppStateManager
     private let kaomojiStore: KaomojiStore
+    private var subscriptions: Set<AnyCancellable> = []
+
+    weak var parentWindow: NSWindow? {
+        didSet {
+            updateContentTitle()
+        }
+    }
 
     init(appStateManager: AppStateManager) {
         self.appStateManager = appStateManager
@@ -12,7 +20,6 @@ final class BrowserViewModel: ObservableObject {
         updateContentTitle()
     }
 
-    @Published var contentTitle: String = ""
     @Published var query: String = ""
     @Published var selectedTag: String?
     @Published var kaomojis: [Kaomoji] = []
@@ -37,13 +44,16 @@ final class BrowserViewModel: ObservableObject {
         $query.combineLatest($selectedTag)
             .map { query, tag -> String in
                 if !query.isEmpty {
-                    return "Search results for \(query)"
+                    return "Search all"
                 } else if let tag = tag {
-                    return "Kaomojis with tag #\(tag)"
+                    return "#\(tag)"
                 } else {
                     return "Recent Kaomojis"
                 }
             }
-            .assign(to: &$contentTitle)
+            .sink { [weak self] title in
+                self?.parentWindow?.title = title
+            }
+            .store(in: &subscriptions)
     }
 }

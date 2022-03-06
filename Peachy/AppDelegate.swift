@@ -36,13 +36,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private lazy var browserWindow: NSWindow = {
         NSToolbar.browserToolbar.delegate = self
-        let view = BrowserView(viewModel: .init(appStateManager: appStateManager))
+        let viewModel = BrowserViewModel(appStateManager: appStateManager)
+        let view = BrowserView(viewModel: viewModel)
         let viewController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: viewController)
         window.center()
-        window.titleVisibility = .hidden
         window.toolbar = .browserToolbar
         window.delegate = self
+        viewModel.parentWindow = window
         return window
     }()
     
