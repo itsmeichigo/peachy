@@ -41,9 +41,10 @@ struct BrowserDetailView: View {
             }
             .padding(.horizontal, 16)
 
-            Text(kaomoji.string)
+            kaomojiText(with: kaomoji.string)
                 .font(.largeTitle)
                 .padding(.bottom, 8)
+
             ScrollView {
                 HStack {
                     ForEach(kaomoji.tags, id: \.self) { tag in
@@ -59,5 +60,14 @@ struct BrowserDetailView: View {
             Spacer()
         }
         .frame(height: 160)
+    }
+
+    @ViewBuilder
+    private func kaomojiText(with content: String) -> some View {
+        if #available(macOS 12, *) {
+            Text(content).textSelection(.enabled)
+        } else {
+            Text(content)
+        }
     }
 }
