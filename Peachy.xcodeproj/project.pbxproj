@@ -27,6 +27,7 @@
 		2C4124FC27CA0D1E002F9E69 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2C4124FB27CA0D1E002F9E69 /* Sparkle */; };
 		2C4124FF27CA13A4002F9E69 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4124FE27CA13A4002F9E69 /* AboutView.swift */; };
 		2C41250227D1198D002F9E69 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41250127D1198D002F9E69 /* BrowserView.swift */; };
+		2C41250627D4663A002F9E69 /* BrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41250527D4663A002F9E69 /* BrowserViewModel.swift */; };
 		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
 		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
@@ -81,6 +82,7 @@
 		2C4124F827C9E852002F9E69 /* BasicSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSettingsView.swift; sourceTree = "<group>"; };
 		2C4124FE27CA13A4002F9E69 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		2C41250127D1198D002F9E69 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
+		2C41250527D4663A002F9E69 /* BrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewModel.swift; sourceTree = "<group>"; };
 		2C4E160826E1F849006A5986 /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E160B26E1F849006A5986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4E160D26E1F84A006A5986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				2C41250127D1198D002F9E69 /* BrowserView.swift */,
+				2C41250527D4663A002F9E69 /* BrowserViewModel.swift */,
 			);
 			path = Browser;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				2C4E164726E37D28006A5986 /* Kaomoji.swift in Sources */,
 				2C001F4027AB8653003B9EB7 /* AppState.swift in Sources */,
 				2C001F2B2794FDD3003B9EB7 /* SearchCoordinator.swift in Sources */,
+				2C41250627D4663A002F9E69 /* BrowserViewModel.swift in Sources */,
 				2C4E164126E37C53006A5986 /* ItemTableController.swift in Sources */,
 				2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */,
 				2C4E163E26E37C53006A5986 /* ColoredView.swift in Sources */,

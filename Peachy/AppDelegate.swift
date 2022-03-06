@@ -35,7 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
 
     private lazy var browserWindow: NSWindow = {
-        let viewController = NSHostingController(rootView: BrowserView())
+        let view = BrowserView(viewModel: .init(appStateManager: appStateManager))
+        let viewController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: viewController)
         window.center()
         window.titleVisibility = .hidden

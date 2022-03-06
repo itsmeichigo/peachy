@@ -1,14 +1,14 @@
 import Foundation
 
-struct Kaomoji: Decodable, Hashable {
-    public let string: String
-    public let tags: [String]
+struct Kaomoji: Decodable, Hashable, Identifiable {
+    var id: String { string }
+    let string: String
+    let tags: [String]
 }
 
 final class KaomojiStore {
     @Published var allKaomojis: [Kaomoji] = []
     @Published var kaomojisByTag: [String: [Kaomoji]] = [:]
-    let kaomojiTags = KaomojiTags.allCases.map { $0.rawValue }.sorted()
     
     static let shared = KaomojiStore()
     private static let itemPerGroup: Int = 7
@@ -46,4 +46,6 @@ enum KaomojiTags: String, CaseIterable {
          think, troll, wave, whatever, wink, worried, write
     case seaCreatures = "sea creatures"
     case tableFlip = "table flip"
+
+    static let all = KaomojiTags.allCases.map { $0.rawValue }.sorted()
 }
