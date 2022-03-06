@@ -31,12 +31,12 @@ struct BrowserView: View {
                 .listStyle(.sidebar)
             }
 
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading) {
                 Text(viewModel.contentTitle)
                     .font(.largeTitle)
                     .padding(16)
 
-                kaomojiGrid.padding(16)
+                kaomojiGrid.padding(.horizontal, 16)
 
                 if let item = selectedKaomoji {
                     BrowserDetailView(kaomoji: item) {
@@ -46,18 +46,11 @@ struct BrowserView: View {
             }
         }
         .onChange(of: viewModel.kaomojis) { list in
-            selectedKaomoji = list.first
-        }
-        .frame(minWidth: 640, minHeight: 480)
-        .toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button {
-                    NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-                } label: {
-                    Image(systemName: "sidebar.leading")
-                }
+            if selectedKaomoji != nil {
+                selectedKaomoji = list.first
             }
         }
+        .frame(minWidth: 640, minHeight: 480)
     }
 
     private var searchBar: some View {
@@ -87,7 +80,7 @@ struct BrowserView: View {
 
     private var kaomojiGrid: some View {
         ScrollView {
-            LazyVGrid(columns: columns, alignment: .leading) {
+            LazyVGrid(columns: columns, alignment: .leading, pinnedViews: []) {
                 ForEach(viewModel.kaomojis) { item in
                     Button(action: {
                         selectedKaomoji = item

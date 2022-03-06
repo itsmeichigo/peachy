@@ -43,11 +43,12 @@ struct BrowserDetailView: View {
 
             Text(kaomoji.string)
                 .font(.largeTitle)
+                .padding(.bottom, 8)
             ScrollView {
                 HStack {
                     ForEach(kaomoji.tags, id: \.self) { tag in
                         Text("#\(tag)")
-                            .foregroundColor(Color(NSColor.selectedTextColor))
+                            .foregroundColor(.white)
                             .padding(.vertical, 4)
                             .padding(.horizontal, 8)
                             .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(NSColor.lightGray)))
