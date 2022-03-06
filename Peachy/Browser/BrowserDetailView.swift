@@ -12,7 +12,6 @@ struct BrowserDetailView: View {
     var body: some View {
         VStack {
             Divider()
-
             HStack(spacing: 16) {
                 Spacer()
                 Button {
@@ -23,7 +22,7 @@ struct BrowserDetailView: View {
                     Image(systemName: "doc.on.doc.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 20)
+                        .frame(height: 16)
                         .clipShape(Rectangle())
                 }
                 .buttonStyle(.plain)
@@ -34,7 +33,7 @@ struct BrowserDetailView: View {
                     Image(systemName: "xmark")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 14)
+                        .frame(height: 12)
                         .clipShape(Rectangle())
                 }
                 .buttonStyle(.plain)
@@ -43,7 +42,7 @@ struct BrowserDetailView: View {
 
             kaomojiText(with: kaomoji.string)
                 .font(.largeTitle)
-                .padding(.bottom, 8)
+                .padding(.bottom, 16)
 
             ScrollView {
                 HStack {
