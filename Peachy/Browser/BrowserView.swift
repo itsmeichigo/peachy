@@ -5,6 +5,8 @@ struct BrowserView: View {
     @State private var showingDetail: Bool = false
     @ObservedObject private var viewModel: BrowserViewModel
 
+    private let topPositionID: UUID = UUID()
+
     private var columns: [GridItem] {
         [GridItem(.adaptive(minimum: 120))]
     }
@@ -50,41 +52,52 @@ struct BrowserView: View {
 
     private var kaomojiGrid: some View {
         ScrollView {
-            Spacer().frame(height: 16)
-            LazyVGrid(columns: columns, alignment: .leading, pinnedViews: []) {
-                ForEach(viewModel.kaomojis) { item in
-                    Button(action: {
-                        viewModel.makeSearchFieldResignFirstResponder()
-                        if selectedKaomoji == nil {
-                            withAnimation {
-                                selectedKaomoji = item
-                            }
-                        } else {
-                            selectedKaomoji = item
-                        }
-                    }) {
-                        Text(item.string)
-                            .padding(16)
-                            .cornerRadius(8)
-                            .overlay(RoundedRectangle(cornerRadius: 8)
-                                        .stroke(selectedKaomoji == item ? Color(NSColor.controlAccentColor) : Color(NSColor.lightGray),
-                                                lineWidth: selectedKaomoji == item ? 3 : 1))
-                            .contentShape(Rectangle())
+            ScrollViewReader { proxy in
+                Spacer().frame(height: 16)
+                    .id(topPositionID)
+                    .onChange(of: viewModel.kaomojis) { _ in
+                        proxy.scrollTo(topPositionID, anchor: .top)
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(4)
-                    .contextMenu {
-                        Button(action: {
-                            let pasteBoard = NSPasteboard.general
-                            pasteBoard.clearContents()
-                            pasteBoard.writeObjects([item.string as NSString])
-                        }) {
-                            Text("Copy Kaomoji")
-                        }
+
+                LazyVGrid(columns: columns, alignment: .leading, pinnedViews: []) {
+                    ForEach(viewModel.kaomojis) { item in
+                        kaomojiItem(item)
                     }
                 }
+                Spacer().frame(height: 16)
             }
-            Spacer().frame(height: 16)
+        }
+    }
+
+    private func kaomojiItem(_ item: Kaomoji) -> some View {
+        Button(action: {
+            viewModel.makeSearchFieldResignFirstResponder()
+            if selectedKaomoji == nil {
+                withAnimation {
+                    selectedKaomoji = item
+                }
+            } else {
+                selectedKaomoji = item
+            }
+        }) {
+            Text(item.string)
+                .padding(16)
+                .cornerRadius(8)
+                .overlay(RoundedRectangle(cornerRadius: 8)
+                            .stroke(selectedKaomoji == item ? Color(NSColor.controlAccentColor) : Color(NSColor.lightGray),
+                                    lineWidth: selectedKaomoji == item ? 3 : 1))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(PlainButtonStyle())
+        .padding(4)
+        .contextMenu {
+            Button(action: {
+                let pasteBoard = NSPasteboard.general
+                pasteBoard.clearContents()
+                pasteBoard.writeObjects([item.string as NSString])
+            }) {
+                Text("Copy Kaomoji")
+            }
         }
     }
 }
