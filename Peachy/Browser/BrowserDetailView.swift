@@ -48,10 +48,10 @@ struct BrowserDetailView: View {
                 HStack {
                     ForEach(kaomoji.tags, id: \.self) { tag in
                         Text("#\(tag)")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(NSColor.controlTextColor))
                             .padding(.vertical, 4)
                             .padding(.horizontal, 8)
-                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(NSColor.lightGray)))
+                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(NSColor.windowBackgroundColor)))
                     }
                 }
                 
