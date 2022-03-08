@@ -26,7 +26,9 @@ final class BrowserViewModel: NSObject, ObservableObject {
     @Published private(set) var query: String = ""
     @Published var selectedTag: String?
     @Published var kaomojis: [Kaomoji] = []
-    let kaomojiTags = KaomojiTags.all
+    let kaomojiTags: [String] = {
+        [""] + KaomojiTags.all
+    }()
 
     func makeSearchFieldResignFirstResponder() {
         parentWindow?.makeFirstResponder(nil)
@@ -38,7 +40,7 @@ final class BrowserViewModel: NSObject, ObservableObject {
                 if !query.isEmpty {
                     let normalized = query.lowercased()
                     return items.filter { $0.tags.first { $0.contains(normalized) } != nil }
-                } else if let tag = tag {
+                } else if let tag = tag, !tag.isEmpty {
                     return items.filter { $0.tags.contains(tag) }
                 } else {
                     return items
@@ -52,7 +54,7 @@ final class BrowserViewModel: NSObject, ObservableObject {
             .map { query, tag -> String in
                 if !query.isEmpty {
                     return "Search all"
-                } else if let tag = tag {
+                } else if let tag = tag, !tag.isEmpty {
                     return "#\(tag)"
                 } else {
                     return "All"
