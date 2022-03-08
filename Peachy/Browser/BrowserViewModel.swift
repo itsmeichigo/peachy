@@ -8,7 +8,7 @@ final class BrowserViewModel: NSObject, ObservableObject {
     private var subscriptions: Set<AnyCancellable> = []
 
     private let searchItem = NSSearchToolbarItem(itemIdentifier: .search)
-
+    
     weak var parentWindow: NSWindow? {
         didSet {
             updateContentTitle()
@@ -26,6 +26,7 @@ final class BrowserViewModel: NSObject, ObservableObject {
     @Published private(set) var query: String = ""
     @Published var selectedTag: String?
     @Published var kaomojis: [Kaomoji] = []
+    let kaomojiTags = KaomojiTags.all
 
     func makeSearchFieldResignFirstResponder() {
         parentWindow?.makeFirstResponder(nil)

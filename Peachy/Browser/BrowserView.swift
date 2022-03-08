@@ -22,7 +22,7 @@ struct BrowserView: View {
                     .bold()
                     .font(.caption)
                     .foregroundColor(.secondary)
-                ForEach(KaomojiTags.all, id: \.self) { tag in
+                ForEach(viewModel.kaomojiTags, id: \.self) { tag in
                     Text("#\(tag)")
                         .padding(.leading, 8)
                 }
