@@ -3,11 +3,14 @@ import AppKit
 
 extension NSImage.Name {
     static let sidebar = "sidebar.squares.leading"
+    static let grid = "square.grid.2x2"
+    static let list = "list.bullet"
 }
 
 extension NSToolbarItem.Identifier {
-    static let sidebar = NSToolbarItem.Identifier(rawValue: "SideBar")
-    static let search = NSToolbarItem.Identifier(rawValue: "Search")
+    static let browserSidebar = NSToolbarItem.Identifier(rawValue: "BrowserSideBar")
+    static let browserSearch = NSToolbarItem.Identifier(rawValue: "BrowserSearch")
+    static let browserDisplayMode = NSToolbarItem.Identifier(rawValue: "BrowserDisplayMode")
 }
 
 extension NSToolbar {

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BrowserView: View {
     @State private var selectedKaomoji: Kaomoji?
+    @State private var selectedKaomojiIDs = Set<Kaomoji.ID>()
     @State private var showingDetail: Bool = false
     @ObservedObject private var viewModel: BrowserViewModel
 
@@ -30,7 +31,12 @@ struct BrowserView: View {
             .listStyle(.sidebar)
 
             VStack(alignment: .leading, spacing: 0) {
-                kaomojiGrid
+                if viewModel.displayMode == .grid {
+                    kaomojiGrid.padding(.leading, 16)
+                } else {
+                    kaomojiList
+                }
+                
 
                 if let item = selectedKaomoji {
                     BrowserDetailView(kaomoji: item) {
@@ -47,7 +53,45 @@ struct BrowserView: View {
                 selectedKaomoji = list.first
             }
         }
+        .onChange(of: selectedKaomojiIDs) { ids in
+            if ids.count == 1, let id = ids.first {
+                selectedKaomoji = viewModel.kaomojis.first(where: { $0.id == id })
+            } else {
+                selectedKaomoji = nil
+            }
+        }
         .frame(minWidth: 640, minHeight: 480)
+    }
+
+    @ViewBuilder
+    private var kaomojiList: some View {
+        if #available(macOS 12, *) {
+            Table(viewModel.kaomojis, selection: $selectedKaomojiIDs) {
+                TableColumn("Kaomoji") { item in
+                    Text(item.string)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .contextMenu {
+                            Button(action: {
+                                let pasteBoard = NSPasteboard.general
+                                pasteBoard.clearContents()
+                                pasteBoard.writeObjects([item.string as NSString])
+                            }) {
+                                Text("Copy Kaomoji")
+                            }
+                        }
+                }
+                TableColumn("Tags") { item in
+                    Text(item.tags.map { "#\($0)" }.joined(separator: ", "))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                }
+            }
+        } else {
+            EmptyView()
+        }
     }
 
     private var kaomojiGrid: some View {
@@ -61,10 +105,10 @@ struct BrowserView: View {
 
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 0) {
                     ForEach(viewModel.kaomojis) { item in
-                        kaomojiItem(item)
-                            .padding(.horizontal, 16)
+                        kaomojiItem(item).padding(.trailing, 16)
                     }
                 }
+
                 Spacer().frame(height: 16)
             }
         }

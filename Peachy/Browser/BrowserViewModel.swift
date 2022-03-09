@@ -1,13 +1,14 @@
 import Combine
 import Foundation
 import AppKit
+import SwiftUI
 
 final class BrowserViewModel: NSObject, ObservableObject {
     private let appStateManager: AppStateManager
     private let kaomojiStore: KaomojiStore
     private var subscriptions: Set<AnyCancellable> = []
 
-    private let searchItem = NSSearchToolbarItem(itemIdentifier: .search)
+    private let searchItem = NSSearchToolbarItem(itemIdentifier: .browserSearch)
     
     weak var parentWindow: NSWindow? {
         didSet {
@@ -24,6 +25,7 @@ final class BrowserViewModel: NSObject, ObservableObject {
     }
 
     @Published private(set) var query: String = ""
+    @Published private(set) var displayMode: BrowserDisplayMode = .grid
     @Published var selectedTag: String?
     @Published var kaomojis: [Kaomoji] = []
     let kaomojiTags: [String] = {
@@ -88,25 +90,42 @@ extension BrowserViewModel: NSSearchFieldDelegate {
 
 extension BrowserViewModel: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        [.sidebar, .flexibleSpace, .search]
+        if #available(macOS 12, *) {
+            return [.browserSidebar, .browserDisplayMode, .browserSearch]
+        } else {
+            return [.browserSidebar, .flexibleSpace, .browserSearch]
+        }
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        [.sidebar, .flexibleSpace, .search]
+        if #available(macOS 12, *) {
+            return [.browserSidebar, .browserDisplayMode, .browserSearch]
+        } else {
+            return [.browserSidebar, .flexibleSpace, .browserSearch]
+        }
     }
     
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         switch itemIdentifier {
-        case .sidebar:
+        case .browserSidebar:
             let button = NSButton(image: NSImage(systemSymbolName: .sidebar, accessibilityDescription: "Side bar icon")!, target: self, action: #selector(toggleSidebar))
             button.bezelStyle = .texturedRounded
-            let item = customToolbarItem(itemIdentifier: .sidebar, label: "Sidebar", paletteLabel: "Sidebar", toolTip: "Toggle sidebar", itemContent: button)
+            let item = customToolbarItem(itemIdentifier: itemIdentifier, label: "Sidebar", paletteLabel: "Sidebar", toolTip: "Toggle sidebar", itemContent: button)
             item?.isNavigational = true
             return item
         case .flexibleSpace:
             return NSToolbarItem(itemIdentifier: .space)
-        case .search:
+        case .browserSearch:
             return searchItem
+        case .browserDisplayMode:
+            let images: [NSImage] = BrowserDisplayMode.allCases.map(\.iconImage)
+            let labels: [String] = BrowserDisplayMode.allCases.map(\.label)
+            let toolbarItem = NSToolbarItemGroup(itemIdentifier: itemIdentifier, images: images, selectionMode: .selectOne, labels: labels, target: self, action: #selector(toolbarPickerDidSelectItem))
+            toolbarItem.label = "Display Mode"
+            toolbarItem.paletteLabel = "Display Mode"
+            toolbarItem.toolTip = "Change the display mode"
+            toolbarItem.selectedIndex = 0
+            return toolbarItem
         default:
             return nil
         }
@@ -115,6 +134,12 @@ extension BrowserViewModel: NSToolbarDelegate {
     @objc
     private func toggleSidebar() {
         NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+    }
+
+    @objc private func toolbarPickerDidSelectItem(sender: Any) {
+        if let toolbarItemGroup = sender as? NSToolbarItemGroup {
+            displayMode = BrowserDisplayMode(rawValue: toolbarItemGroup.selectedIndex) ?? .grid
+        }
     }
 
     private func customToolbarItem(
@@ -141,4 +166,27 @@ extension BrowserViewModel: NSToolbarDelegate {
         return toolbarItem
     }
 
+}
+
+enum BrowserDisplayMode: Int, CaseIterable {
+    case grid
+    case list
+
+    var iconImage: NSImage {
+        switch self {
+        case .grid:
+            return NSImage(systemSymbolName: .grid, accessibilityDescription: "Grid icon")!
+        case .list:
+            return NSImage(systemSymbolName: .list, accessibilityDescription: "List icon")!
+        }
+    }
+
+    var label: String {
+        switch self {
+        case .grid:
+            return "Grid"
+        case .list:
+            return "List"
+        }
+    }
 }
