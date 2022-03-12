@@ -1,33 +1,45 @@
 import SwiftUI
 
 struct PilotView: View {
-    private let triggerKey: String
-    private let onPreferences: () -> Void
+    private let preferences: AppPreferences
+    private let onOpenBrowser: () -> Void
     private let onComplete: () -> Void
 
-    init(triggerKey: String,
-         onPreferences: @escaping () -> Void,
+    init(preferences: AppPreferences,
+         onOpenBrowser: @escaping () -> Void,
          onComplete: @escaping () -> Void) {
-        self.triggerKey = triggerKey
+        self.preferences = preferences
         self.onComplete = onComplete
-        self.onPreferences = onPreferences
+        self.onOpenBrowser = onOpenBrowser
     }
 
     var body: some View {
         VStack(spacing: 16) {
             Text("You're all set!")
                 .font(.largeTitle)
-            
-            Text("You can now enter kaomojis in any app by typing \"\(triggerKey)\" preceding a keyword.")
+
+            Text("You can now enter kaomojis in any app by typing \"\(preferences.triggerKey)\" preceding a keyword.")
                 .font(.title3)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .frame(width: 320)
-            
+
             AnimatedImage(imageName: "pilot")
+
+            HStack(spacing: 4) {
+                Text("Need inspirations?")
+                
+                Button(action: onOpenBrowser) {
+                    Text("Visit Peachy's Browser.")
+                        .foregroundColor(Color(NSColor.controlAccentColor))
+                }
+                .buttonStyle(.plain)
+
+            }
 
             Button("Let's Go!", action: onComplete)
                 .buttonStyle(OnboardingButton())
+
         }
         .padding(32)
     }

@@ -108,6 +108,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }, onPreferences: {
             NSApp.orderedWindows.first?.close()
             self.openPreferences(self)
+        }, onOpenBrowser: {
+            NSApp.orderedWindows.first?.close()
+            self.openBrowser(self)
         }, onCompletion: {
             NSApp.orderedWindows.first?.close()
         })

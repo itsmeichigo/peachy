@@ -34,8 +34,8 @@ struct OnboardingView: View {
             BasicSettingsView(preferences: viewModel.preferences,
                               onComplete: viewModel.moveToNextPage)
         case .pilot:
-            PilotView(triggerKey: viewModel.triggerKey,
-                      onPreferences: viewModel.preferencesHandler,
+            PilotView(preferences: viewModel.preferences,
+                      onOpenBrowser: viewModel.browserHandler,
                       onComplete: viewModel.completionHandler)
         }
     }
