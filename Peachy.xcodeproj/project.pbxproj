@@ -34,8 +34,6 @@
 		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
 		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
-		2C4E161D26E1F84B006A5986 /* PeachyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E161C26E1F84B006A5986 /* PeachyTests.swift */; };
-		2C4E162826E1F84B006A5986 /* PeachyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E162726E1F84B006A5986 /* PeachyUITests.swift */; };
 		2C4E163E26E37C53006A5986 /* ColoredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E163726E37C53006A5986 /* ColoredView.swift */; };
 		2C4E163F26E37C53006A5986 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E163826E37C53006A5986 /* TableView.swift */; };
 		2C4E164126E37C53006A5986 /* ItemTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E163B26E37C53006A5986 /* ItemTableController.swift */; };
@@ -48,23 +46,6 @@
 		2CA6668827C0DF420004D8DF /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA6668727C0DF420004D8DF /* AppCenterCrashes */; };
 		2CA6668A27C0E17A0004D8DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA6668927C0E17A0004D8DF /* Secrets.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		2C4E161926E1F84B006A5986 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C4E160026E1F849006A5986 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2C4E160726E1F849006A5986;
-			remoteInfo = Peachy;
-		};
-		2C4E162426E1F84B006A5986 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C4E160026E1F849006A5986 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2C4E160726E1F849006A5986;
-			remoteInfo = Peachy;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2C001F2A2794FDD3003B9EB7 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
@@ -95,12 +76,6 @@
 		2C4E161026E1F84A006A5986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2C4E161226E1F84A006A5986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C4E161326E1F84A006A5986 /* Peachy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peachy.entitlements; sourceTree = "<group>"; };
-		2C4E161826E1F84B006A5986 /* PeachyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeachyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C4E161C26E1F84B006A5986 /* PeachyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeachyTests.swift; sourceTree = "<group>"; };
-		2C4E161E26E1F84B006A5986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C4E162326E1F84B006A5986 /* PeachyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeachyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C4E162726E1F84B006A5986 /* PeachyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeachyUITests.swift; sourceTree = "<group>"; };
-		2C4E162926E1F84B006A5986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C4E163726E37C53006A5986 /* ColoredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredView.swift; sourceTree = "<group>"; };
 		2C4E163826E37C53006A5986 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		2C4E163B26E37C53006A5986 /* ItemTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableController.swift; sourceTree = "<group>"; };
@@ -121,20 +96,6 @@
 				2C4124FC27CA0D1E002F9E69 /* Sparkle in Frameworks */,
 				2CA6668827C0DF420004D8DF /* AppCenterCrashes in Frameworks */,
 				2C001F3127A921CE003B9EB7 /* LaunchAtLogin in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2C4E161526E1F84B006A5986 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2C4E162026E1F84B006A5986 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,8 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				2C4E160A26E1F849006A5986 /* Peachy */,
-				2C4E161B26E1F84B006A5986 /* PeachyTests */,
-				2C4E162626E1F84B006A5986 /* PeachyUITests */,
 				2C4E160926E1F849006A5986 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -218,8 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				2C4E160826E1F849006A5986 /* Peachy.app */,
-				2C4E161826E1F84B006A5986 /* PeachyTests.xctest */,
-				2C4E162326E1F84B006A5986 /* PeachyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,24 +201,6 @@
 				2C4E161326E1F84A006A5986 /* Peachy.entitlements */,
 			);
 			path = Peachy;
-			sourceTree = "<group>";
-		};
-		2C4E161B26E1F84B006A5986 /* PeachyTests */ = {
-			isa = PBXGroup;
-			children = (
-				2C4E161C26E1F84B006A5986 /* PeachyTests.swift */,
-				2C4E161E26E1F84B006A5986 /* Info.plist */,
-			);
-			path = PeachyTests;
-			sourceTree = "<group>";
-		};
-		2C4E162626E1F84B006A5986 /* PeachyUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2C4E162726E1F84B006A5986 /* PeachyUITests.swift */,
-				2C4E162926E1F84B006A5986 /* Info.plist */,
-			);
-			path = PeachyUITests;
 			sourceTree = "<group>";
 		};
 		2C4E163526E37C35006A5986 /* SearchView */ = {
@@ -329,42 +268,6 @@
 			productReference = 2C4E160826E1F849006A5986 /* Peachy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2C4E161726E1F84B006A5986 /* PeachyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2C4E162F26E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyTests" */;
-			buildPhases = (
-				2C4E161426E1F84B006A5986 /* Sources */,
-				2C4E161526E1F84B006A5986 /* Frameworks */,
-				2C4E161626E1F84B006A5986 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2C4E161A26E1F84B006A5986 /* PBXTargetDependency */,
-			);
-			name = PeachyTests;
-			productName = PeachyTests;
-			productReference = 2C4E161826E1F84B006A5986 /* PeachyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2C4E162226E1F84B006A5986 /* PeachyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2C4E163226E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyUITests" */;
-			buildPhases = (
-				2C4E161F26E1F84B006A5986 /* Sources */,
-				2C4E162026E1F84B006A5986 /* Frameworks */,
-				2C4E162126E1F84B006A5986 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2C4E162526E1F84B006A5986 /* PBXTargetDependency */,
-			);
-			name = PeachyUITests;
-			productName = PeachyUITests;
-			productReference = 2C4E162326E1F84B006A5986 /* PeachyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -376,14 +279,6 @@
 				TargetAttributes = {
 					2C4E160726E1F849006A5986 = {
 						CreatedOnToolsVersion = 12.5.1;
-					};
-					2C4E161726E1F84B006A5986 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 2C4E160726E1F849006A5986;
-					};
-					2C4E162226E1F84B006A5986 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 2C4E160726E1F849006A5986;
 					};
 				};
 			};
@@ -406,8 +301,6 @@
 			projectRoot = "";
 			targets = (
 				2C4E160726E1F849006A5986 /* Peachy */,
-				2C4E161726E1F84B006A5986 /* PeachyTests */,
-				2C4E162226E1F84B006A5986 /* PeachyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -422,20 +315,6 @@
 				2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */,
 				2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */,
 				2C41251427DCA689002F9E69 /* demo.gif in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2C4E161626E1F84B006A5986 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2C4E162126E1F84B006A5986 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,36 +378,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C4E161426E1F84B006A5986 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C4E161D26E1F84B006A5986 /* PeachyTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2C4E161F26E1F84B006A5986 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C4E162826E1F84B006A5986 /* PeachyUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2C4E161A26E1F84B006A5986 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2C4E160726E1F849006A5986 /* Peachy */;
-			targetProxy = 2C4E161926E1F84B006A5986 /* PBXContainerItemProxy */;
-		};
-		2C4E162526E1F84B006A5986 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2C4E160726E1F849006A5986 /* Peachy */;
-			targetProxy = 2C4E162426E1F84B006A5986 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2C4E160F26E1F84A006A5986 /* MainMenu.xib */ = {
@@ -703,92 +553,6 @@
 			};
 			name = Release;
 		};
-		2C4E163026E1F84B006A5986 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = S98YJ3DNTA;
-				INFOPLIST_FILE = PeachyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peachy.app/Contents/MacOS/Peachy";
-			};
-			name = Debug;
-		};
-		2C4E163126E1F84B006A5986 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = S98YJ3DNTA;
-				INFOPLIST_FILE = PeachyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peachy.app/Contents/MacOS/Peachy";
-			};
-			name = Release;
-		};
-		2C4E163326E1F84B006A5986 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = S98YJ3DNTA;
-				INFOPLIST_FILE = PeachyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Peachy;
-			};
-			name = Debug;
-		};
-		2C4E163426E1F84B006A5986 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = S98YJ3DNTA;
-				INFOPLIST_FILE = PeachyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.PeachyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Peachy;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -806,24 +570,6 @@
 			buildConfigurations = (
 				2C4E162D26E1F84B006A5986 /* Debug */,
 				2C4E162E26E1F84B006A5986 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2C4E162F26E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2C4E163026E1F84B006A5986 /* Debug */,
-				2C4E163126E1F84B006A5986 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2C4E163226E1F84B006A5986 /* Build configuration list for PBXNativeTarget "PeachyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2C4E163326E1F84B006A5986 /* Debug */,
-				2C4E163426E1F84B006A5986 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
