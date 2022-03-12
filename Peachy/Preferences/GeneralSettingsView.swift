@@ -39,15 +39,14 @@ struct GeneralSettingsView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(alignment: .center, spacing: 8) {
                         TextField("", text: $triggerKey, onCommit: {
-                            if triggerKey.count > 1 || triggerKey.isEmpty {
-                                triggerKey = preferences.triggerKey
-                            } else {
-                                preferences.updateTriggerKey(triggerKey)
-                            }
+                            updateTriggerKeyIfAppropriate()
                         })
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .frame(width: 40, height: 30)
+                        .onDisappear {
+                            updateTriggerKeyIfAppropriate()
+                        }
 
                         Toggle(isOn: $usesDoubleKeyTrigger) {
                             Text("Use double key trigger")
@@ -64,6 +63,14 @@ struct GeneralSettingsView: View {
                         .foregroundColor(.secondary)
                 }
             }
+        }
+    }
+
+    private func updateTriggerKeyIfAppropriate() {
+        if triggerKey.count > 1 || triggerKey.isEmpty {
+            triggerKey = preferences.triggerKey
+        } else {
+            preferences.updateTriggerKey(triggerKey)
         }
     }
 }
