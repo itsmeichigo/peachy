@@ -30,6 +30,7 @@
 		2C41250627D4663A002F9E69 /* BrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41250527D4663A002F9E69 /* BrowserViewModel.swift */; };
 		2C41250827D49D9E002F9E69 /* BrowserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41250727D49D9E002F9E69 /* BrowserDetailView.swift */; };
 		2C41250A27D4B7F3002F9E69 /* BrowserToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41250927D4B7F3002F9E69 /* BrowserToolbar.swift */; };
+		2C41251427DCA689002F9E69 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2C41251327DCA689002F9E69 /* demo.gif */; };
 		2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E160B26E1F849006A5986 /* AppDelegate.swift */; };
 		2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160D26E1F84A006A5986 /* Assets.xcassets */; };
 		2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E160F26E1F84A006A5986 /* MainMenu.xib */; };
@@ -87,6 +88,7 @@
 		2C41250527D4663A002F9E69 /* BrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewModel.swift; sourceTree = "<group>"; };
 		2C41250727D49D9E002F9E69 /* BrowserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserDetailView.swift; sourceTree = "<group>"; };
 		2C41250927D4B7F3002F9E69 /* BrowserToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserToolbar.swift; sourceTree = "<group>"; };
+		2C41251327DCA689002F9E69 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		2C4E160826E1F849006A5986 /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E160B26E1F849006A5986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4E160D26E1F84A006A5986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				2C4E163526E37C35006A5986 /* SearchView */,
 				2C4E160B26E1F849006A5986 /* AppDelegate.swift */,
 				2CA6668927C0E17A0004D8DF /* Secrets.swift */,
+				2C41251327DCA689002F9E69 /* demo.gif */,
 				2C4E160D26E1F84A006A5986 /* Assets.xcassets */,
 				2C4E164326E37CE7006A5986 /* kaomoji.json */,
 				2C4E160F26E1F84A006A5986 /* MainMenu.xib */,
@@ -418,6 +421,7 @@
 				2C4E164B26E3814A006A5986 /* SearchWindowController.xib in Resources */,
 				2C4E160E26E1F84A006A5986 /* Assets.xcassets in Resources */,
 				2C4E161126E1F84A006A5986 /* MainMenu.xib in Resources */,
+				2C41251427DCA689002F9E69 /* demo.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

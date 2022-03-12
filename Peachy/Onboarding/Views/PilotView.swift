@@ -1,14 +1,12 @@
+import Quartz
 import SwiftUI
 
 struct PilotView: View {
-    private let preferences: AppPreferences
     private let onOpenBrowser: () -> Void
     private let onComplete: () -> Void
 
-    init(preferences: AppPreferences,
-         onOpenBrowser: @escaping () -> Void,
+    init(onOpenBrowser: @escaping () -> Void,
          onComplete: @escaping () -> Void) {
-        self.preferences = preferences
         self.onComplete = onComplete
         self.onOpenBrowser = onOpenBrowser
     }
@@ -18,13 +16,15 @@ struct PilotView: View {
             Text("You're all set!")
                 .font(.largeTitle)
 
-            Text("You can now enter kaomojis in any app by typing \"\(preferences.triggerKey)\" preceding a keyword.")
+            Text("You can now enter kaomojis in any app!")
                 .font(.title3)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .frame(width: 320)
 
-            AnimatedImage(imageName: "pilot")
+            if let url = Bundle.main.url(forResource: "demo", withExtension: "gif") {
+                AnimatedImage(url: url)
+            }
 
             HStack(spacing: 4) {
                 Text("Need inspirations?")
@@ -46,16 +46,19 @@ struct PilotView: View {
 }
 
 struct AnimatedImage: NSViewRepresentable {
-    let imageName: String
-
-    func makeNSView(context: Self.Context) -> NSImageView {
-        let imageView = NSImageView()
-        imageView.imageScaling = .scaleProportionallyUpOrDown
-        imageView.image = NSImage(data: NSDataAsset(name: imageName)!.data)
-        imageView.animates = true
-        return imageView
+    var url: URL
+    
+    func makeNSView(context: NSViewRepresentableContext<AnimatedImage>) -> QLPreviewView {
+        let preview = QLPreviewView(frame: .zero, style: .normal)
+        preview?.autostarts = true
+        preview?.previewItem = url as QLPreviewItem
+        
+        return preview ?? QLPreviewView()
     }
-
-    func updateNSView(_ nsView: NSImageView, context: NSViewRepresentableContext<AnimatedImage>) {
+    
+    func updateNSView(_ nsView: QLPreviewView, context: NSViewRepresentableContext<AnimatedImage>) {
+        nsView.previewItem = url as QLPreviewItem
     }
+    
+    typealias NSViewType = QLPreviewView
 }
