@@ -1,5 +1,4 @@
 import AppCenter
-import AppCenterAnalytics
 import AppCenterCrashes
 import Cocoa
 import SwiftUI
@@ -68,7 +67,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func configureAppCenter() {
         AppCenter.start(withAppSecret: Secrets.appCenterAppSecret,
-                        services: [Analytics.self, Crashes.self])
+                        services: [Crashes.self])
         Crashes.enabled = !appPreferences.optOutCrashReports
     }
 
