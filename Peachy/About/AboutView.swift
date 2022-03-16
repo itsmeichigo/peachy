@@ -6,11 +6,23 @@ struct AboutView: View {
             Image("small-icon")
                 .resizable()
                 .frame(width: 120, height: 120)
-            Text("Peachy")
-                .font(.title)
-                .bold()
+            HStack {
+                Text("Peachy")
+                    .font(.title)
+                    .bold()
+                Button(action: {
+                    let url = URL(string: "https://itsmeichigo.io/peachy")!
+                    NSWorkspace.shared.open(url)
+                }, label: {
+                    Image(systemName: "info.circle.fill")
+                })
+                .buttonStyle(.plain)
+                .font(.title2)
+            }
+
             Text("Version \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)")
                 .foregroundColor(.secondary)
+
             Spacer()
             Text("© 2022 Huong Do. All rights reserved.")
                 .foregroundColor(.secondary)
