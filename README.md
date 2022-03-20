@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="img/icon.png" width="200" height="200">
+	<a href="https://itsmeichigo.io/peachy/" target="_blank"><img src="img/icon.png" width="200" height="200"></a>
 	<h1>Peachy</h1>
 	<p>
 		<b>Input kaomojis to any app on your Mac</b>
