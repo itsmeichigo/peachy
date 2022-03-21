@@ -11,7 +11,7 @@ struct AboutView: View {
                     .font(.title)
                     .bold()
                 Button(action: {
-                    let url = URL(string: "https://itsmeichigo.io/peachy")!
+                    let url = URL(string: Links.websiteURL)!
                     NSWorkspace.shared.open(url)
                 }, label: {
                     Image(systemName: "info.circle.fill")

@@ -45,6 +45,7 @@
 		2CA6668627C0DF420004D8DF /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA6668527C0DF420004D8DF /* AppCenterAnalytics */; };
 		2CA6668827C0DF420004D8DF /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA6668727C0DF420004D8DF /* AppCenterCrashes */; };
 		2CA6668A27C0E17A0004D8DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA6668927C0E17A0004D8DF /* Secrets.swift */; };
+		2CB985A627E8D545005F86C3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB985A527E8D545005F86C3 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		2C4E164926E3814A006A5986 /* SearchWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchWindowController.xib; sourceTree = "<group>"; };
 		2C4E164C26E38620006A5986 /* FilePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePublisher.swift; sourceTree = "<group>"; };
 		2CA6668927C0E17A0004D8DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		2CB985A527E8D545005F86C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				2C4E164526E37D15006A5986 /* Models */,
 				2C4E163526E37C35006A5986 /* SearchView */,
 				2C4E160B26E1F849006A5986 /* AppDelegate.swift */,
+				2CB985A527E8D545005F86C3 /* Constants.swift */,
 				2CA6668927C0E17A0004D8DF /* Secrets.swift */,
 				2C41251327DCA689002F9E69 /* demo.gif */,
 				2C4E160D26E1F84A006A5986 /* Assets.xcassets */,
@@ -351,6 +354,7 @@
 				2C001F5127AD8D43003B9EB7 /* OnboardingButtonStyle.swift in Sources */,
 				2C4E160C26E1F849006A5986 /* AppDelegate.swift in Sources */,
 				2C4124F527C9E0B9002F9E69 /* GeneralSettingsView.swift in Sources */,
+				2CB985A627E8D545005F86C3 /* Constants.swift in Sources */,
 				2C4124F727C9E141002F9E69 /* AppExceptionsView.swift in Sources */,
 				2C001F4527AB8653003B9EB7 /* PermissionView.swift in Sources */,
 				2C001F2E27A8E6CA003B9EB7 /* PreferencesView.swift in Sources */,
