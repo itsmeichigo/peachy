@@ -36,6 +36,12 @@ final class BrowserViewModel: NSObject, ObservableObject {
         parentWindow?.makeFirstResponder(nil)
     }
 
+    static func copyToPasteBoard(content: String) {
+        let pasteBoard = NSPasteboard.general
+        pasteBoard.clearContents()
+        pasteBoard.writeObjects([content as NSString])
+    }
+
     private func updateKaomojiList() {
         kaomojiStore.$allKaomojis.combineLatest($query, $selectedTag)
             .map { items, query, tag -> [Kaomoji] in

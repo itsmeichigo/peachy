@@ -15,17 +15,26 @@ struct BrowserDetailView: View {
             HStack(spacing: 16) {
                 Spacer()
                 Button {
-                    let pasteBoard = NSPasteboard.general
-                    pasteBoard.clearContents()
-                    pasteBoard.writeObjects([kaomoji.string as NSString])
+                    BrowserViewModel.copyToPasteBoard(content: kaomoji.string)
                 } label: {
-                    Image(systemName: "doc.on.doc.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 16)
-                        .contentShape(Rectangle())
+                    HStack {
+                        // This is a hack - setting a text to the label to force reload this button
+                        // so that the keyboard shortcut works with the latest kaomoji.
+                        // The text is "transparent" with clear color
+                        Text(kaomoji.string)
+                            .frame(width: 0, height: 0)
+                            .foregroundColor(.clear)
+
+                        Image(systemName: "doc.on.doc.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 16)
+                            .contentShape(Rectangle())
+                    }
+                    
                 }
                 .buttonStyle(.plain)
+                .keyboardShortcut(.init("c"), modifiers: [.command])
 
                 Button {
                     dismissHandler()

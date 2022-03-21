@@ -75,9 +75,7 @@ struct BrowserView: View {
                         .contentShape(Rectangle())
                         .contextMenu {
                             Button(action: {
-                                let pasteBoard = NSPasteboard.general
-                                pasteBoard.clearContents()
-                                pasteBoard.writeObjects([item.string as NSString])
+                                BrowserViewModel.copyToPasteBoard(content: item.string)
                             }) {
                                 Text("Copy Kaomoji")
                             }
@@ -137,9 +135,7 @@ struct BrowserView: View {
         .padding(4)
         .contextMenu {
             Button(action: {
-                let pasteBoard = NSPasteboard.general
-                pasteBoard.clearContents()
-                pasteBoard.writeObjects([item.string as NSString])
+                BrowserViewModel.copyToPasteBoard(content: item.string)
             }) {
                 Text("Copy Kaomoji")
             }
