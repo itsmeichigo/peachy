@@ -111,6 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSApp.orderedWindows.first?.close()
             self.openBrowser(self)
         }, onCompletion: {
+            self.appStateManager.updateDoneState()
             NSApp.orderedWindows.first?.close()
         })
         let viewController = NSHostingController(rootView: OnboardingView(viewModel: onboardingViewModel))
