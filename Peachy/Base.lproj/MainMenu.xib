@@ -38,16 +38,22 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="About Peachy…" id="5kV-Vb-QxS">
+                            <menuItem title="Release Notes" id="WZF-eZ-beB">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="openAbout:" target="Voe-Tx-rLC" id="A7w-Ui-V8e"/>
+                                    <action selector="openReleaseNotes:" target="Voe-Tx-rLC" id="vJz-VJ-24S"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Check for Updates…" id="8q6-TB-620">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="koL-cr-auf" id="XfL-ET-5Jr"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="About Peachy…" id="5kV-Vb-QxS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openAbout:" target="Voe-Tx-rLC" id="A7w-Ui-V8e"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="G1e-uq-hsZ"/>

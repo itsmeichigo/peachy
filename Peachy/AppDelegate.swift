@@ -89,6 +89,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.activate(ignoringOtherApps: true)
     }
 
+    @IBAction func openReleaseNotes(_ sender: Any) {
+        let url = URL(string: Links.releaseNotesURL)!
+        NSWorkspace.shared.open(url)
+    }
+
     @IBAction func openAbout(_ sender: Any) {
         aboutWindow.orderFrontRegardless()
         NSApp.setActivationPolicy(.regular)
