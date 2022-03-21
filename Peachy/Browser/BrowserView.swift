@@ -45,6 +45,18 @@ struct BrowserView: View {
                         }
                     }
                     .transition(.move(edge: .bottom))
+
+                    // This is a hack - setting a "transparent" button to receive the shortcut.
+                    // The button title has to be the selected item so that it can be reloaded when the selected item changes, which makes the shortcut works properly.
+                    Button(action: {
+                        BrowserViewModel.copyToPasteBoard(content: item.string)
+                    }, label: {
+                        Text(item.string)
+                            .frame(width: 0, height: 0)
+                            .foregroundColor(.clear)
+                    })
+                    .buttonStyle(.plain)
+                    .keyboardShortcut(.init("c"), modifiers: [.command])
                 }
             }
         }

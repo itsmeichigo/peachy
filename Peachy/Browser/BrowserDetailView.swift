@@ -17,24 +17,13 @@ struct BrowserDetailView: View {
                 Button {
                     BrowserViewModel.copyToPasteBoard(content: kaomoji.string)
                 } label: {
-                    HStack {
-                        // This is a hack - setting a text to the label to force reload this button
-                        // so that the keyboard shortcut works with the latest kaomoji.
-                        // The text is "transparent" with clear color
-                        Text(kaomoji.string)
-                            .frame(width: 0, height: 0)
-                            .foregroundColor(.clear)
-
-                        Image(systemName: "doc.on.doc.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 16)
-                            .contentShape(Rectangle())
-                    }
-                    
+                    Image(systemName: "doc.on.doc.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 16)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .keyboardShortcut(.init("c"), modifiers: [.command])
 
                 Button {
                     dismissHandler()
