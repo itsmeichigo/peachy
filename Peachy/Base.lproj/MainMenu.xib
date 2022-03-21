@@ -25,20 +25,20 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Peachy" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="Browse Kaomojis" id="hdG-HY-DKH">
+                            <menuItem title="Browse Kaomojis…" id="hdG-HY-DKH">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBrowser:" target="Voe-Tx-rLC" id="4Cy-hr-oKz"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Preferences" id="BOF-NM-1cW">
+                            <menuItem title="Preferences…" id="BOF-NM-1cW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openPreferences:" target="-1" id="Q1s-0Z-A6f"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="About Peachy" id="5kV-Vb-QxS">
+                            <menuItem title="About Peachy…" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openAbout:" target="Voe-Tx-rLC" id="A7w-Ui-V8e"/>
