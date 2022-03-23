@@ -39,7 +39,6 @@ class ItemTableController: NSViewController {
     
     private var items: [Kaomoji] = []
     
-    @available(OSX 11.0, *)
     private lazy var dataSource = makeDataSource()
     
     @IBOutlet private var tableView: NSTableView!
@@ -47,11 +46,7 @@ class ItemTableController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(OSX 11.0, *) {
-            tableView.dataSource = dataSource
-        } else {
-            tableView.dataSource = self
-        }
+        tableView.dataSource = dataSource
     }
     
     func triggerEvent(_ event: NSEvent) {
@@ -64,13 +59,7 @@ class ItemTableController: NSViewController {
     
     func refresh(_ items: [Kaomoji]) {
         self.items = items
-        
-        if #available(OSX 11.0, *) {
-            update(with: items, animated: false)
-        } else {
-            tableView.reloadData()
-        }
-        
+        update(with: items, animated: false)
         tableView.scrollRowToVisible(0)
     }
     
@@ -100,7 +89,6 @@ extension ItemTableController: NSTableViewDataSource, NSTableViewDelegate {
     }
 }
 
-@available(OSX 11.0, *)
 private extension ItemTableController {
     func makeDataSource() -> NSTableViewDiffableDataSource<Int, Kaomoji> {
         let reuseIdentifier = ItemCellView.identifier
