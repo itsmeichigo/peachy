@@ -37,7 +37,10 @@ final class SearchCoordinator {
 extension SearchCoordinator: KeyEventDelegate {
     func handleEvent(_ event: NSEvent) {
         if event.characters != nil {
-            return simulateKeyEvent(event.keyCode)
+            if !event.modifierFlags.intersection([.command, .control]).isEmpty {
+                hideSearchWindow()
+            }
+            return simulateKeyEvent(event.keyCode, flags: .init(rawValue: UInt64(event.modifierFlags.rawValue)))
         }
 
         switch Int(event.keyCode) {
@@ -84,8 +87,7 @@ private extension SearchCoordinator {
         case kVK_Escape, kVK_LeftArrow, kVK_RightArrow, kVK_UpArrow, kVK_DownArrow:
             hideSearchWindow()
         default:
-            let characters = event.characters?.lowercased()
-            switch characters {
+            switch event.characters {
             case .some(preferences.triggerKey):
                 if preferences.usesDoubleTriggerKey, !triggerKey.isEmpty {
                     triggerKey = String(repeating: preferences.triggerKey, count: 2)
