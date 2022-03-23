@@ -206,8 +206,10 @@ private extension SearchCoordinator {
     func simulateKeyEvent(_ keyCode: UInt16, flags: CGEventFlags? = nil) {
         searchWindowController.window?.resignKey()
 
+        let source = CGEventSource(stateID: .privateState)
+
         // simulate key down event
-        let keyDownEvent = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: true)
+        let keyDownEvent = CGEvent(keyboardEventSource: source, virtualKey: keyCode, keyDown: true)
         if let flags = flags {
             keyDownEvent?.flags = flags
         }
