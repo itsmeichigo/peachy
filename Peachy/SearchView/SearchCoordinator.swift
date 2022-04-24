@@ -128,11 +128,10 @@ extension SearchCoordinator: ItemSelectionDelegate {
     func handleSelection(_ item: Kaomoji) {
         guard let keyword = keyword else { return }
         appStateManager.addToRecentKaomojis(content: item.string)
-        searchWindowController.window?.resignKey()
+        hideSearchWindow()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.replace(keyword: keyword, with: item.string)
         }
-        hideSearchWindow()
     }
 }
 
@@ -215,9 +214,18 @@ private extension SearchCoordinator {
         if let flags = flags {
             keyDownEvent?.flags = flags
         }
+
+        // simulate key up event
+        let keyUpEvent = CGEvent(keyboardEventSource: source, virtualKey: keyCode, keyDown: false)
+        if let flags = flags {
+            keyUpEvent?.flags = flags
+        }
+
         keyDownEvent?.post(tap: CGEventTapLocation.cghidEventTap)
-    
-        searchWindowController.window?.makeKey()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            keyUpEvent?.post(tap: CGEventTapLocation.cghidEventTap)
+            self.searchWindowController.window?.makeKey()
+        }
     }
 
     /// Uses System Events to keystroke and replace text with kaomoji.
