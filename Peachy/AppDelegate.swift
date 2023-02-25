@@ -78,8 +78,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func setupStatusBarItem() {
         statusBar = NSStatusBar()
-        statusItem = statusBar?.statusItem(withLength: NSStatusItem.squareLength)
+        statusItem = statusBar?.statusItem(withLength: NSStatusItem.variableLength)
         statusItem?.button?.image = NSImage(named: "peach")
+        statusItem?.button?.frame = CGRect(x: 0, y: 0, width: 32, height: 16)
         statusItem?.menu = menu
     }
     
