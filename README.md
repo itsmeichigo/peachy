@@ -5,7 +5,7 @@
 		<b>Input kaomojis to any app on your Mac</b>
 	</p>
 	<br>
-<a href="https://apps.itsmeichigo.io/file/app-releases/peachy/Peachy_v1.0.2.dmg" target="_blank"><img src="img/download.svg" alt="Download Peachy" ></a>&nbsp;&nbsp;<a href="https://www.buymeacoffee.com/itsmeichigo" target="_blank"><img src="img/coffee.svg" alt="Buy Me A Coffee" ></a>
+<a href="https://apps.itsmeichigo.io/file/app-releases/peachy/Peachy_1.0.3.dmg" target="_blank"><img src="img/download.svg" alt="Download Peachy" ></a>&nbsp;&nbsp;<a href="https://www.buymeacoffee.com/itsmeichigo" target="_blank"><img src="img/coffee.svg" alt="Buy Me A Coffee" ></a>
 	<br>
 	<br>
 </div>
