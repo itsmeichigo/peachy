@@ -1,43 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "AppCenter",
-        "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple.git",
-        "state": {
-          "branch": null,
-          "revision": "b84bc8a39ff04bc8d5ae7b4d230c171c562891aa",
-          "version": "4.4.1"
-        }
-      },
-      {
-        "package": "LaunchAtLogin",
-        "repositoryURL": "https://github.com/sindresorhus/LaunchAtLogin",
-        "state": {
-          "branch": null,
-          "revision": "e8171b3e38a2816f579f58f3dac1522aa39efe41",
-          "version": "4.2.0"
-        }
-      },
-      {
-        "package": "PLCrashReporter",
-        "repositoryURL": "https://github.com/microsoft/PLCrashReporter.git",
-        "state": {
-          "branch": null,
-          "revision": "6b27393cad517c067dceea85fadf050e70c4ceaa",
-          "version": "1.10.1"
-        }
-      },
-      {
-        "package": "Sparkle",
-        "repositoryURL": "https://github.com/sparkle-project/Sparkle",
-        "state": {
-          "branch": null,
-          "revision": "286edd1fa22505a9e54d170e9fd07d775ea233f2",
-          "version": "2.1.0"
-        }
+  "pins" : [
+    {
+      "identity" : "appcenter-sdk-apple",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/appcenter-sdk-apple.git",
+      "state" : {
+        "revision" : "b2dc99cfedead0bad4e6573d86c5228c89cff332",
+        "version" : "4.4.3"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "launchatlogin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/LaunchAtLogin",
+      "state" : {
+        "revision" : "7ad6331f9c38953eb1ce8737758e18f7607e984a",
+        "version" : "5.0.0"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/PLCrashReporter.git",
+      "state" : {
+        "revision" : "81cdec2b3827feb03286cb297f4c501a8eb98df1",
+        "version" : "1.10.2"
+      }
+    },
+    {
+      "identity" : "sparkle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparkle-project/Sparkle",
+      "state" : {
+        "revision" : "47d3d90aee3c52b6f61d04ceae426e607df62347",
+        "version" : "2.5.2"
+      }
+    }
+  ],
+  "version" : 2
 }

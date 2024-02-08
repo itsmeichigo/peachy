@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -590,7 +590,7 @@
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 		2C4124FA27CA0D1E002F9E69 /* XCRemoteSwiftPackageReference "Sparkle" */ = {

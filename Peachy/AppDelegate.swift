@@ -1,6 +1,7 @@
 import AppCenter
 import AppCenterCrashes
 import Cocoa
+import LaunchAtLogin
 import SwiftUI
 
 @main
@@ -52,6 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        LaunchAtLogin.migrateIfNeeded()
         appPreferences = AppPreferences()
         searchCoordinator = SearchCoordinator(preferences: appPreferences, appStateManager: appStateManager)
         configureAppCenter()
