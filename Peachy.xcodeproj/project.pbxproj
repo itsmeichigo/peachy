@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2C001F2B2794FDD3003B9EB7 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F2A2794FDD3003B9EB7 /* SearchCoordinator.swift */; };
 		2C001F2E27A8E6CA003B9EB7 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F2D27A8E6CA003B9EB7 /* PreferencesView.swift */; };
-		2C001F3127A921CE003B9EB7 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2C001F3027A921CE003B9EB7 /* LaunchAtLogin */; };
 		2C001F3427A9287A003B9EB7 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3327A9287A003B9EB7 /* AppPreferences.swift */; };
 		2C001F4027AB8653003B9EB7 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3827AB8653003B9EB7 /* AppState.swift */; };
 		2C001F4127AB8653003B9EB7 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C001F3927AB8653003B9EB7 /* OnboardingPage.swift */; };
@@ -42,6 +41,7 @@
 		2C4E164A26E3814A006A5986 /* SearchWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E164826E3814A006A5986 /* SearchWindowController.swift */; };
 		2C4E164B26E3814A006A5986 /* SearchWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4E164926E3814A006A5986 /* SearchWindowController.xib */; };
 		2C4E164D26E38620006A5986 /* FilePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E164C26E38620006A5986 /* FilePublisher.swift */; };
+		2C61AB132B74A88600558FF1 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2C61AB122B74A88600558FF1 /* LaunchAtLogin */; };
 		2CA6668627C0DF420004D8DF /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA6668527C0DF420004D8DF /* AppCenterAnalytics */; };
 		2CA6668827C0DF420004D8DF /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA6668727C0DF420004D8DF /* AppCenterCrashes */; };
 		2CA6668A27C0E17A0004D8DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA6668927C0E17A0004D8DF /* Secrets.swift */; };
@@ -96,8 +96,8 @@
 			files = (
 				2CA6668627C0DF420004D8DF /* AppCenterAnalytics in Frameworks */,
 				2C4124FC27CA0D1E002F9E69 /* Sparkle in Frameworks */,
+				2C61AB132B74A88600558FF1 /* LaunchAtLogin in Frameworks */,
 				2CA6668827C0DF420004D8DF /* AppCenterCrashes in Frameworks */,
-				2C001F3127A921CE003B9EB7 /* LaunchAtLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,10 +262,10 @@
 			);
 			name = Peachy;
 			packageProductDependencies = (
-				2C001F3027A921CE003B9EB7 /* LaunchAtLogin */,
 				2CA6668527C0DF420004D8DF /* AppCenterAnalytics */,
 				2CA6668727C0DF420004D8DF /* AppCenterCrashes */,
 				2C4124FB27CA0D1E002F9E69 /* Sparkle */,
+				2C61AB122B74A88600558FF1 /* LaunchAtLogin */,
 			);
 			productName = Peachy;
 			productReference = 2C4E160826E1F849006A5986 /* Peachy.app */;
@@ -295,9 +295,9 @@
 			);
 			mainGroup = 2C4E15FF26E1F849006A5986;
 			packageReferences = (
-				2C001F2F27A921CE003B9EB7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 				2CA6668427C0DF420004D8DF /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 				2C4124FA27CA0D1E002F9E69 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				2C61AB112B74A88600558FF1 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 			);
 			productRefGroup = 2C4E160926E1F849006A5986 /* Products */;
 			projectDirPath = "";
@@ -528,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -553,7 +553,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -585,20 +585,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2C001F2F27A921CE003B9EB7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		2C4124FA27CA0D1E002F9E69 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
+			};
+		};
+		2C61AB112B74A88600558FF1 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		2CA6668427C0DF420004D8DF /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
@@ -612,15 +612,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2C001F3027A921CE003B9EB7 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2C001F2F27A921CE003B9EB7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
-			productName = LaunchAtLogin;
-		};
 		2C4124FB27CA0D1E002F9E69 /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2C4124FA27CA0D1E002F9E69 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		2C61AB122B74A88600558FF1 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C61AB112B74A88600558FF1 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
+			productName = LaunchAtLogin;
 		};
 		2CA6668527C0DF420004D8DF /* AppCenterAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

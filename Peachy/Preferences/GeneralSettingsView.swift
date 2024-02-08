@@ -6,7 +6,6 @@ struct GeneralSettingsView: View {
     @State private var triggerKey: String
     @State private var crashReportsEnabled: Bool
     @State private var usesDoubleKeyTrigger: Bool
-    @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
 
     private let preferences: AppPreferences
 
@@ -19,9 +18,8 @@ struct GeneralSettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Toggle(isOn: $launchAtLogin.isEnabled) {
-                Text("Launch Peachy at Login")
-            }.toggleStyle(CheckboxToggleStyle())
+            LaunchAtLogin.Toggle("Launch Peachy at Login")
+                .toggleStyle(CheckboxToggleStyle())
 
             Toggle(isOn: $crashReportsEnabled) {
                 Text("Anonymously let us know when the app crashes")
