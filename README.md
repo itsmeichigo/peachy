@@ -11,7 +11,8 @@
 </div>
 
 # Requirements
-Peachy requires macOS 11.0 or later.
+Peachy requires macOS 13.0 or later.
+If you're using macOS 11 or 12, please use version 1.0.2.
 
 # Features
 ### Quick Access
