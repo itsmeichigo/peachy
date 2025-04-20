@@ -77,3 +77,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 Peachy/Secrets.swift
+ExportOptions.plist
